@@ -15,7 +15,7 @@ html,body{
   background: url(../img/bg.jpg) repeat-x;
 }
 #temp{
-  /*margin-top: 60px;*/
+  margin-top: 60px;
 }
 *,
 ::before,

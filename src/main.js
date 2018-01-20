@@ -23,6 +23,14 @@ import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 Vue.use(iView);
 
+//5.0导入jquery
+import $ from "jquery";
+
+//6.0导入animate.css
+// import 'animate.css'
+
+
+
 
 
 
