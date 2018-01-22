@@ -15,8 +15,8 @@
               <router-link to="/home">首页</router-link>
             </li>
             <li>课程</li>
-            <li>直播</li>
-            <li>App</li>
+            <li>评论</li>
+            <li>购物车</li>
             <li>会员</li>
           </ul>
         </el-col>

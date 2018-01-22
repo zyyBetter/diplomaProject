@@ -11,7 +11,7 @@
     </div>
 
     <!--中间导航栏部分-->
-    <div class="nav">
+    <div class="nav" id="bar">
 
       <div>
         <router-link to="/music">
@@ -49,37 +49,50 @@
 
     <!--专题部分 使用插件-->
     <slick ref="slick" :options="slickOptions" id="nav" class="nav">
-      <div transition="bounce" class="animated">
 
+      <div class="maskpar">
         <router-link to="/music">
-
-          <img src='../../../static/img/home/nav1.jpg' alt="">
+          <img src='../../../static/img/home/pro1.jpg' alt="">
+          <div class="mask"></div>
         </router-link>
       </div>
 
-      <div>
+
+        <div  class="maskpar">
         <router-link to="/story">
-          <img src='../../../static/img/home/nav2.jpg' alt="">
+          <img src='../../../static/img/home/pro2.jpg' alt="">
+          <div class="mask"></div>
         </router-link>
       </div>
-      <div>
+
+      <div class="maskpar">
         <router-link to="/handmake">
-          <img src='../../../static/img/home/nav3.jpg' alt="">
+          <img src='../../../static/img/home/pro3.jpg' alt="">
+          <div class="mask"></div>
+
         </router-link>
       </div>
-      <div>
+
+      <div class="maskpar">
         <router-link to="/handwrite">
-          <img src='../../../static/img/home/nav4.jpg' alt="">
+          <img src='../../../static/img/home/pro4.jpg' alt="">
+          <div class="mask"></div>
         </router-link>
       </div>
-      <div>
+
+      <div class="maskpar">
         <router-link to="/idioms">
-          <img src='../../../static/img/home/nav5.jpg' alt="">
+          <img src='../../../static/img/home/pro5.jpg' alt="">
+          <div class="mask"></div>
+
         </router-link>
       </div>
-      <div>
+
+
+      <div class="maskpar">
         <router-link to="/birds">
           <img src='../../../static/img/home/nav6.jpg' alt="">
+          <div class="mask"></div>
         </router-link>
       </div>
 
@@ -96,16 +109,24 @@
   import Slick from 'vue-slick';
   import '../../../node_modules/slick-carousel/slick/slick.css';
   import '../../../static/css/animate.css';
-//  import animate from "../static/css/animate.css"
+  //  import animate from "../static/css/animate.css"
 
 
   /*引入jq实例*/
   $(function () {
-    $("h1").click(function () {
-      alert(1)
-    })
 
-  })
+
+//专题导航蒙版动画
+    $(".maskpar").mouseover(function (){
+      $(this).find(".mask").stop().animate({bottom:"-20px"},50);
+
+    });
+
+    $(".maskpar").mouseout(function (){
+      $(this).find(".mask").animate({bottom:"-100px"},50);
+
+    })
+  });
 
   export default {
     components: {
@@ -149,8 +170,10 @@
           this.$refs.slick.reSlick();
         });
       },
-    },
 
+
+    },
+//
 
   }
 
@@ -163,14 +186,22 @@
     height: 130%;
   }
 
+  #bar {
+    margin-top: 30px;
+    border: 6px solid pink;
+    background: #faeaed;
+    border-radius: 20px;
+    padding-bottom: 50px;
+
+  }
+
   .nav div {
     margin-top: 60px;
     margin-left: 10px;
     width: 14%;
     height: 200px;
-    background: #ffb6d1;
     display: inline-block;
-    transition:all 0.3s ease
+    transition: all 0.3s ease
   }
 
   .nav div img {
@@ -183,10 +214,38 @@
     box-shadow: -10px 10px 100px black
   }
 
-  Slick {
-    width: 80%;
-    margin: 0 auto;
+  #nav {
+    border: 6px solid pink;
+    margin-top: 60px;
+    margin-right: 50px;
+    padding-left: 20px;
+    background: #faeaed;
+    border-radius: 20px;
   }
+
+  #nav div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #nav img {
+    width: 80%;
+    margin-left: -5px;
+    background: white;
+
+  }
+
+  #nav .mask {
+    width: 80%;
+    height: 70px;
+    background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    left: -15px;
+    bottom: -100px;
+  }
+
 
 </style>
 
