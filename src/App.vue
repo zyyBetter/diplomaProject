@@ -14,10 +14,19 @@
             <li>
               <router-link to="/home">首页</router-link>
             </li>
-            <li>课程</li>
-            <li>评论</li>
-            <li>购物车</li>
-            <li>会员</li>
+            <li>
+              <router-link to="/home">课程</router-link>
+            </li>
+            <li>
+              <router-link to="/home">评论</router-link>
+            </li>
+            <li>
+              <router-link to="/shopcar">购物车</router-link>
+            </li>
+            <li>
+              <router-link to="/home">会员</router-link>
+
+            </li>
           </ul>
         </el-col>
         <el-col hidden-xs-only :sm="8" :md="8" :lg="10">
@@ -49,9 +58,9 @@
         <li>
           <img src="../static/img/login/qq.png">
         </li>
-        <li>
+        <li id="backT">
           <!--回到顶部-->
-          <i class="el-icon-arrow-up"></i>
+          <i class="el-icon-arrow-up" ></i>
         </li>
 
       </ul>
@@ -59,11 +68,36 @@
 
     </div>
 
+    <!--底部的固定导航栏-->
+    <footer>
+
+    </footer>
+
 
   </div>
 </template>
 
-<script scoped>
+<script >
+
+  $(function () {
+    //滚动条监听
+    $('.rightWall').hide();
+    $(window).scroll(function (event) {
+      //滚动距离大于150时显示返回顶部
+      if ($(window).scrollTop() > 200) {
+        $('.rightWall').show();
+
+      } else {
+        $('.rightWall').hide();
+      }
+    });
+
+    //返回顶部点击事件
+    $('#backT').click(function () {
+//      $("#app").animate({scrollTop: 0}, 600)
+      window.scrollTo(0,0);
+    });
+  })
 
   export default {
     name: 'app',
@@ -72,8 +106,6 @@
         var inp = document.getElementById("inp");
         inp.style.width = "200px";
         inp.style.transform = "translate(0px)";
-
-
       },
       restore() {
         inp.style.width = "100px";
@@ -85,7 +117,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     text-align: center;
@@ -158,12 +190,14 @@
     width: 40px;
     height: 100%;
     position: fixed;
-    background: #fad4df;
+    background: white;
     right: 0;
     top: 0;
+    border-left: 1px solid gainsboro;
     padding-top: 60px;
     padding-bottom: 60px;
     margin-top: 60px;
+
   }
 
   .rightWall ul {
@@ -200,6 +234,12 @@
   }
 
   .el-icon-arrow-up {
+
+  }
+  footer{
+    width: 100%;
+    height: 300px;
+    background: #583a46;
 
   }
 

@@ -42,7 +42,9 @@
          <input type="radio" name="sex" value="man" checked="checked">
          女
          <input type="radio" name="sex" value="women" >-->
-         <input type="checkbox" value="sure"><router-link to="/rules" id="tiaoli">《儿童教育网站条例》</router-link>
+         <input type="checkbox" value="sure"><router-link to="/rules" id="tiaoli">
+         <span>《儿童教育网站条例》</span>
+       </router-link>
 
        </div>
 
@@ -107,11 +109,12 @@
     border-radius: 5px;
     box-shadow: -10px 20px 100px black;
     /*定位*/
-    position: absolute;
-    top:50%;
-    left:50%;
-    margin-left: -200px;
-    margin-top: -200px;
+    /*position: absolute;*/
+    /*top:50%;*/
+    /*left:50%;*/
+    margin: 100px auto;
+    /*margin-left: -350px;*/
+    /*margin-top: -200px;*/
   }
 
   .panel-header{
@@ -232,6 +235,11 @@
   }
   #tiaoli{
     color:deeppink;
+    padding: 10px;
+  }
+  #tiaoli span:hover{
+    /*text-decoration: underline;*/
+    border-bottom: 1px solid pink;
   }
 
 

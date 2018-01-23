@@ -51,39 +51,38 @@
     <slick ref="slick" :options="slickOptions" id="nav" class="nav">
 
       <div class="maskpar">
-        <router-link to="/music">
+        <router-link to="/newyear">
           <img src='../../../static/img/home/pro1.jpg' alt="">
-          <div class="mask"></div>
+          <div class="mask">春节主题</div>
         </router-link>
       </div>
 
 
         <div  class="maskpar">
-        <router-link to="/story">
+        <router-link to="/fire">
           <img src='../../../static/img/home/pro2.jpg' alt="">
-          <div class="mask"></div>
+          <div class="mask">消防安全主题</div>
         </router-link>
       </div>
 
       <div class="maskpar">
-        <router-link to="/handmake">
+        <router-link to="/read">
           <img src='../../../static/img/home/pro3.jpg' alt="">
-          <div class="mask"></div>
-
+          <div class="mask">半日活动早准备</div>
         </router-link>
       </div>
 
       <div class="maskpar">
-        <router-link to="/handwrite">
+        <router-link to="/dingdang">
           <img src='../../../static/img/home/pro4.jpg' alt="">
-          <div class="mask"></div>
+          <div class="mask">多啦A梦</div>
         </router-link>
       </div>
 
       <div class="maskpar">
-        <router-link to="/idioms">
+        <router-link to="/weather">
           <img src='../../../static/img/home/pro5.jpg' alt="">
-          <div class="mask"></div>
+          <div class="mask">天气预报</div>
 
         </router-link>
       </div>
@@ -92,15 +91,14 @@
       <div class="maskpar">
         <router-link to="/birds">
           <img src='../../../static/img/home/nav6.jpg' alt="">
-          <div class="mask"></div>
+          <div class="mask">像素鸟</div>
         </router-link>
       </div>
-
-
     </slick>
 
-    <h1>ddd</h1>
+    <div id="section">
 
+    </div>
   </div>
 </template>
 
@@ -132,12 +130,12 @@
     components: {
       Slick
     },
-    transitions: {
-      bounce: {
-        enterClass: 'bounceIn',
-        leaveClass: 'bounceOutRight'
-      }
-    },
+//    transitions: {
+//      bounce: {
+//        enterClass: 'bounceIn',
+//        leaveClass: 'bounceOutRight'
+//      }
+//    },
 
     data() {
       return {
@@ -187,7 +185,10 @@
   }
 
   #bar {
+    background-image: url("../../../static/img/home/h_b.jpg");
     margin-top: 30px;
+    margin-right: 50px;
+    padding-left: 20px;
     border: 6px solid pink;
     background: #faeaed;
     border-radius: 20px;
@@ -244,6 +245,19 @@
     position: absolute;
     left: -15px;
     bottom: -100px;
+    color:white;
+    font-size:20px;
+    line-height:70px;
+  }
+  #section{
+    margin-top:50px;
+    margin-right: 50px;
+    padding-left: 20px;
+    border-radius: 20px;
+    background-color: rgba(46,139,87,0.1);
+    height: 500px;
+    border: 5px solid seagreen;
+    /*margin-bottom:300px;*/
   }
 
 

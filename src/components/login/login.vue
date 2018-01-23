@@ -54,6 +54,8 @@
    <Icon type="checkmark"></Icon>
 
 
+
+
  </div>
 </template>
 
@@ -95,11 +97,12 @@
     border-radius: 5px;
     box-shadow: -10px 20px 100px black;
     /*定位*/
-    position: absolute;
-    top:50%;
-    left:50%;
-    margin-left: -200px;
-    margin-top: -200px;
+    /*position: absolute;*/
+    /*top:50%;*/
+    /*left:50%;*/
+    margin: 100px auto;
+    /*margin-left: -200px;*/
+    /*margin-top: -200px;*/
   }
 
   .panel-header{
