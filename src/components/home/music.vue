@@ -5,7 +5,7 @@
 
 
 
-
+<div id="ca"></div>
 
 
  </div>
@@ -21,14 +21,19 @@
     }
   },
   created:function (){
-
+  this.g()
   },
     methods:{
+    g(){
+      var va = document.getElementById("ca");
+      console.log(va);
+
+    }
 
     }
 }
 </script>
 
 <style scoped>
- 
+
 </style>

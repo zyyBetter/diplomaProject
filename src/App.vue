@@ -238,8 +238,11 @@
   }
   footer{
     width: 100%;
-    height: 300px;
-    background: #583a46;
+    height: 200px;
+    margin-top:30px;
+    background:  url("../static/img/app/f_bg.jpg") repeat-x ;
+    /*background: #583a46;*/
+
 
   }
 

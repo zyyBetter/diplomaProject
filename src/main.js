@@ -29,6 +29,10 @@ import $ from "jquery";
 //6.0导入animate.css
 // import 'animate.css'
 
+//6.0导入resource
+import vueResource from "vue-resource";
+Vue.use(vueResource);
+
 
 
 

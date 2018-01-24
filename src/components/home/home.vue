@@ -48,6 +48,19 @@
     </div>
 
     <!--专题部分 使用插件-->
+    <div style="overflow: hidden" id="bar02">
+      <!--左边面板-->
+      <div id="bar02_left">
+      <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
+        <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
+        <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
+        <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
+        <!--<el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>-->
+      </el-tabs>
+      </div>
+
+
+      <!--右边的面板-->
     <slick ref="slick" :options="slickOptions" id="nav" class="nav">
 
       <div class="maskpar">
@@ -95,7 +108,7 @@
         </router-link>
       </div>
     </slick>
-
+    </div>
     <div id="section">
 
     </div>
@@ -109,22 +122,6 @@
   import '../../../static/css/animate.css';
   //  import animate from "../static/css/animate.css"
 
-
-  /*引入jq实例*/
-  $(function () {
-
-
-//专题导航蒙版动画
-    $(".maskpar").mouseover(function (){
-      $(this).find(".mask").stop().animate({bottom:"-20px"},50);
-
-    });
-
-    $(".maskpar").mouseout(function (){
-      $(this).find(".mask").animate({bottom:"-100px"},50);
-
-    })
-  });
 
   export default {
     components: {
@@ -144,16 +141,41 @@
 
         slickOptions: {
 //          下面轮播图一页的的张数
-          slidesToShow: 5,
+          slidesToShow: 4,
         },
+        activeName2: 'first',
 
       }
     },
     created: function () {
+      this.get();
 
     },
 
     methods: {
+      get(){
+
+        /*引入jq实例*/
+        $(function () {
+
+
+//专题导航蒙版动画
+          $(".maskpar").mouseover(function (){
+            $(this).find(".mask").stop().animate({bottom:"-20px"},50);
+
+          });
+
+          $(".maskpar").mouseout(function (){
+            $(this).find(".mask").animate({bottom:"-100px"},50);
+
+          })
+        });
+
+      },
+
+      handleClick(tab, event) {
+        console.log(tab, event);
+      },
 
       next() {
         this.$refs.slick.next();
@@ -185,7 +207,7 @@
   }
 
   #bar {
-    background-image: url("../../../static/img/home/h_b.jpg");
+    /*background-image: url("../../../static/img/home/h_b.jpg");*/
     margin-top: 30px;
     margin-right: 50px;
     padding-left: 20px;
@@ -205,6 +227,7 @@
     transition: all 0.3s ease
   }
 
+
   .nav div img {
     width: 100%;
     height: 100%;
@@ -214,16 +237,45 @@
     transform: translateY(15px) scale(1.2);
     box-shadow: -10px 10px 100px black
   }
+  #bar02{
+    width: 100%;
+    /*margin-top: 20px;*/
+    /*padding-left: 20px;*/
 
+  }
   #nav {
     border: 6px solid pink;
-    margin-top: 60px;
-    margin-right: 50px;
-    padding-left: 20px;
-    background: #faeaed;
+    margin-top: -300px;
+    /*margin-right: 50px;*!*/
+    /*padding-left: 20px;*/
+    /*background: #faeaed;*/
     border-radius: 20px;
-  }
+    width: 70%;
+    float: right;
+    margin-right: 50px;
 
+    /*overflow: hidden;*/
+  }
+  #bar02_left{
+    /*background: skyblue ;*/
+    width: 23%;
+    height: 300px;
+    margin-top:100px;
+    border: 6px solid pink;
+    border-radius: 20px;
+    margin-left:30px;
+
+
+  }
+  #bar02_left el-tabs{
+    /*width: 20%;*/
+    height: 200px;
+    float: left;
+    /*border: 20px solid seagreen;*/
+  }
+  el-tabs el-tab-pane {
+    /*width: 40% !important;*/
+  }
   #nav div {
     margin-top: 20px;
     margin-bottom: 20px;

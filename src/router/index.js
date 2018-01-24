@@ -12,6 +12,7 @@ import newyear from '../components/home/newyear.vue'
 import fire from '../components/home/fire.vue'
 import read from '../components/home/read.vue'
 import dingdang from '../components/home/dingdang.vue'
+import birds from '../components/birds/birds.vue'
 import weather from '../components/home/weather.vue'
 import shopcar from '../components/shopcar/shopcar.vue'
 import login from '../components/login/login.vue'
@@ -30,6 +31,7 @@ export default new Router({
     {path: '/handwrite', component: handwrite},
     {path: '/weather', component: weather},
     {path: '/dingdang', component: dingdang},
+    {path: '/birds', component: birds},
     {path: '/read', component: read},
     {path: '/story', component: story},
     {path: '/newyear', component: newyear},
