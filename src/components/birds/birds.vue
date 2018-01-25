@@ -21,14 +21,7 @@
 </template>
 
 <script>
-  import a from "./simple-inheritence.js"
-  import b from "./underscore-min.js"
-  import c from "./Game.js"
-  import d from "./FrameUtil.js"
-  import e from "./StaticSourceUtil.js"
-  import f from "./Background.js"
-  import g from "./Pipe.js"
-  import h from "./Bird.js"
+
 
   export default {
   data () {
@@ -77,6 +70,15 @@
     }
 }
 
+
+  import a from "../../../static/js/simple-inheritence.js"
+  import b from "../../../static/js/underscore-min.js"
+  import c from "../../../static/js/Game.js"
+  import d from "../../../static/js/FrameUtil.js"
+  import e from "../../../static/js/StaticSourceUtil.js"
+  import f from "../../../static/js/Background.js"
+  import g from "../../../static/js/Pipe.js"
+  import h from "../../../static/js/Bird.js"
 
 
 

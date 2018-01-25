@@ -51,12 +51,17 @@
     <div style="overflow: hidden" id="bar02">
       <!--左边面板-->
       <div id="bar02_left">
-      <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
-        <el-tab-pane label="用户管理" name="first">用户管理</el-tab-pane>
-        <el-tab-pane label="配置管理" name="second">配置管理</el-tab-pane>
-        <el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>
-        <!--<el-tab-pane label="角色管理" name="third">角色管理</el-tab-pane>-->
-      </el-tabs>
+        <ul id="tag_title">
+          <li>专题</li>
+          <li>活动</li>
+          <li>推荐</li>
+        </ul>
+        <ul id="tag">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+
       </div>
 
 
@@ -168,9 +173,16 @@
           $(".maskpar").mouseout(function (){
             $(this).find(".mask").animate({bottom:"-100px"},50);
 
-          })
-        });
+          });
 
+
+//          tag图切换
+          $("#tag_title li").mouseover(function (){
+            var index = $(this).index();
+            $("#tag li").css({display:"none"}).eq(index).css({display:"block"})
+          });
+
+        });
       },
 
       handleClick(tab, event) {
@@ -212,6 +224,7 @@
     margin-right: 50px;
     padding-left: 20px;
     border: 6px solid pink;
+    /*box-shadow: 0px 10px 5px #ffe1e8;*/
     background: #faeaed;
     border-radius: 20px;
     padding-bottom: 50px;
@@ -248,7 +261,6 @@
     margin-top: -300px;
     /*margin-right: 50px;*!*/
     /*padding-left: 20px;*/
-    /*background: #faeaed;*/
     border-radius: 20px;
     width: 70%;
     float: right;
@@ -257,25 +269,62 @@
     /*overflow: hidden;*/
   }
   #bar02_left{
-    /*background: skyblue ;*/
     width: 23%;
     height: 300px;
     margin-top:100px;
-    border: 6px solid pink;
+    border: 1px solid pink;
+    /*box-shadow: #ffe1e8 ;*/
+    box-shadow: 10px 10px 5px #ffe1e8;
     border-radius: 20px;
-    margin-left:30px;
-
+    margin-left:10px;
+    background: #fdf8f8;
 
   }
-  #bar02_left el-tabs{
-    /*width: 20%;*/
-    height: 200px;
+
+  #bar02_left ul{
+    width: 100%;
+    margin-left: 5%  ;
+    margin-top: 5px;
+    overflow: hidden;
+
+  }
+   #tag_title li{
     float: left;
-    /*border: 20px solid seagreen;*/
+    width: 30%;
+    line-height: 40px;
+    margin-left:2px;
+    height: 40px;
+    font-size:18px;
+    background: #fff2f4;
+    border-radius: 5px;
+    border:1px solid #fbd2dd;
+    color:deeppink;
+    box-shadow: 5px 5px 2px #fbd2dd;
+
   }
-  el-tabs el-tab-pane {
-    /*width: 40% !important;*/
+  #tag_title li:hover{
+    background: url("../../../static/img/home/a1.gif") repeat;
+    background-size: cover;
+    color: white;
+    border-radius: 1px;
+    height: 50px;
+    border:1px solid #fff2f4 ;
+    box-shadow: none;
+
   }
+  #tag{
+    width: 100%;
+    height: 60%;
+    /*margin-top:250px;*/
+  }
+  #tag li{
+    display: none;
+  }
+
+  #tag li:nth-of-type(1){
+    display: block;
+  }
+
   #nav div {
     margin-top: 20px;
     margin-bottom: 20px;
