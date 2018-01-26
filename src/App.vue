@@ -70,6 +70,25 @@
 
     <!--底部的固定导航栏-->
     <footer>
+      <div id="footer_all">
+
+      <div class="footer_left">
+        <ul>
+          <li></li>
+        </ul>
+        <ul>
+          <li>
+
+
+          </li>
+        </ul>
+      </div>
+      <div id="footer_right">
+        <span class="mui-icon mui-icon mui-icon-weixin">
+          d
+          </span>
+      </div>
+      </div>
 
     </footer>
 
@@ -242,8 +261,28 @@
     margin-top:30px;
     background:  url("../static/img/app/f_bg.jpg") repeat-x ;
     /*background: #583a46;*/
+    overflow: hidden;
+  }
+  #footer_all{
+    width: 60%;
+    height: 100%;
+    background: darkmagenta;
+    margin: 0 auto;
+  }
 
+  #footer_right{
+    background: white;
+    width: 50%  ;
+    height: 100%  ;
+    float: right;
+  }
 
+  #footer_right span{
+    display:inline-block;
+    width: 50px;
+    height: 50px;
+    color:white;
+    background: salmon;
   }
 
 

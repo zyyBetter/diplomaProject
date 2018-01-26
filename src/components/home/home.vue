@@ -12,6 +12,7 @@
 
     <!--中间导航栏部分-->
     <div class="nav" id="bar">
+      <span id="nav_title">课程选择 >> 启蒙</span>
 
       <div>
         <router-link to="/music">
@@ -57,7 +58,16 @@
           <li>推荐</li>
         </ul>
         <ul id="tag">
-          <li>1</li>
+          <li>
+            <ul>
+              <li><router-link to="/fire"></router-link></li>
+              <li><router-link to="/newyear">旺旺狗年,幸福吉祥</router-link></li>
+              <li><router-link to="/read">半日早读课,学习不能断</router-link></li>
+              <li><router-link to="/dingdang">多啦A梦,遇见最美的你</router-link></li>
+              <li><router-link to="/weather">天气预报小知识</router-link></li>
+              <li><router-link to="/birds">像素鸟,娱乐学习两不误</router-link></li>
+            </ul>
+          </li>
           <li>2</li>
           <li>3</li>
         </ul>
@@ -114,8 +124,32 @@
       </div>
     </slick>
     </div>
-    <div id="section">
 
+
+
+    <div id="section">
+      <div class="animation-data">
+        <ul>
+          <li>
+            <p>
+              <span class="data-change">00,000</span>
+            </p>
+            <span>次安装</span>
+          </li>
+          <li>
+            <p>
+              <span class="data-change">000,000,000</span>
+            </p>
+            <span>用户直播</span>
+          </li>
+          <li>
+            <p>
+              <span class="data-change">000,000,000</span>
+            </p>
+            <span>学习次数</span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -149,7 +183,6 @@
           slidesToShow: 4,
         },
         activeName2: 'first',
-
       }
     },
     created: function () {
@@ -166,21 +199,84 @@
 
 //专题导航蒙版动画
           $(".maskpar").mouseover(function (){
-            $(this).find(".mask").stop().animate({bottom:"-20px"},50);
+            $(this).find(".mask").stop().animate({bottom:"-20px"},10);
 
           });
 
           $(".maskpar").mouseout(function (){
-            $(this).find(".mask").animate({bottom:"-100px"},50);
+            $(this).find(".mask").animate({bottom:"-250px"},10);
 
           });
 
 
 //          tag图切换
-          $("#tag_title li").mouseover(function (){
+          $("#tag_title>li").mouseover(function (){
             var index = $(this).index();
-            $("#tag li").css({display:"none"}).eq(index).css({display:"block"})
+            $("#tag>li").css({display:"none"}).eq(index).css({display:"block"})
           });
+
+//          数字的滚动
+//          section里面的,当页面滚动到一定距离的时候数字滚动显示使用的人数
+
+          var a=10;
+          var b=170;
+          var c=280;
+          var d=530;
+          var e=610;
+          var f=0;
+          var h=0;
+          var index=0;
+          var flag=true;
+          var flag2=true;
+
+          $(window).scroll(function (event) {
+            if ($(window).scrollTop()>800&&flag==true)
+            {
+//              alert(1)
+
+              console.log($(window).scrollTop());;
+              flag=false;
+              var timer=setInterval(function () {
+                index++;
+                a+=1;
+                b+=1;
+                c+=1;
+                d+=1;
+                e+=1;
+                f+=1;
+                h+=1;
+                var data1=a+','+b;
+                var data2=c+','+d+','+c;
+                $('.data-change').eq(0).html(data1);
+                $('.data-change').eq(1).html(data2);
+                $('.data-change').eq(2).html(data2);
+                if (index>300)
+                {
+                  clearInterval(timer)
+                }
+              },10)
+            }
+            if ($(this).scrollTop()>4200 && flag2==true)
+            {
+              flag2=false;
+              var timer2=setInterval(function () {
+                index++;
+                a+=1;
+                b+=1;
+                c+=1;
+                d+=1;
+                e+=1;
+                f+=1;
+                h+=1;
+                var data2=c+','+d+','+c;
+                $('.recovery strong').eq(0).html(data2);
+                if (index>300)
+                {
+                  clearInterval(timer2)
+                }
+              },10)
+            }
+          })
 
         });
       },
@@ -213,10 +309,18 @@
 
 <style scoped>
 
+
+  el-carousel-item{
+    width: 100%;
+    height: 150%;
+
+    background: url("../../../static/img/home/slider00.jpg");
+  }
   .imgs {
     width: 100%;
-    height: 130%;
+    height: 100%;
   }
+
 
   #bar {
     /*background-image: url("../../../static/img/home/h_b.jpg");*/
@@ -225,14 +329,29 @@
     padding-left: 20px;
     border: 6px solid pink;
     /*box-shadow: 0px 10px 5px #ffe1e8;*/
-    background: #faeaed;
+    background: #ffffff;
     border-radius: 20px;
     padding-bottom: 50px;
 
   }
 
+  #nav_title{
+    margin-left:60px;
+    margin-top: 10px;
+    display: block;
+    width: 60%;
+    height: 60px;
+    background: #ffffff url("../../../static/img/home/h_b.jpg") no-repeat;
+    line-height: 50px;
+    color: deeppink;
+    font-weight:bolder;
+    text-align: justify;
+    cursor: pointer;
+    padding-left:10px;
+  }
+
   .nav div {
-    margin-top: 60px;
+    margin-top: 20px;
     margin-left: 10px;
     width: 14%;
     height: 200px;
@@ -252,15 +371,11 @@
   }
   #bar02{
     width: 100%;
-    /*margin-top: 20px;*/
-    /*padding-left: 20px;*/
 
   }
   #nav {
     border: 6px solid pink;
     margin-top: -300px;
-    /*margin-right: 50px;*!*/
-    /*padding-left: 20px;*/
     border-radius: 20px;
     width: 70%;
     float: right;
@@ -273,7 +388,6 @@
     height: 300px;
     margin-top:100px;
     border: 1px solid pink;
-    /*box-shadow: #ffe1e8 ;*/
     box-shadow: 10px 10px 5px #ffe1e8;
     border-radius: 20px;
     margin-left:10px;
@@ -300,6 +414,7 @@
     border:1px solid #fbd2dd;
     color:deeppink;
     box-shadow: 5px 5px 2px #fbd2dd;
+     cursor: pointer;
 
   }
   #tag_title li:hover{
@@ -314,16 +429,33 @@
   }
   #tag{
     width: 100%;
-    height: 60%;
+    height: 100%;
+    text-align: left;
     /*margin-top:250px;*/
+    float: left;
   }
-  #tag li{
+  #tag>li{
     display: none;
   }
 
-  #tag li:nth-of-type(1){
+  #tag>li:nth-of-type(1){
     display: block;
   }
+
+  /*专题里面的样式*/
+  #tag ul{
+    padding-right:60px;
+  }
+  #tag ul li{
+    line-height: 35px;
+    border-bottom: 1px dashed deeppink;
+    cursor: pointer;
+  }
+
+ /* #tag ul>li:hover span{
+    color: deeppink !important;
+    background: darkmagenta;
+  }*/
 
   #nav div {
     margin-top: 20px;
@@ -341,25 +473,55 @@
 
   #nav .mask {
     width: 80%;
-    height: 70px;
+    height: 200px;
     background: rgba(0, 0, 0, 0.4);
     position: absolute;
     left: -15px;
-    bottom: -100px;
+    bottom: -250px;
     color:white;
-    font-size:20px;
-    line-height:70px;
+    font-size:30px;
+    font-weight:bolder;
+    line-height:200px;
   }
   #section{
     margin-top:50px;
     margin-right: 50px;
     padding-left: 20px;
     border-radius: 20px;
-    background-color: rgba(46,139,87,0.1);
-    height: 500px;
+    height: 100px;
     border: 5px solid seagreen;
-    /*margin-bottom:300px;*/
+    background: rgba(46,139,87,0.1) url("../../../static/img/home/swiper_1.png");
+    background-size:cover;
   }
+  #section .animation-data {
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+
+
+  }
+  #section .animation-data ul{
+    /*text-align: center;*/
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+
+  }
+  #section .animation-data li{
+    float: left;
+    text-align: center;
+    line-height: 40px;
+    font-weight:bolder;
+    font-size:30px;
+    margin-left:30px;
+    padding-left:30px;
+  }
+  #section .animation-data li:nth-of-type(1){
+    border-left:none;
+    margin-top: 5px;
+  }
+
 
 
 </style>
