@@ -18,7 +18,7 @@
               <router-link to="/home">课程</router-link>
             </li>
             <li>
-              <router-link to="/home">评论</router-link>
+              <router-link to="/comments">评论</router-link>
             </li>
             <li>
               <router-link to="/shopcar">购物车</router-link>

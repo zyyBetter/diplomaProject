@@ -28,7 +28,7 @@
           //
           // 5.加载数据
             // 需要：所有的图片对象,所有图片的个数，已经加载好的图片个数
-            this.staticSourceUtil.loadImage('http://127.0.0.1/bird/r.php',function (allImageObj,allImageCount,loadImageCount) {
+            this.staticSourceUtil.loadImage('http://127.0.0.1/diplomaProject/r.php',function (allImageObj,allImageCount,loadImageCount) {
                 // 所有的图片对象加载完毕在保存
                 if(allImageCount == loadImageCount){ // 加载完毕
                     self.allImageObj = allImageObj;

@@ -15,6 +15,7 @@ import dingdang from '../components/home/dingdang.vue'
 import birds from '../components/birds/birds.vue'
 import weather from '../components/home/weather.vue'
 import shopcar from '../components/shopcar/shopcar.vue'
+import comments from '../components/comment/comments.vue'
 import login from '../components/login/login.vue'
 import register from '../components/login/register.vue'
 import rules from '../components/login/rules.vue'
@@ -39,6 +40,7 @@ export default new Router({
     {path: '/login', component: login},
     {path: '/register', component: register},
     {path: '/rules', component: rules},
+    {path: '/comments', component:comments},
 
   ]
 })
