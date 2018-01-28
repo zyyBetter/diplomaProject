@@ -15,9 +15,10 @@ html,body{
   background: url(../img/bg.jpg) repeat-x fixed;
 }
 #temp{
-  margin-top: 60px;
+  /*margin-top: 60px;*/
   height: 100%;
-  width: 100%;
+  width: 80%;
+  margin: 60px auto;
 }
 *,
 ::before,

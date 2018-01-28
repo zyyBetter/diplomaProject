@@ -125,8 +125,7 @@
     </slick>
     </div>
 
-
-
+    <!--数字滚动的效果-->
     <div id="section">
       <div class="animation-data">
         <ul>
@@ -151,6 +150,9 @@
         </ul>
       </div>
     </div>
+
+    <!--排他的动态的效果-->
+
   </div>
 </template>
 
@@ -325,7 +327,7 @@
   #bar {
     /*background-image: url("../../../static/img/home/h_b.jpg");*/
     margin-top: 30px;
-    margin-right: 50px;
+    /*margin-right: 50px;*/
     padding-left: 20px;
     border: 6px solid pink;
     /*box-shadow: 0px 10px 5px #ffe1e8;*/
@@ -379,8 +381,7 @@
     border-radius: 20px;
     width: 70%;
     float: right;
-    margin-right: 50px;
-
+    /*margin-right: 50px;*/
     /*overflow: hidden;*/
   }
   #bar02_left{
@@ -390,8 +391,10 @@
     border: 1px solid pink;
     box-shadow: 10px 10px 5px #ffe1e8;
     border-radius: 20px;
-    margin-left:10px;
+    /*margin-left:10px;*/
     background: #fdf8f8;
+    overflow: hidden;
+
 
   }
 
@@ -485,7 +488,7 @@
   }
   #section{
     margin-top:50px;
-    margin-right: 50px;
+    /*margin-right: 50px;*/
     padding-left: 20px;
     border-radius: 20px;
     height: 100px;
@@ -503,7 +506,7 @@
   }
   #section .animation-data ul{
     /*text-align: center;*/
-    width: 80%;
+    /*width: 80%;*/
     height: 100%;
     margin: 0 auto;
 
@@ -513,13 +516,16 @@
     text-align: center;
     line-height: 40px;
     font-weight:bolder;
-    font-size:30px;
-    margin-left:30px;
-    padding-left:30px;
+    font-size:20px;
+    /*margin-left:30px;*/
+    /*padding-left:30px;*/
+    border-left: 5px solid seagreen;
+    width: 30%;
+    margin-top: 5px;
+
   }
   #section .animation-data li:nth-of-type(1){
     border-left:none;
-    margin-top: 5px;
   }
 
 
