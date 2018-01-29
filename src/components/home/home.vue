@@ -165,6 +165,7 @@
 
     <!--排他的动态的效果-->
 
+
   </div>
 </template>
 
@@ -224,8 +225,15 @@
 //  2.0        tag图切换
           $("#tag_title>li").mouseover(function () {
             var index = $(this).index();
+
             $("#tag>li").css({display: "none"}).eq(index).css({display: "block"})
           });
+
+            $("#tag>li").mouseover(function () {
+              var index = $(this).index();
+              $("#tag_title>li").css({fontSize:'20px'}).eq(index).css({fontSize:'30px'});
+            });
+
 
 //  3.0        数字的滚动
 //          section里面的,当页面滚动到一定距离的时候数字滚动显示使用的人数
@@ -446,6 +454,7 @@
     text-align: left;
     /*margin-top:250px;*/
     float: left;
+    margin-top: 60px;
   }
 
   #tag > li {

@@ -69,28 +69,60 @@
     </div>
 
     <!--底部的固定导航栏-->
-    <footer>
+    <footer class="clearfix">
       <div id="footer_all">
 
+    <!--尾部的左边部分-->
       <div class="footer_left">
+
         <ul>
-          <li></li>
+          <li>我是家长</li>
+          <li>如何注册</li>
+          <li>如何学习</li>
+          <li>如何互动</li>
         </ul>
         <ul>
-          <li>
-
-
-          </li>
+          <li>我是老师</li>
+          <li>发布课程</li>
+          <li>使用题库</li>
+          <li>教学资料库</li>
+        </ul>
+        <ul>
+          <li>商业应用</li>
+          <li>会员专区</li>
+          <li>题库增强版</li>
+          <li>用户导入导出</li>
+        </ul>
+        <ul>
+          <li>关于我们</li>
+          <li>ES官网</li>
+          <li>官方微博</li>
+          <li>加入我们</li>
         </ul>
       </div>
+        <!--尾部的右边部分-->
       <div id="footer_right">
-        <span class="mui-icon mui-icon mui-icon-weixin">
-          d
-          </span>
+        <span class="clearfix">
+                    <img src="../static/img/1.png" alt="" >
+        </span>
+        <div class="footer_right_img">
+          <ul class="clearfix">
+          <li><img src="../static/img/login/weixin.png"></li>
+          <li><img src="../static/img/login/qq.png"></li>
+          <li><img src="../static/img/login/sina.png"></li>
+          </ul>
+        </div>
       </div>
       </div>
-
+      <div id="footer_bottom">
+        <p>©2014-2017 杭州阔知网络科技有限公司 All Rights Reserved. 浙ICP备13006852号-1 浙B2-20160872</p>
+        <p class="gongan">
+          <img src="../static/img/app/reference.png" alt="">
+          <span>浙公网安备 33010802003864号</span>
+        </p>
+      </div>
     </footer>
+
 
 
   </div>
@@ -261,29 +293,135 @@
     margin-top:30px;
     background:  url("../static/img/app/f_bg.jpg") repeat-x ;
     /*background: #583a46;*/
-    overflow: hidden;
+    /*overflow: hidden;*/
   }
   #footer_all{
+    width: 100%;
+    height: 100%;
+    /*background: darkmagenta;*/
+    /*margin: 0 auto;*/
+  }
+  .footer_left{
+    /*background: darkcyan;*/
     width: 60%;
     height: 100%;
-    background: darkmagenta;
-    margin: 0 auto;
+    float: left;
+    overflow: hidden;
   }
+  .footer_left ul{
+    width: 20%;
+    float: right;
+    margin-top:30px;
+  }
+  .footer_left ul li{
+    font-size:15px;
+    line-height:35px;
+    color: #c1c1c1;
+
+  }
+  .footer_left ul li:nth-of-type(1){
+    font-size:20px;
+    line-height:40px;
+    color: #eeeeee;
+  }
+
 
   #footer_right{
-    background: white;
-    width: 50%  ;
+    /*background: white;*/
+    width: 40%  ;
     height: 100%  ;
     float: right;
+    /*background: salmon;*/
+
+  }
+  #footer_right span{
+    width: 233px;
+    margin-left:40px;
+
+    display: inline-block;
+    /*margin-top:30px;*/
+    margin-top: 30px ;
+    float: left;
+    /*background:salmon;*/
+    /*transform: translateX(-50px);*/
+
+
+
+  }
+  #footer_right>img{
+    width: 100% ;
+    float: left;
+
   }
 
-  #footer_right span{
-    display:inline-block;
-    width: 50px;
-    height: 50px;
-    color:white;
-    background: salmon;
+  .footer_right_img {
+    width: 50% ;
+    margin-top: 40px ;
+    /*background: chartreuse;*/
+    /*border: 6px solid seagreen;*/
+    margin-left:50px;
+
   }
+  .footer_right_img li{
+    float: left;
+    margin-left: 20px;
+    /*padding-left:20px;*/
+    padding-top:30px;
+
+
+
+  }
+  .footer_right_img li img{
+    width: 40px;
+  }
+  .footer_right_img li img:hover{
+    animation: move 0.5s;
+
+    /*tr*/
+  }
+  /*底部图片的旋转放大动画*/
+  @keyframes move {
+    0%{
+      transform: rotateZ(90deg) scale(1.2);
+    }
+    25%{
+      transform: rotateZ(180deg) scale(1.2) ;
+    ;
+    }
+    50%{
+      transform: rotateZ(270deg) scale(1.2);
+    ;
+    }
+    100%{
+      transform: rotateZ(360deg) scale(1.2) ;
+    ;
+    }
+
+  }
+
+  /*footer底部*/
+  #footer_bottom{
+    width: 100%;
+    height: 100px;
+    background: #533743;
+  }
+  #footer_bottom p:nth-of-type(1){
+    width: 80%;
+    color: #838383;
+    padding-top:20px;
+  }
+  #footer_bottom .gongan{
+    width: 15%;
+    height: 30px;
+    /*margin:10px ;*/
+    margin:15px 35%;
+    color: #f5f5f5;
+  }
+  #footer_bottom .gongan img{
+    position: relative;
+    top: 5px;
+  }
+
 
 
 </style>
