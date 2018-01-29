@@ -164,6 +164,41 @@
     </div>
 
     <!--排他的动态的效果-->
+    <div id="article" >
+      <div class="clearfix">
+      <p  id="article_title" >
+        <span></span>
+        特色课推介
+      </p>
+      </div>
+
+      <div class="article_tag">
+        <ul>
+          <li>
+            <div class="1">1</div>
+            <div class="2">2</div>
+          </li>
+          <li>
+            <div class="1">1</div>
+            <div class="2">2</div>
+          </li>
+          <li>
+            <div class="1">1</div>
+            <div class="2">2</div>
+          </li>
+          <li>
+            <div class="1">1</div>
+            <div class="2">2</div>
+          </li>
+          <li>
+            <div class="1">1</div>
+            <div class="2">2</div>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
 
 
   </div>
@@ -212,6 +247,13 @@
 
         /*引入jq实例*/
         $(function () {
+//          4.0article中的排他
+          $(".article_tag li").mouseover(function (){
+            $(this).find(".1").css({display:"none"}).siblings().css({display:"block"});
+            $(this).stop().animate({width:"25%",height:"80%",opacity:0.6},400).siblings().stop().animate({width:"15%",height:"60%",opacity:1},400).find(".2").css({display:"none"}).siblings().css({display:"block"});
+          });
+
+
 //1.0专题导航蒙版动画
           $(".maskpar").mouseover(function () {
             $(this).find(".mask").stop().animate({bottom: "-20px"}, 10);
@@ -510,7 +552,6 @@
 
   #section {
     margin-top: 50px;
-    /*margin-right: 50px;*/
     padding-left: 20px;
     border-radius: 20px;
     height: 100px;
@@ -552,7 +593,56 @@
   #section .animation-data li:nth-of-type(1) {
     border-left: none;
   }
+  #article{
+    width: 100%;
+    height: 600px;
+    border-radius: 20px;
+    margin-top:60px;
 
+  }
+  #article #article_title{
+    width: 15% ;
+    height: 50px;
+    /*background: darkblue;*/
+    float: left;
+    font-size: 20px;
+    font-weight:bolder;
+  }
+  #article #article_title span {
+    display: inline-block;
+    width: 20px;
+    height: 40px;
+    background: deeppink;
+    position: relative;
+    top: -10px;
+    float: left;
+  }
+  #article .article_tag{
+    width: 100%;
+    height: 90%;
+    border-top: 2px solid seagreen;
+    /*margin-top: -8%;*/
+
+  }
+  #article .article_tag ul{
+    width: 100%;
+    height: 100%;
+    margin-top: 40px;
+    margin-left:7%;
+  }
+  #article .article_tag li{
+    float: left;
+    width: 15%;
+    height: 60%;
+    background: cyan;
+    border: 1px solid silver;
+  }
+  /*打开页面默认第三的LI是放大的*/
+  #article .article_tag li:nth-of-type(3){
+    width: 25%;
+    height: 80%;
+    /*transform: translateY(-10%);*/
+  }
 
 </style>
 
