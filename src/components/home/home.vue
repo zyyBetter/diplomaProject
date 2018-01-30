@@ -11,39 +11,79 @@
     </div>
 
     <!--中间导航栏部分-->
-    <div class="nav" id="bar">
-      <span id="nav_title">课程选择 >> 启蒙</span>
+    <div  id="bar">
+      <span id="bar_title">课程选择 >> 启蒙</span>
+      <div id="bar_left">
+        <img src="../../../static/img/home/nav_title.jpg" alt="">
+      </div>
+      <div id="bar_right" >
+        <ul>
+          <li>
+            <router-link to="/music">
+              <img src='../../../static/img/home/nav1.jpg' alt="">
+            </router-link>
+          </li>
+           <li>
+            <router-link to="/music">
+              <img src='../../../static/img/home/nav2.jpg' alt="">
+            </router-link>
+          </li>
+           <li>
+            <router-link to="/music">
+              <img src='../../../static/img/home/nav3.jpg' alt="">
+            </router-link>
+          </li>
+           <li>
+            <router-link to="/music">
+              <img src='../../../static/img/home/nav4.jpg' alt="">
+            </router-link>
+          </li>
+           <li>
+            <router-link to="/music">
+              <img src='../../../static/img/home/nav5.jpg' alt="">
+            </router-link>
+          </li>
+           <li>
+            <router-link to="/music">
+              <img src='../../../static/img/home/nav6.jpg' alt="">
+            </router-link>
+          </li>
 
-      <div>
-        <router-link to="/music">
-          <img src='../../../static/img/home/nav1.jpg' alt="">
-        </router-link>
+        </ul>
+
+        <!--<div>
+          <router-link to="/music">
+            <img src='../../../static/img/home/nav1.jpg' alt="">
+          </router-link>
+        </div>
+        <div>
+          <router-link to="/story">
+            <img src='../../../static/img/home/nav2.jpg' alt="">
+          </router-link>
+        </div>
+        <div>
+          <router-link to="/handmake">
+            <img src='../../../static/img/home/nav3.jpg' alt="">
+          </router-link>
+        </div>
+        <div>
+          <router-link to="/handwrite">
+            <img src='../../../static/img/home/nav4.jpg' alt="">
+          </router-link>
+        </div>
+        <div>
+          <router-link to="/idioms">
+            <img src='../../../static/img/home/nav5.jpg' alt="">
+          </router-link>
+        </div>
+        <div>
+          <router-link to="/birds">
+            <img src='../../../static/img/home/nav6.jpg' alt="">
+          </router-link>
+        </div>
+-->
       </div>
-      <div>
-        <router-link to="/story">
-          <img src='../../../static/img/home/nav2.jpg' alt="">
-        </router-link>
-      </div>
-      <div>
-        <router-link to="/handmake">
-          <img src='../../../static/img/home/nav3.jpg' alt="">
-        </router-link>
-      </div>
-      <div>
-        <router-link to="/handwrite">
-          <img src='../../../static/img/home/nav4.jpg' alt="">
-        </router-link>
-      </div>
-      <div>
-        <router-link to="/idioms">
-          <img src='../../../static/img/home/nav5.jpg' alt="">
-        </router-link>
-      </div>
-      <div>
-        <router-link to="/birds">
-          <img src='../../../static/img/home/nav6.jpg' alt="">
-        </router-link>
-      </div>
+
 
 
     </div>
@@ -52,31 +92,31 @@
     <div style="overflow: hidden" id="bar02">
       <!--左边面板-->
       <div id="bar02_left">
-        <ul id="tag_title">
+        <ul id="bar02_title">
           <li>专题</li>
           <li>活动</li>
           <li>推荐</li>
         </ul>
-        <ul id="tag">
+        <ul id="bar02_tag">
           <li>
             <ul>
               <li>
-                <router-link to="/fire"></router-link>
+                <router-link to="/fire"><p>防火安全,从我做起</p></router-link>
               </li>
               <li>
-                <router-link to="/newyear">旺旺狗年,幸福吉祥</router-link>
+                <router-link to="/newyear"><p>旺旺狗年,幸福吉祥</p></router-link>
               </li>
               <li>
-                <router-link to="/read">半日早读课,学习不能断</router-link>
+                <router-link to="/read"><p>半日早读课,学习不能断</p></router-link>
               </li>
               <li>
-                <router-link to="/dingdang">多啦A梦,遇见最美的你</router-link>
+                <router-link to="/dingdang"><p>多啦A梦,遇见最美的你</p></router-link>
               </li>
               <li>
-                <router-link to="/weather">天气预报小知识</router-link>
+                <router-link to="/weather"><p>天气预报小知识</p></router-link>
               </li>
               <li>
-                <router-link to="/birds">像素鸟,娱乐学习两不误</router-link>
+                <router-link to="/birds"><p>像素鸟,娱乐学习两不误</p></router-link>
               </li>
             </ul>
           </li>
@@ -88,7 +128,8 @@
 
 
       <!--右边的面板-->
-      <slick ref="slick" :options="slickOptions" id="nav" class="nav">
+
+      <slick ref="slick" :options="slickOptions" id="bar02_right" class="nav">
 
         <div class="maskpar">
           <router-link to="/newyear">
@@ -96,8 +137,6 @@
             <div class="mask">春节主题</div>
           </router-link>
         </div>
-
-
         <div class="maskpar">
           <router-link to="/fire">
             <img src='../../../static/img/home/pro2.jpg' alt="">
@@ -175,25 +214,26 @@
       <div class="article_tag">
         <ul>
           <li>
-            <div class="1">1</div>
-            <div class="2">2</div>
+            <div class="article_tag_first">1</div>
+            <div class="article_tag_second">2</div>
           </li>
-          <li>
-            <div class="1">1</div>
-            <div class="2">2</div>
+           <li>
+            <div class="article_tag_first">1</div>
+            <div class="article_tag_second">2</div>
           </li>
-          <li>
-            <div class="1">1</div>
-            <div class="2">2</div>
+           <li>
+            <div class="article_tag_first">1</div>
+            <div class="article_tag_second">2</div>
           </li>
-          <li>
-            <div class="1">1</div>
-            <div class="2">2</div>
+           <li>
+            <div class="article_tag_first">1</div>
+            <div class="article_tag_second">2</div>
           </li>
-          <li>
-            <div class="1">1</div>
-            <div class="2">2</div>
+           <li>
+            <div class="article_tag_first">1</div>
+            <div class="article_tag_second">2</div>
           </li>
+
 
         </ul>
       </div>
@@ -230,7 +270,7 @@
 
         slickOptions: {
 //          下面轮播图一页的的张数
-          slidesToShow: 4,
+          slidesToShow: 3,
         },
         activeName2: 'first',
       }
@@ -249,8 +289,8 @@
         $(function () {
 //          4.0article中的排他
           $(".article_tag li").mouseover(function (){
-            $(this).find(".1").css({display:"none"}).siblings().css({display:"block"});
-            $(this).stop().animate({width:"25%",height:"80%",opacity:0.6},400).siblings().stop().animate({width:"15%",height:"60%",opacity:1},400).find(".2").css({display:"none"}).siblings().css({display:"block"});
+            $(this).find(".article_tag_first").css({display:"none"}).siblings().css({display:"block"});
+            $(this).stop().animate({width:"27%",height:"90%",opacity:0.6},400).siblings().stop().animate({width:"18%",height:"80%",opacity:1},400).find(".article_tag_second").css({display:"none"}).siblings().css({display:"block"});
           });
 
 
@@ -265,15 +305,15 @@
           });
 
 //  2.0        tag图切换
-          $("#tag_title>li").mouseover(function () {
+          $("#bar02_title>li").mouseover(function () {
             var index = $(this).index();
 
-            $("#tag>li").css({display: "none"}).eq(index).css({display: "block"})
+            $("#bar02_tag>li").css({display: "none"}).eq(index).css({display: "block"})
           });
 
-            $("#tag>li").mouseover(function () {
+            $("#bar02_tag>li").mouseover(function () {
               var index = $(this).index();
-              $("#tag_title>li").css({fontSize:'20px'}).eq(index).css({fontSize:'30px'});
+              $("#bar02_title>li").css({fontSize:'20px'}).eq(index).css({fontSize:'30px'});
             });
 
 
@@ -382,24 +422,56 @@
 
   #bar {
     /*background-image: url("../../../static/img/home/h_b.jpg");*/
-    margin-top: 30px;
+    margin-top: 60px;
     /*margin-right: 50px;*/
     padding-left: 20px;
-    border: 6px solid pink;
+    border: 1px solid pink;
     /*box-shadow: 0px 10px 5px #ffe1e8;*/
-    background: #ffffff;
+    /*background: palegreen;*/
     border-radius: 20px;
     padding-bottom: 50px;
+    height: 800px ;
 
   }
+  #bar_left{
+    float: left;
+    width: 25%;
+    height: 90%;
+    margin-top: 2%;
+  }
+  #bar_left img{
+    width: 100%;
+    /*height: 90%;*/
+    height: 100%;
+  }
+  #bar_right{
+    float: right;
+    width: 75%;
+    height: 100%;
+    /*background: cyan;*/
+  }
+  #bar_right ul{
+    width: 100%;
+    height: 100%;
+  }
+  #bar_right ul li{
+    margin-left: 2% ;
+    margin-top: 5% ;
+    width: 30%;
+    height: 40%;
+    float: left;
+  }
+  #bar_right ul li img {
+    width: 100%;
+    height: 100%;
+  }
 
-  #nav_title {
-    margin-left: 60px;
+  #bar_title {
+    border-bottom: 1px solid seagreen;
     margin-top: 10px;
     display: block;
-    width: 60%;
+    width: 100%;
     height: 60px;
-    background: #ffffff url("../../../static/img/home/h_b.jpg") no-repeat;
     line-height: 50px;
     color: deeppink;
     font-weight: bolder;
@@ -429,22 +501,26 @@
 
   #bar02 {
     width: 100%;
+    height: 600px;
 
   }
 
-  #nav {
+  #bar02_right {
     border: 6px solid pink;
-    margin-top: -300px;
+    margin-top: 100px;
     border-radius: 20px;
     width: 70%;
+    height: 100%;
     float: right;
+    height: 100%;
+    padding-top: 5%;
     /*margin-right: 50px;*/
     /*overflow: hidden;*/
   }
 
   #bar02_left {
-    width: 23%;
-    height: 300px;
+    width: 28%;
+    height: 100%;
     margin-top: 100px;
     border: 1px solid pink;
     box-shadow: 10px 10px 5px #ffe1e8;
@@ -452,9 +528,15 @@
     /*margin-left:10px;*/
     background: #fdf8f8;
     overflow: hidden;
+    float: left;
 
   }
 
+
+  #bar02_title{
+    float: right;
+
+  }
   #bar02_left ul {
     width: 100%;
     margin-left: 5%;
@@ -463,7 +545,7 @@
 
   }
 
-  #tag_title li {
+  #bar02_title li {
     float: left;
     width: 30%;
     line-height: 40px;
@@ -479,7 +561,7 @@
 
   }
 
-  #tag_title li:hover {
+  #bar02_title li:hover {
     background: url("../../../static/img/home/a1.gif") repeat;
     background-size: cover;
     color: white;
@@ -490,55 +572,57 @@
 
   }
 
-  #tag {
+  #bar02_tag {
     width: 100%;
     height: 100%;
     text-align: left;
     /*margin-top:250px;*/
     float: left;
-    margin-top: 60px;
-  }
-
-  #tag > li {
-    display: none;
-  }
-
-  #tag > li:nth-of-type(1) {
-    display: block;
+    margin-top: 200px;
   }
 
   /*专题里面的样式*/
-  #tag ul {
+  #bar02_tag ul {
     padding-right: 60px;
   }
 
-  #tag ul li {
-    line-height: 35px;
+  #bar02_tag > li {
+    display: none;
+
+  }
+
+  #bar02_tag > li:nth-of-type(1) {
+    display: block;
+  }
+
+
+
+  #bar02_tag ul>li {
+    line-height: 60px;
     border-bottom: 1px dashed deeppink;
     cursor: pointer;
   }
+  #bar02_tag ul>li:hover p{
+    color:seagreen;
+  }
 
-  /* #tag ul>li:hover span{
-     color: deeppink !important;
-     background: darkmagenta;
-   }*/
 
-  #nav div {
+  #bar02_right div {
     margin-top: 20px;
     margin-bottom: 20px;
     position: relative;
     overflow: hidden;
   }
 
-  #nav img {
-    width: 80%;
+  #bar02_right img {
+    width: 100%;
     margin-left: -5px;
     background: white;
 
   }
 
-  #nav .mask {
-    width: 80%;
+  #bar02_right .mask {
+    width: 100%;
     height: 200px;
     background: rgba(0, 0, 0, 0.4);
     position: absolute;
@@ -628,19 +712,20 @@
     width: 100%;
     height: 100%;
     margin-top: 40px;
-    margin-left:7%;
+    /*margin-left:7%;*/
   }
   #article .article_tag li{
     float: left;
-    width: 15%;
-    height: 60%;
+    width: 18%;
+    height: 80%;
     background: cyan;
     border: 1px solid silver;
+    box-sizing: border-box;
   }
   /*打开页面默认第三的LI是放大的*/
   #article .article_tag li:nth-of-type(3){
-    width: 25%;
-    height: 80%;
+    width: 27%;
+    height: 90%;
     /*transform: translateY(-10%);*/
   }
 
