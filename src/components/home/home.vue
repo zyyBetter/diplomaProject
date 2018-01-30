@@ -13,6 +13,49 @@
     <!--中间导航栏部分-->
     <div  id="bar">
       <span id="bar_title">课程选择 >> 启蒙</span>
+        <div id="bar_nav">
+          <ul class="bar_nav_mp3">
+
+            <li>
+              <router-link to="/home">首页</router-link>
+              <audio src="../../../static/source/a1.mp3" id="aa"></audio>
+              <span class="bar_nav_mask"></span>
+            </li>
+
+            <li>
+              <router-link to="/music">童谣</router-link>
+              <audio src="../../../static/source/a2.mp3"></audio>
+              <span class="bar_nav_mask"></span>
+            </li>
+            <li>
+              <router-link to="/idioms">寓言故事</router-link>
+              <audio src="../../../static/source/a3.mp3"></audio>
+              <span class="bar_nav_mask"></span>
+            </li>
+            <li>
+            <router-link to="/handmake">手工制作</router-link>
+              <audio src="../../../static/source/a4.mp3"></audio>
+              <span class="bar_nav_mask"></span>
+            </li>
+            <li>
+              <router-link to="/handwrite">书法</router-link>
+              <audio src="../../../static/source/a5.mp3"></audio>
+              <span class="bar_nav_mask"></span>
+
+            </li>
+            <li>
+              <router-link to="/story">故事</router-link>
+              <audio src="../../../static/source/a6.mp3"></audio>
+              <span class="bar_nav_mask"></span>
+            </li>
+            <li>
+              <router-link to="/birds">像素鸟</router-link>
+              <span class="bar_nav_mask"></span>
+              <audio src="../../../static/source/a7.mp3"></audio>
+            </li>
+          </ul>
+        </div>
+
       <div id="bar_left">
         <img src="../../../static/img/home/nav_title.jpg" alt="">
       </div>
@@ -24,12 +67,12 @@
             </router-link>
           </li>
            <li>
-            <router-link to="/music">
+            <router-link to="/idoms">
               <img src='../../../static/img/home/nav2.jpg' alt="">
             </router-link>
           </li>
            <li>
-            <router-link to="/music">
+            <router-link to="/handmake">
               <img src='../../../static/img/home/nav3.jpg' alt="">
             </router-link>
           </li>
@@ -44,44 +87,13 @@
             </router-link>
           </li>
            <li>
-            <router-link to="/music">
+            <router-link to="/birds">
               <img src='../../../static/img/home/nav6.jpg' alt="">
             </router-link>
           </li>
 
         </ul>
 
-        <!--<div>
-          <router-link to="/music">
-            <img src='../../../static/img/home/nav1.jpg' alt="">
-          </router-link>
-        </div>
-        <div>
-          <router-link to="/story">
-            <img src='../../../static/img/home/nav2.jpg' alt="">
-          </router-link>
-        </div>
-        <div>
-          <router-link to="/handmake">
-            <img src='../../../static/img/home/nav3.jpg' alt="">
-          </router-link>
-        </div>
-        <div>
-          <router-link to="/handwrite">
-            <img src='../../../static/img/home/nav4.jpg' alt="">
-          </router-link>
-        </div>
-        <div>
-          <router-link to="/idioms">
-            <img src='../../../static/img/home/nav5.jpg' alt="">
-          </router-link>
-        </div>
-        <div>
-          <router-link to="/birds">
-            <img src='../../../static/img/home/nav6.jpg' alt="">
-          </router-link>
-        </div>
--->
       </div>
 
 
@@ -287,6 +299,55 @@
 
         /*引入jq实例*/
         $(function () {
+//          5.0音乐导航栏的部分,鼠标经过播放音乐
+          $(".bar_nav_mp3 li").mouseover(
+            function (){
+//             1.0 获取当前经过的格子下的audio
+             var a=  $(this).find("audio")[0];
+             //2.0播放动画
+              $(this).find(".bar_nav_mask").stop().animate({top:"0px"},50);
+              // 重置0 没有播放完毕下次重新播放
+              a.currentTime = 0;
+              //播放音乐
+             a.play();
+            }
+          );
+          //4.0鼠标移开清空动画
+          $(".bar_nav_mp3 li").mouseout(function (){
+            $(this).find(".bar_nav_mask").stop().animate({top:"40px"},);
+
+          });
+
+
+//          键盘事件,点击键盘播放音乐
+          $(window).keydown ( function (event) {
+
+            //1.0获取索引
+            var index = event.keyCode - 49;
+//            console.log(index);
+
+            //2.0根据索引获取对应的导航格子,并获取他的audio
+            var audio = $(".bar_nav_mp3 li").eq(index).find("audio")[0];
+
+            //3.0播放动画
+            $(".bar_nav_mp3 li").eq(index).find(".bar_nav_mask").stop().animate({top:"0px"},300);
+//            $(".bar_nav_mp3 li").eq(index).find(".bar_nav_mask").animate({top:"6px"},200);
+
+
+            // 4.0播放音乐
+            // 设置当前进度为0
+            audio.currentTime = 0;
+            audio.play();
+          });
+          //5.0键盘弹起,动画恢复
+            $(window).keyup ( function (event) {
+              var index = event.keyCode - 49;
+              $(".bar_nav_mp3 li").eq(index).find(".bar_nav_mask").stop().animate({top:"40px"},300);
+            })
+
+
+
+
 //          4.0article中的排他
           $(".article_tag li").mouseover(function (){
             $(this).find(".article_tag_first").css({display:"none"}).siblings().css({display:"block"});
@@ -433,6 +494,46 @@
     height: 800px ;
 
   }
+  #bar_nav{
+    width: 100%;
+    height: 40px;
+    /*background:darkcyan;*/
+
+  }
+
+
+  #bar_nav  .bar_nav_mp3{
+    width: 100%;
+    height: 100%;
+    /*background: pink;*/
+    overflow: hidden;
+  }
+  #bar_nav  .bar_nav_mp3  li{
+    position: relative;
+    float: left;
+    width: 13%;
+    height: 100%;
+    border: 1px solid seagreen;
+    /*background:darkcyan;*/
+    text-align: center;
+    margin-left:5px;
+    line-height: 40px;
+    background:url("../../../static/img/home/_r1_c1.png") no-repeat;
+  }
+  #bar_nav  .bar_nav_mp3 li span:nth-of-type(1)
+  {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background: grey;
+    position: absolute;
+    top: 40px;
+    left: 0;
+
+  }
+
+
+
   #bar_left{
     float: left;
     width: 25%;
