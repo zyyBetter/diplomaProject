@@ -1,8 +1,9 @@
 <template>
- <div id="temp">
+ <div id="temp" class="clearfix">
 
    <!--左边盒子-->
-   <div id="box_left" class="clearfix">
+   <div id="box_left" class="clearfix" >
+     <!--轮播图-->
      <div class="block">
        <el-carousel height="400px">
          <el-carousel-item >
@@ -15,19 +16,14 @@
            <img src="../../../static/img/home/slider02.jpg" alt="" class="imgs">
          </el-carousel-item>
        </el-carousel>
+     </div>
 
+     <!--评论区域-->
+     <div id="comment">
+       <div>
 
-       <!--<el-carousel :interval="4000" type="card" height="200px">
-         <el-carousel-item >
-           <img src="../../../static/img/home/slider00.jpg" alt="" class="imgs">
-         </el-carousel-item>
-         <el-carousel-item >
-           <img src="../../../static/img/home/slider01.jpg" alt="" class="imgs">
-         </el-carousel-item>
-         <el-carousel-item >
-           <img src="../../../static/img/home/slider02.jpg" alt="" class="imgs">
-         </el-carousel-item>
-       </el-carousel>-->
+       </div>
+
      </div>
 
    </div>
@@ -37,10 +33,10 @@
 
      <div class="ri_top">
        <div class="ri_title">
-                         <span>
-                             <span></span>
-                         <span>热门资讯</span>
-                         </span>
+                         <p>
+                             <span class="ri_logo"></span>
+                         <span class="ri_font">热门资讯</span>
+                         </p>
        </div>
        <ul class="ri_list">
          <li>
@@ -110,10 +106,10 @@
      <!--下面的tag-->
      <div class="ri_bottom ">
        <div class="ri_title">
-                         <span>
-                             <span></span>
-                         <span>推荐资讯</span>
-                         </span>
+                         <p>
+                             <span class="ri_logo"></span>
+                         <span class="ri_font">推荐资讯</span>
+                         </p>
        </div>
        <ul class="ri_list">
          <li>
@@ -205,11 +201,11 @@
 
 <style scoped>
   #temp{
-    /*overflow: hidden;*/
+    margin-top: 90px;
   }
   /*左边的盒子*/
   #box_left{
-    width:70%;
+    width:68%;
     height: 1000px;
     border: 1px solid seagreen;
     box-sizing: border-box;
@@ -224,10 +220,101 @@
   /*右边的盒子*/
 #box_right{
   width: 30%;
-  height: 1000px;
-  border: 1px solid seagreen;
+  /*height: 1000px*/
+  /*border: 1px solid seagreen;*/
   box-sizing: border-box;
   float: right;
+  /*overflow: hidden;*/
 }
+  #box_right .ri_top,
+  #box_right .ri_bottom{
+    border: 3px solid #c0c0c0;
+    width: 100%;
+    height: 650px;
+    margin-bottom:20px;
+  }
+
+  #box_right .ri_top .ri_title,
+  #box_right .ri_bottom .ri_title
+  {
+    width: 100%;
+    height: 100px;
+    background: #e6e6e6;
+  }
+  #box_right .ri_top .ri_title .ri_font,
+  #box_right .ri_bottom .ri_title .ri_font
+  {
+    float: left;
+    width: 100px;
+    height: 35px;
+    font-size: 20px;
+    margin-top: 35px;
+    font-weight:bolder;
+  }
+  #box_right .ri_top .ri_title .ri_logo,
+  #box_right .ri_bottom .ri_title .ri_logo{
+  display: inline-block;
+    width: 10px;
+    height: 50px;
+    background: #20b573;
+    float: left;
+    margin-left:20px;
+    margin-top: 25px;
+  }
+  #box_right .ri_top .ri_list,
+  #box_right .ri_bottom .ri_list{
+    width: 100%;
+    height:550px;
+    /*background: pink;*/
+    overflow: hidden;
+  }
+  #box_right .ri_top .ri_list li,
+  #box_right .ri_bottom .ri_list li{
+    width: 100%;
+    height: 10%;
+    line-height:50px;
+    overflow: hidden;
+    font-size:16px;
+  }
+  #box_right .ri_top .ri_list li:hover,
+  #box_right .ri_bottom .ri_list li:hover{
+    color: #20b573;
+    cursor: pointer;
+    /*font-style: oblique;*/
+    /*font-style: oblique;*/
+
+  }
+  #box_right .ri_top .ri_list li span,
+  #box_right .ri_bottom .ri_list li span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: #e6e6e6;
+    line-height: 30px;
+  }
+  #box_right .ri_top .ri_list li:nth-of-type(1) span,
+  #box_right .ri_bottom .ri_list li:nth-of-type(1) span {
+    background: #20b573;
+    color:white
+  }
+  #box_right .ri_top .ri_list li:nth-of-type(2) span, #box_right .ri_bottom .ri_list li:nth-of-type(2) span{
+    background: #4cc38f;
+    color:white
+  }
+  #box_right .ri_bottom .ri_list li:nth-of-type(3) span,
+  #box_right .ri_top .ri_list li:nth-of-type(3) span{
+    background: #90dab9;
+    color:white
+  }
+
+  #box_right .ri_top .ri_list li p,
+  #box_right .ri_bottom .ri_list li p {
+    float: left;
+    margin-left: 5%;
+    line-height: 50px;
+
+  }
+
+
 
 </style>

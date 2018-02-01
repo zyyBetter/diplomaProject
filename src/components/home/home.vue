@@ -299,22 +299,28 @@
 
         /*引入jq实例*/
         $(function () {
+          $(".bar_nav_mp3 li").each(function (key,value){
+            console.log(key);
+//            console.log(value);
+            value.style.backgroundPosition = "0"+-(key+1)*40+"px";
+          });
+
 //          5.0音乐导航栏的部分,鼠标经过播放音乐
           $(".bar_nav_mp3 li").mouseover(
             function (){
-//             1.0 获取当前经过的格子下的audio
+//             1 获取当前经过的格子下的audio
              var a=  $(this).find("audio")[0];
-             //2.0播放动画
-              $(this).find(".bar_nav_mask").stop().animate({top:"0px"},50);
-              // 重置0 没有播放完毕下次重新播放
+             //2播放动画
+              $(this).find(".bar_nav_mask").stop().animate({top:"0px"},200);
+              // 3重置0 没有播放完毕下次重新播放
               a.currentTime = 0;
-              //播放音乐
+              //4播放音乐
              a.play();
             }
           );
           //4.0鼠标移开清空动画
           $(".bar_nav_mp3 li").mouseout(function (){
-            $(this).find(".bar_nav_mask").stop().animate({top:"40px"},);
+            $(this).find(".bar_nav_mask").stop().animate({top:"40px"},200);
 
           });
 
@@ -507,6 +513,7 @@
     height: 100%;
     /*background: pink;*/
     overflow: hidden;
+    margin-left: 2%;
   }
   #bar_nav  .bar_nav_mp3  li{
     position: relative;
@@ -525,7 +532,7 @@
     display: inline-block;
     width: 100%;
     height: 100%;
-    background: grey;
+    background: rgba(46,139,87,0.3);
     position: absolute;
     top: 40px;
     left: 0;
