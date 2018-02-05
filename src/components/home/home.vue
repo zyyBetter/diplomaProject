@@ -2,14 +2,14 @@
   <div id="temp">
     <!--头部的轮播图-->
     <!--后台回去数据后,需要修改-->
-    <div class="block">
+    <!--<div class="block">
       <el-carousel height="400px">
         <el-carousel-item v-for="item in imgarr" :key="item.id">
           <img :src="'../../../static/img/home/slider0'+item+'.jpg'" alt="" class="imgs">
         </el-carousel-item>
       </el-carousel>
-    </div>
-
+    </div>-->
+    <slider></slider>
     <!--中间导航栏部分-->
     <div  id="bar">
       <span id="bar_title">课程选择 >> 启蒙</span>
@@ -103,13 +103,14 @@
     <!--专题部分 使用插件-->
     <div style="overflow: hidden" id="bar02">
       <!--左边面板-->
-      <div id="bar02_left">
+      <div class="clearfix">
+      <div id="bar02_top" >
         <ul id="bar02_title">
           <li>专题</li>
-          <li>活动</li>
+          <li>生活百科</li>
           <li>推荐</li>
         </ul>
-        <ul id="bar02_tag">
+        <ul id="bar02_bottom">
           <li>
             <ul>
               <li>
@@ -132,11 +133,61 @@
               </li>
             </ul>
           </li>
-          <li>2</li>
-          <li>3</li>
+          <li>
+            <ul>
+              <li>
+                <router-link to="/fire"><p> 会下雨的“怪树”</p></router-link>
+              </li>
+              <li>
+                <router-link to="/newyear"><p>蚂蚁是怎么认路的..</p></router-link>
+              </li>
+              <li>
+                <router-link to="/read"><p>儿童科普：蝙蝠为什么倒挂着睡觉等</p></router-link>
+              </li>
+              <li>
+                <router-link to="/dingdang"><p>下雨天蚂蚁为什么会搬家？</p></router-link>
+              </li>
+              <li>
+                <router-link to="/weather"><p>蚂蚁是如何分辨方向的？</p></router-link>
+              </li>
+              <li>
+                <router-link to="/birds"><p>牛痘的来历</p></router-link>
+              </li>
+              <!--<li>
+              <router-link to="/birds"><p>小鸟为什么要迁徙?</p></router-link>
+              </li>-->
+            </ul>
+          </li>
+          <li>
+            <ul>
+              <li>
+                <router-link to="/fire"><p>为什么轮船能浮在水面上并能行走...</p></router-link>
+              </li>
+              <li>
+                <router-link to="/newyear"><p>鼠宝宝为什么要咬木头?</p></router-link>
+              </li>
+              <li>
+                <router-link to="/read"><p>蚂蚁如何过冬的？</p></router-link>
+              </li>
+              <li>
+                <router-link to="/dingdang"><p>为什么不能把头蒙在被子里睡觉？</p></router-link>
+              </li>
+              <li>
+                <router-link to="/weather"><p>简单DIY儿童瀑布编发</p></router-link>
+              </li>
+              <li>
+                <router-link to="/birds"><p>中秋节灯谜大全及谜底</p></router-link>
+              </li>
+            </ul>
+          </li>
         </ul>
-
       </div>
+
+      <div id="bar02_top_center" class="clearfix">
+        jjjjjjjjjjjjjjjjjjjjj
+      </div>
+      </div>
+
 
 
       <!--右边的面板-->
@@ -253,6 +304,27 @@
     </div>
 
 
+    <!--脚部-->
+    <div id="footer">
+
+      <div id="footer_head">
+        友情链接
+      </div>
+      <ul id="footer_list">
+        <li><a href="http://www.o-star.cc/">东方之星学前教育</a></li>
+        <li><a href="http://www.tjoys.cn/">幼儿园手工制作教程</a></li>
+        <li><a href="http://www.yejs.com.cn/Sczy/mov2/id/812">幼儿园公开课视频</a></li>
+        <li><a href="http://www.tjoys.cn/">幼儿教师网</a></li>
+        <li><a href="http://www.7cxk.net/">7c教育资源网</a></li>
+        <li><a href="http://www.yejs.com.cn/Jiaoan/">幼儿园教案</a></li>
+        <li><a href="http://www.yejs.com.cn/">幼儿教育网</a></li>
+        <li><a href="http://www.lamabang.com/">辣妈帮</a></li>
+
+        <li><a href="http://www.offcn.com/jiaoshi/">幼儿教师网</a></li>
+      </ul>
+    </div>
+
+
   </div>
 </template>
 
@@ -261,12 +333,16 @@
   import Slick from 'vue-slick';
   import '../../../node_modules/slick-carousel/slick/slick.css';
   import '../../../static/css/animate.css';
+//  导入轮播图
+  import slider from "../common/slider.vue"
+
   //  import animate from "../static/css/animate.css"
 
 
   export default {
     components: {
-      Slick
+      Slick,
+      slider
     },
 //    transitions: {
 //      bounce: {
@@ -282,7 +358,7 @@
 
         slickOptions: {
 //          下面轮播图一页的的张数
-          slidesToShow: 3,
+          slidesToShow: 5,
         },
         activeName2: 'first',
       }
@@ -375,12 +451,12 @@
           $("#bar02_title>li").mouseover(function () {
             var index = $(this).index();
 
-            $("#bar02_tag>li").css({display: "none"}).eq(index).css({display: "block"})
+            $("#bar02_bottom>li").css({display: "none"}).eq(index).css({display: "block"})
           });
 
-            $("#bar02_tag>li").mouseover(function () {
+            $("#bar02_bottom>li").mouseover(function () {
               var index = $(this).index();
-              $("#bar02_title>li").css({fontSize:'20px'}).eq(index).css({fontSize:'30px'});
+              $("#bar02_title>li").css({fontSize:'20px'}).eq(index).css({fontSize:'23px',fontWeight:"bolder"});
             });
 
 
@@ -480,6 +556,10 @@
     width: 100%;
     height: 150%;
 
+  }
+  slider{
+    width: 100%;
+    height: 100%;
   }
 
   .imgs {
@@ -609,7 +689,7 @@
 
   #bar02 {
     width: 100%;
-    height: 600px;
+    /*height: 600px;*/
 
   }
 
@@ -617,16 +697,16 @@
     border: 6px solid pink;
     margin-top: 100px;
     border-radius: 20px;
-    width: 70%;
-    height: 100%;
-    float: right;
-    height: 100%;
+    width: 100%;
+    /*height: 100%;*/
+    /*float: right;*/
+    /*height: 100%;*/
     padding-top: 5%;
     /*margin-right: 50px;*/
     /*overflow: hidden;*/
   }
 
-  #bar02_left {
+  #bar02_top {
     width: 28%;
     height: 100%;
     margin-top: 100px;
@@ -636,6 +716,7 @@
     /*margin-left:10px;*/
     background: #fdf8f8;
     overflow: hidden;
+    /*float: left;*/
     float: left;
 
   }
@@ -645,11 +726,11 @@
     float: right;
 
   }
-  #bar02_left ul {
+  #bar02_top ul {
     width: 100%;
     margin-left: 5%;
     margin-top: 5px;
-    overflow: hidden;
+    /*overflow: hidden;*/
 
   }
 
@@ -680,7 +761,15 @@
 
   }
 
-  #bar02_tag {
+  #bar02_top_center{
+    width: 70%;
+    height: 400px;
+    background:darkcyan;
+    float: right;;
+    margin-top: 110px;
+  }
+
+  #bar02_bottom {
     width: 100%;
     height: 100%;
     text-align: left;
@@ -690,27 +779,27 @@
   }
 
   /*专题里面的样式*/
-  #bar02_tag ul {
+  #bar02_bottom ul {
     padding-right: 60px;
   }
 
-  #bar02_tag > li {
+  #bar02_bottom > li {
     display: none;
 
   }
 
-  #bar02_tag > li:nth-of-type(1) {
+  #bar02_bottom > li:nth-of-type(1) {
     display: block;
   }
 
 
 
-  #bar02_tag ul>li {
+  #bar02_bottom ul>li {
     line-height: 60px;
     border-bottom: 1px dashed deeppink;
     cursor: pointer;
   }
-  #bar02_tag ul>li:hover p{
+  #bar02_bottom ul>li:hover p{
     color:seagreen;
   }
 
@@ -835,6 +924,41 @@
     width: 27%;
     height: 90%;
     /*transform: translateY(-10%);*/
+  }
+
+  /*脚部*/
+  #footer{
+    width: 98%;
+    height: 280px;
+    background: #f8e3e8;
+    padding-top:20px;
+    margin: 50px auto;
+    box-shadow: -15px 20px 20px #f8b4c8;
+
+  }
+  #footer_head{
+    width: 150px;
+    height: 60px;
+    margin-left: 100px;
+    background: url("../../../static/img/home/footer_right.gif") no-repeat;
+    background-size: cover;
+     color: white;
+    font-weight:bolder;
+    font-size: 20px;
+    line-height: 40px;
+  }
+  #footer_list{
+    width: 90%;
+    height: 150px;
+    /*background: darkblue;*/
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  #footer_list li{
+    width: 20%;
+    height: 50%;
+    float: left;
+    line-height: 100px;
   }
 
 </style>

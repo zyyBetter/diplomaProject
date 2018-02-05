@@ -4,7 +4,7 @@
    <!--左边盒子-->
    <div id="box_left" class="clearfix" >
      <!--轮播图-->
-     <div class="block">
+    <!-- <div class="block">
        <el-carousel height="400px">
          <el-carousel-item >
            <img src="../../../static/img/home/slider00.jpg" alt="" class="imgs">
@@ -16,7 +16,8 @@
            <img src="../../../static/img/home/slider02.jpg" alt="" class="imgs">
          </el-carousel-item>
        </el-carousel>
-     </div>
+     </div>-->
+     <slider></slider>
 
      <!--评论区域-->
      <div id="comment">
@@ -186,9 +187,13 @@
 </template>
 
 <script>
+  import slider from "../common/slider.vue"
 
 
   export default {
+    components:{
+      slider
+    },
   data () {
     return {
     }
@@ -212,11 +217,11 @@
     float: left;
   }
 
-  .block img{
+ /* .block img{
     width: 100%;
     height: 100%;
 
-  }
+  }*/
   /*右边的盒子*/
 #box_right{
   width: 30%;
