@@ -192,13 +192,13 @@
 
       <!--右边的面板-->
       <div id="bar02_bottom">
-        <div id="bar02_bottom_top">
+        <div class="bar02_bottom_top">
           <span>专题</span>
-          <span>活动</span>
-
+          <!--<span>活动</span>-->
         </div>
 
         <!--轮播图-->
+        <div class="bar_bottom_slider">
       <slick ref="slick" :options="slickOptions" id="bar02_right" class="nav">
 
         <div class="maskpar">
@@ -244,6 +244,64 @@
           </router-link>
         </div>
       </slick>
+        </div>
+        <div class="bar_bottom_slider"  id="bar02_right01">
+          <div class="bar02_bottom_top">
+            <!--<span>专题</span>-->
+            <span>活动</span>
+          </div>
+          <ul>
+            <li>
+              <router-link to="">
+              <img src="../../../static/img/home/act1.jpg" alt="">
+              <p>我的圣诞我做主,环境创建</p>
+            </router-link>
+            </li>
+            <li>
+              <router-link to="">
+              <img src="../../../static/img/home/act2.jpg" alt="">
+              <p>师乐汇感恩月——感恩有你，好礼相送</p>
+            </router-link>
+            </li>
+            <li>
+              <router-link to="">
+              <img src="../../../static/img/home/act3.jpg" alt="">
+              <p>暑假，幼师带你看世界</p>
+            </router-link>
+            </li>
+            <li>
+              <router-link to="">
+              <img src="../../../static/img/home/act4.jpg" alt="">
+              <p>春天最后的狂欢</p>
+            </router-link>
+            </li>
+            <li>
+              <router-link to="">
+              <img src="../../../static/img/home/act5.jpg" alt="">
+              <p>出游踏青好时节</p>
+            </router-link>
+            </li>
+            <li>
+              <router-link to="">
+              <img src="../../../static/img/home/act6.jpg" alt="">
+              <p>疯狂万圣节,一起来捣蛋</p>
+            </router-link>
+            </li>
+            <li>
+              <router-link to="">
+              <img src="../../../static/img/home/act7.jpg" alt="">
+              <p>女神节,有你更美x</p>
+            </router-link>
+            </li>
+            <li>
+              <router-link to="">
+              <img src="../../../static/img/home/act8.jpg" alt="">
+              <p>废旧材料玩教具</p>
+            </router-link>
+            </li>
+
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -373,21 +431,58 @@
     },
     created: function () {
       this.get();
+//      this.getmessage();
 
     },
 
     methods: {
+//      发送ajax请求
+    /*      getmessage(){
+      var url = "http://127.0.0.1/diplomaProject/php/first.php";
+      this.$http.get(url).then(
+        function (res){
+          console.log(res.body.message);
+        },
+        function (err){
+
+          console.log(err);
+        }
+      )
+    },
+//  }*/
+
+
 
 //     首页的动画
       get() {
 
         /*引入jq实例*/
         $(function () {
+
+
+
+
+          //6.0导航栏的音乐导航
           $(".bar_nav_mp3 li").each(function (key,value){
             console.log(key);
 //            console.log(value);
             value.style.backgroundPosition = "0"+-(key+1)*40+"px";
           });
+
+//          6.1音乐导航的图片(鼠标移入)
+          $("#bar_right li").mouseover(
+            function (){
+              $(this).animate({top:"-20px"},500);
+            }
+          )
+//          6.2音乐导航的图片(鼠标移出)
+          $("#bar_right li").mouseout(
+            function (){
+              $(this).animate({top:"0px"},500);
+            }
+          )
+
+
 
 //          5.0音乐导航栏的部分,鼠标经过播放音乐
           $(".bar_nav_mp3 li").mouseover(
@@ -656,10 +751,14 @@
     width: 30%;
     height: 40%;
     float: left;
+    position: relative;
+
   }
   #bar_right ul li img {
     width: 100%;
     height: 100%;
+    background: rgba(0,0,0,0.3);
+
   }
 
   #bar_title {
@@ -690,10 +789,12 @@
     height: 100%;
   }
 
+/*
   .nav > div:hover {
     transform: translateY(15px) scale(1.2);
     box-shadow: -10px 10px 100px black
   }
+*/
 
   #bar02 {
     width: 100%;
@@ -804,14 +905,14 @@
     margin-top: 30px;
     margin-bottom:60px;
   }
-  #bar02_bottom_top{
+  .bar02_bottom_top{
     width: 100%;
     height: 80px;
     /*border-bottom: 1px solid silver;*/
     overflow:hidden;
     padding-top:20px;
   }
-  #bar02_bottom_top span{
+  .bar02_bottom_top span{
     display: inline-block;
     width: 160px;
     height: 50px;
@@ -823,18 +924,19 @@
     /*margin-left: 30px;*/
     font-size: 25px;
     border-left: 1px solid seagreen;
+    border-right: 1px solid seagreen;
 
   }
-  #bar02_bottom_top span:nth-of-type(1) {
+  .bar02_bottom_top:nth-of-type(1) span {
     background: url("../../../static/img/home/logo_1.png") 20px 15px no-repeat;
     /*background-attachment: fixed;*/
     /*background-position: center left;*/
     /*background-origin: border-box;*/
     margin-left: 30px;
   }
-  #bar02_bottom_top span:nth-of-type(2) {
+  .bar02_bottom_top:nth-of-type(2) span {
     background: url("../../../static/img/home/logo_see.png") 20px 20px no-repeat;
-    border-right: 1px solid seagreen;
+    /*border-right: 1px solid seagreen;*/
 
   }
 
@@ -846,10 +948,46 @@
     /*height: 100%;*/
     /*float: right;*/
     /*height: 100%;*/
-    padding-top: 5%;
+    /*padding-top: 5%;*/
     /*margin-right: 50px;*/
     /*overflow: hidden;*/
   }
+  #bar02_right01{
+    margin-top:60px;
+    width: 100%;
+    border-top: 1px solid darkcyan;
+    /*height: 600px;*/
+    /*background: cyan;*/
+
+  }
+  #bar02_right01 ul{
+    width: 100%;
+    overflow: hidden;
+  }
+  #bar02_right01 ul li{
+    width: 24%;
+    height: 50% ;
+    border: 1px solid silver;
+    float: left;
+    margin-left:1%;
+    margin-top: 30px;
+    box-shadow: 0px 10px 10px #cbdaf8;
+  }
+  #bar02_right01 ul li img{
+    width: 100%;
+  }
+  #bar02_right01 ul li p{
+    height: 60px;
+    width: 100%;
+    line-height: 60px;
+    perspective: 100px;
+    font-size:18px;
+
+  }
+  #bar02_right01 ul li p:hover{
+    transform: rotateY(30deg);
+  }
+
 
   #bar02_right div {
     /*margin-top: 20px;*/
