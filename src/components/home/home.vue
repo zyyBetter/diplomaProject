@@ -110,7 +110,7 @@
           <li>生活百科</li>
           <li>推荐</li>
         </ul>
-        <ul id="bar02_bottom">
+        <ul id="bar02_top_bottom">
           <li>
             <ul>
               <li>
@@ -191,7 +191,14 @@
 
 
       <!--右边的面板-->
+      <div id="bar02_bottom">
+        <div id="bar02_bottom_top">
+          <span>专题</span>
+          <span>活动</span>
 
+        </div>
+
+        <!--轮播图-->
       <slick ref="slick" :options="slickOptions" id="bar02_right" class="nav">
 
         <div class="maskpar">
@@ -237,6 +244,7 @@
           </router-link>
         </div>
       </slick>
+      </div>
     </div>
 
     <!--数字滚动的效果-->
@@ -451,10 +459,10 @@
           $("#bar02_title>li").mouseover(function () {
             var index = $(this).index();
 
-            $("#bar02_bottom>li").css({display: "none"}).eq(index).css({display: "block"})
+            $("#bar02_top_bottom>li").css({display: "none"}).eq(index).css({display: "block"})
           });
 
-            $("#bar02_bottom>li").mouseover(function () {
+            $("#bar02_top_bottom>li").mouseover(function () {
               var index = $(this).index();
               $("#bar02_title>li").css({fontSize:'20px'}).eq(index).css({fontSize:'23px',fontWeight:"bolder"});
             });
@@ -693,18 +701,6 @@
 
   }
 
-  #bar02_right {
-    border: 6px solid pink;
-    margin-top: 100px;
-    border-radius: 20px;
-    width: 100%;
-    /*height: 100%;*/
-    /*float: right;*/
-    /*height: 100%;*/
-    padding-top: 5%;
-    /*margin-right: 50px;*/
-    /*overflow: hidden;*/
-  }
 
   #bar02_top {
     width: 28%;
@@ -769,7 +765,7 @@
     margin-top: 110px;
   }
 
-  #bar02_bottom {
+  #bar02_top_bottom {
     width: 100%;
     height: 100%;
     text-align: left;
@@ -779,33 +775,84 @@
   }
 
   /*专题里面的样式*/
-  #bar02_bottom ul {
+  #bar02_top_bottom ul {
     padding-right: 60px;
   }
 
-  #bar02_bottom > li {
+  #bar02_top_bottom > li {
     display: none;
 
   }
 
-  #bar02_bottom > li:nth-of-type(1) {
+  #bar02_top_bottom > li:nth-of-type(1) {
     display: block;
   }
 
 
 
-  #bar02_bottom ul>li {
+  #bar02_top_bottom ul>li {
     line-height: 60px;
     border-bottom: 1px dashed deeppink;
     cursor: pointer;
   }
-  #bar02_bottom ul>li:hover p{
+  #bar02_top_bottom ul>li:hover p{
     color:seagreen;
   }
 
+  #bar02_bottom{
+    border-top: 1px solid darkcyan;
+    margin-top: 30px;
+    margin-bottom:60px;
+  }
+  #bar02_bottom_top{
+    width: 100%;
+    height: 80px;
+    /*border-bottom: 1px solid silver;*/
+    overflow:hidden;
+    padding-top:20px;
+  }
+  #bar02_bottom_top span{
+    display: inline-block;
+    width: 160px;
+    height: 50px;
+    padding-top: -40px;
+    /*padding-left:20;*/
+    /*background: darkmagenta;*/
+    float: left;
+    line-height:60px;
+    /*margin-left: 30px;*/
+    font-size: 25px;
+    border-left: 1px solid seagreen;
+
+  }
+  #bar02_bottom_top span:nth-of-type(1) {
+    background: url("../../../static/img/home/logo_1.png") 20px 15px no-repeat;
+    /*background-attachment: fixed;*/
+    /*background-position: center left;*/
+    /*background-origin: border-box;*/
+    margin-left: 30px;
+  }
+  #bar02_bottom_top span:nth-of-type(2) {
+    background: url("../../../static/img/home/logo_see.png") 20px 20px no-repeat;
+    border-right: 1px solid seagreen;
+
+  }
+
+  #bar02_right {
+    /*border: 6px solid pink;*/
+    /*margin-top: 20px;*/
+    border-radius: 20px;
+    width: 100%;
+    /*height: 100%;*/
+    /*float: right;*/
+    /*height: 100%;*/
+    padding-top: 5%;
+    /*margin-right: 50px;*/
+    /*overflow: hidden;*/
+  }
 
   #bar02_right div {
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     margin-bottom: 20px;
     position: relative;
     overflow: hidden;
@@ -813,7 +860,7 @@
 
   #bar02_right img {
     width: 100%;
-    margin-left: -5px;
+    margin-left: -10px;
     background: white;
 
   }
@@ -830,6 +877,8 @@
     font-weight: bolder;
     line-height: 200px;
   }
+
+
 
   #section {
     margin-top: 50px;
