@@ -2,31 +2,63 @@
  <div id="temp" class="clearfix">
 
    <!--左边盒子-->
-   <div id="box_left" class="clearfix" >
+   <div id="box_left" >
      <!--轮播图-->
-    <!-- <div class="block">
-       <el-carousel height="400px">
-         <el-carousel-item >
-           <img src="../../../static/img/home/slider00.jpg" alt="" class="imgs">
-         </el-carousel-item>
-         <el-carousel-item >
-           <img src="../../../static/img/home/slider01.jpg" alt="" class="imgs">
-         </el-carousel-item>
-         <el-carousel-item >
-           <img src="../../../static/img/home/slider02.jpg" alt="" class="imgs">
-         </el-carousel-item>
-       </el-carousel>
-     </div>-->
      <slider></slider>
 
      <!--评论区域-->
-     <div id="comment">
-       <div>
+     <div id="comment" class="clearfix"  >
+       <!--发送-->
+       <div class="takeComment">
+         <textarea name="textarea" class="takeTextField" id="submitText" @keyup.enter="submit">
+           请输入评论~~~~
+         </textarea>
+         <div class="takeSbmComment clearfix" >
+           <!--<input id="btn_send" type="button" class="inputs" value="czxcczx" />-->
+           <span class="btns">
+           <span>(可按Enter回复)</span>
+           <img src="../../../static/img/comments/btn.png" alt="" id="btn_send" @click.enter="submit">
+             </span>
+         </div>
+       </div>
+
+       <!--展示-->
+       <div id="commentOn">
+         <ul>
+           <li>
+             <div class="commentOn_show">
+               123456
+             </div>
+             <div class="commentOn_act clearfix">
+               <div class="commentOn_time">2017-10-10</div>
+               <div class="commentOn_event">
+                 <span>1<span class="add" @click="add"></span></span>
+                 <span>2<span class="down" @click="down"></span></span>
+                 <span>2<span class="del" @click="del"></span></span>
+               </div>
+
+             </div>
+           </li>
+           <li>
+             <div class="commentOn_show">
+               123456
+             </div>
+             <div class="commentOn_act clearfix">
+               <div class="commentOn_time">2017-10-10</div>
+               <div class="commentOn_event">
+                 <span>1<span class="add"></span></span>
+                 <span>2<span class="down"></span></span>
+                 <span>2<span class="del"></span></span>
+               </div>
+
+             </div>
+           </li>
+         </ul>
 
        </div>
 
-     </div>
 
+     </div>
    </div>
 
    <!--右边盒子-->
@@ -199,6 +231,24 @@
     }
   },
     methods:{
+//      1.0点击发送留言
+      submit(){
+        alert(1);
+      },
+
+//   2.0点击赞
+      add(){
+        alert(2)
+      },
+//   2.0点击踩
+      down(){
+        alert(3)
+      },
+//   2.0点击删除
+      del(){
+        alert(4)
+
+      }
 
     }
 }
@@ -207,21 +257,135 @@
 <style scoped>
   #temp{
     margin-top: 90px;
+    /*overflow: hidden;*/
   }
   /*左边的盒子*/
   #box_left{
     width:68%;
-    height: 1000px;
+    /*height: 1000px;*/
     border: 1px solid seagreen;
     box-sizing: border-box;
     float: left;
+    /*padding-top: -100px;*/
+  }
+  slider{
+    /*margin-top: 600px;*/
   }
 
- /* .block img{
+  /*评论区域*/
+  #comment{
     width: 100%;
-    height: 100%;
+    height: 900px;
+    /*background:lightgreen;*/
+    /*margin-top: -600px;*/
 
-  }*/
+  }
+  .takeComment{
+    /*width: 100%;*/
+    /*height: 200px;*/
+    padding-top:20px;
+    background: #f3f8fd;
+    border: 1px solid silver;
+    /*border: 1px solid silver;*/
+
+  }
+  #submitText{
+    width: 90%;
+    height: 130px;
+    resize: none;
+    color:grey;
+    border: 1px solid seagreen;
+    padding-top: 30px;
+  }
+
+  #btn_send{
+    /*margin-top: 20px;*/
+  }
+   .btns {
+    margin-right:40px;
+    float: right;
+    display: inline-block;
+    /*width: 60px;*/
+    /*background: deeppink;*/
+  }
+  .btns>span{
+    display: inline-block;
+    /*margin-bottom:90px;*/
+    /*line-height: 40px;*/
+    position: relative;
+    top: -10px;
+    color:gray;
+  }
+  /*留言展示*/
+  #commentOn{
+    width: 100%;
+    height: 600px;
+    /*background: darkblue;*/
+    margin-top: 20px;
+
+  }
+#commentOn ul{
+  width: 100%;
+}
+  #commentOn ul li {
+    width: 90%;
+    /*background: #f8e3e8;*/
+    height: 150px;
+    padding-top:15px;
+    margin: 0 auto;
+    border: 1px solid silver;
+
+
+  }
+
+  #commentOn .commentOn_show {
+    width: 100%;
+    height: 80px;
+    /*background: darkcyan;*/
+    border: 1px solid silver;
+
+  }
+  #commentOn .commentOn_act {
+    width: 100%;
+    height: 40px;
+    margin-top:10px;
+  }
+  #commentOn .commentOn_time {
+    width: 30%;
+    height: 100%;
+    float: left;
+    line-height:40px;
+  }
+  #commentOn .commentOn_event {
+    width: 30%;
+    height: 100%;
+    float: right;
+    /*background: darkmagenta;*/
+  }
+  #commentOn .commentOn_event>span {
+    margin-left:15px;
+    line-height: 40px;
+    padding-bottom:20px;
+
+  }
+  #commentOn .commentOn_event span>span {
+    display: inline-block;
+    margin-left:5px;
+    width: 30px;
+    height: 35px;
+    background: url("../../../static/img/comments/icons.png")  no-repeat;
+    background-size: 100%;
+  }
+  #commentOn .commentOn_event span:nth-of-type(1) span{
+    background-position: 0px 0px;
+  }
+  #commentOn .commentOn_event span:nth-of-type(2) span {
+    background-position: 0px -30px;
+  }
+ #commentOn .commentOn_event span:nth-of-type(3) span{
+    background-position: 0px -60px;
+  }
+
   /*右边的盒子*/
 #box_right{
   width: 30%;
