@@ -437,20 +437,19 @@
 
     methods: {
 //      发送ajax请求
-    /*      getmessage(){
-      var url = "http://127.0.0.1/diplomaProject/php/first.php";
-      this.$http.get(url).then(
-        function (res){
-          console.log(res.body.message);
-        },
-        function (err){
+   /*       getmessage() {
+            var url = "";
+            this.$http.get(url).then(
+              function (res) {
+                console.log(res.body.message);
+              },
+              function (err) {
 
-          console.log(err);
-        }
-      )
-    },
-//  }*/
-
+                console.log(err);
+              }
+            )
+          },
+*/
 
 
 //     首页的动画
