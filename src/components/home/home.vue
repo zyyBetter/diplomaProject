@@ -10,6 +10,8 @@
       </el-carousel>
     </div>-->
     <slider></slider>
+    <!--<a href="http://127.0.0.1/diplomaProject/birds/">dddddddddd</a>-->
+
     <!--中间导航栏部分-->
     <div  id="bar">
       <span id="bar_title">课程选择 >> 启蒙</span>
@@ -49,9 +51,12 @@
               <span class="bar_nav_mask"></span>
             </li>
             <li>
-              <router-link to="/birds">像素鸟</router-link>
+              <!--<router-link to="/birds"></router-link>-->
+              <a href="http://127.0.0.1/diplomaProject/birds/">
+                像素鸟
               <span class="bar_nav_mask"></span>
               <audio src="../../../static/source/a7.mp3"></audio>
+              </a>
             </li>
           </ul>
         </div>
@@ -87,8 +92,9 @@
             </router-link>
           </li>
            <li>
-            <router-link to="/birds">
+             <a href="http://127.0.0.1/diplomaProject/birds/">
               <img src='../../../static/img/home/nav6.jpg' alt="">
+             </a>
             </router-link>
           </li>
 
