@@ -469,7 +469,7 @@
 
           //6.0导航栏的音乐导航
           $(".bar_nav_mp3 li").each(function (key,value){
-            console.log(key);
+//            console.log(key);
 //            console.log(value);
             value.style.backgroundPosition = "0"+-(key+1)*40+"px";
           });
@@ -586,7 +586,7 @@
             if ($(window).scrollTop() > 800 && flag == true) {
 //              alert(1)
 
-              console.log($(window).scrollTop());
+//              console.log($(window).scrollTop());
               ;
               flag = false;
               var timer = setInterval(function () {
@@ -632,7 +632,7 @@
       },
 
       handleClick(tab, event) {
-        console.log(tab, event);
+//        console.log(tab, event);
       },
 
       next() {
