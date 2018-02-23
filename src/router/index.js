@@ -19,6 +19,7 @@ import comments from '../components/comment/comments.vue'
 import login from '../components/login/login.vue'
 import register from '../components/login/register.vue'
 import rules from '../components/login/rules.vue'
+// import course from '../components/course/course.vue'
 Vue.use(Router);
 
 
@@ -41,6 +42,7 @@ export default new Router({
     {path: '/register', component: register},
     {path: '/rules', component: rules},
     {path: '/comments', component:comments},
+    // {path: '/course', component:course},
 
   ]
 })
