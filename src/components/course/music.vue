@@ -102,6 +102,12 @@ import course from "../common/course.vue"
       arr:[
         {src:"../../../static/img/course/pic3.jpg",text1:"ss",text2:"dd"},
         {src:"../../../static/img/course/pic3.jpg",text1:"ss",text2:"dd"},
+        {src:"../../../static/img/course/pic3.jpg",text1:"ss",text2:"dd"},
+        {src:"../../../static/img/course/pic3.jpg",text1:"ss",text2:"dd"},
+        {src:"../../../static/img/course/pic3.jpg",text1:"ss",text2:"dd"},
+        {src:"../../../static/img/course/pic3.jpg",text1:"ss",text2:"dd"},
+        {src:"../../../static/img/course/pic3.jpg",text1:"ss",text2:"dd"},
+        {src:"../../../static/img/course/pic3.jpg",text1:"ss",text2:"dd"},
         {src:"../../../static/img/course/pic3.jpg",text1:"ss",text2:"dd"}
         ]
     }

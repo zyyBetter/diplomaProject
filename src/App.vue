@@ -15,7 +15,7 @@
               <router-link to="/home">首页</router-link>
             </li>
             <li>
-              <router-link to="/home">课程</router-link>
+              <router-link to="/lesson">课程</router-link>
             </li>
             <li>
               <router-link to="/comments">评论</router-link>

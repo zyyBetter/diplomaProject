@@ -348,28 +348,15 @@
 
       <div class="article_tag">
         <ul>
-          <li>
-            <div class="article_tag_first">1</div>
-            <div class="article_tag_second">2</div>
+          <li @click="goshopcar(index)" v-for="(item,index) in arrshopcar">
+            <div class="article_tag_first"><img :src="item.src" alt=""></div>
+            <div class="article_tag_second">
+              <p class="article_tag_text">{{item.text1}}</p>
+              <span></span>
+              <p class="article_tag_text1">{{item.text2}}</p>
+              <p class="article_tag_text2">{{item.text3}}</p>
+            </div>
           </li>
-           <li>
-            <div class="article_tag_first">1</div>
-            <div class="article_tag_second">2</div>
-          </li>
-           <li>
-            <div class="article_tag_first">1</div>
-            <div class="article_tag_second">2</div>
-          </li>
-           <li>
-            <div class="article_tag_first">1</div>
-            <div class="article_tag_second">2</div>
-          </li>
-           <li>
-            <div class="article_tag_first">1</div>
-            <div class="article_tag_second">2</div>
-          </li>
-
-
         </ul>
       </div>
 
@@ -425,6 +412,14 @@
 
     data() {
       return {
+        arrshopcar:[
+          {src:"../../../static/img/shopcar/1.png",text1:"趣味英语",text2:"英语",text3:"幼儿英语启蒙教育兴起，有句话“不能输在起跑线上”。那幼儿英语启蒙教育又什么好处呢。其实孩子3岁开始就可以开始接触英语了，一般幼儿英语都是外教老师带着孩子做游戏，讲故事，认识一些事物。主要目的是培养孩子的开口说话，以防出现现在孩子们的通病，哑巴英语，只会考试，不会运用。幼儿英语启蒙是不单单是英语的发音，还有培养孩子的发散思维，"},
+          {src:"../../../static/img/shopcar/2.png",text1:"趣味英语",text2:"英语",text3:"幼儿英语启蒙教育兴起，有句话“不能输在起跑线上”。那幼儿英语启蒙教育又什么好处呢。其实孩子3岁开始就可以开始接触英语了，一般幼儿英语都是外教老师带着孩子做游戏，讲故事，认识一些事物。主要目的是培养孩子的开口说话，以防出现现在孩子们的通病，哑巴英语，只会考试，不会运用。幼儿英语启蒙是不单单是英语的发音，还有培养孩子的发散思维，"},
+          {src:"../../../static/img/shopcar/3.png",text1:"趣味英语",text2:"英语",text3:"幼儿英语启蒙教育兴起，有句话“不能输在起跑线上”。那幼儿英语启蒙教育又什么好处呢。其实孩子3岁开始就可以开始接触英语了，一般幼儿英语都是外教老师带着孩子做游戏，讲故事，认识一些事物。主要目的是培养孩子的开口说话，以防出现现在孩子们的通病，哑巴英语，只会考试，不会运用。幼儿英语启蒙是不单单是英语的发音，还有培养孩子的发散思维，"},
+          {src:"../../../static/img/shopcar/4.png",text1:"趣味英语",text2:"英语",text3:"幼儿英语启蒙教育兴起，有句话“不能输在起跑线上”。那幼儿英语启蒙教育又什么好处呢。其实孩子3岁开始就可以开始接触英语了，一般幼儿英语都是外教老师带着孩子做游戏，讲故事，认识一些事物。主要目的是培养孩子的开口说话，以防出现现在孩子们的通病，哑巴英语，只会考试，不会运用。幼儿英语启蒙是不单单是英语的发音，还有培养孩子的发散思维，"},
+          {src:"../../../static/img/shopcar/1.png",text1:"趣味英语",text2:"英语",text3:"幼儿英语启蒙教育兴起，有句话“不能输在起跑线上”。那幼儿英语启蒙教育又什么好处呢。其实孩子3岁开始就可以开始接触英语了，一般幼儿英语都是外教老师带着孩子做游戏，讲故事，认识一些事物。主要目的是培养孩子的开口说话，以防出现现在孩子们的通病，哑巴英语，只会考试，不会运用。幼儿英语启蒙是不单单是英语的发音，还有培养孩子的发散思维，"},
+
+        ],
 
         imgarr: [0, 1, 2],
 
@@ -442,6 +437,11 @@
     },
 
     methods: {
+      goshopcar(index){
+//         alert(index);
+         this.$router.push("/shop/lesson");
+
+      },
 //      发送ajax请求
    /*       getmessage() {
             var url = "";
@@ -540,8 +540,8 @@
 
 //          4.0article中的排他
           $(".article_tag li").mouseover(function (){
-            $(this).find(".article_tag_first").css({display:"none"}).siblings().css({display:"block"});
-            $(this).stop().animate({width:"27%",height:"90%",opacity:0.6},400).siblings().stop().animate({width:"18%",height:"80%",opacity:1},400).find(".article_tag_second").css({display:"none"}).siblings().css({display:"block"});
+            $(this).find(".article_tag_text2").css({display:"block"}).siblings().css({display:"block"});
+            $(this).stop().animate({width:"27%",height:"90%",opacity:0.6},400).siblings().stop().animate({width:"18%",height:"70%",opacity:1},400).find(".article_tag_text2").css({display:"none"}).siblings().css({display:"block"});
           });
 
 
@@ -1107,9 +1107,10 @@
     float: left;
     width: 18%;
     height: 80%;
-    background: cyan;
+    /*background: cyan;*/
     border: 1px solid silver;
     box-sizing: border-box;
+    position: relative;
   }
   /*打开页面默认第三的LI是放大的*/
   #article .article_tag li:nth-of-type(3){
@@ -1151,6 +1152,35 @@
     height: 50%;
     float: left;
     line-height: 100px;
+  }
+  .article_tag_second{
+    height: 65%;
+    width: 100%;
+    /*background:pink;*/
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  .article_tag_text{
+    font-size: 20px;
+    font-weight:bolder;
+    line-height: 60px;
+    height: 18%;
+    margin-top: 15px;
+  }
+  .article_tag_text2{
+    font-size:13px;
+    line-height: 15px;
+  }
+  .article_tag_second span{
+    display:block;
+    width: 90%;
+    border-bottom: 2px solid slategray;
+    margin: 0 auto;
+  }
+  .article_tag_second p{
+    line-height: 20px;
   }
 
 </style>
