@@ -66,36 +66,16 @@
       </div>
       <div id="bar_right" >
         <ul>
-          <li>
-            <router-link to="/music">
-              <img src='../../../static/img/home/nav1.jpg' alt="">
-            </router-link>
+          <li v-for="item in arrlesson" @click="move(item.rou)">
+            <!--<router-link to="/music">-->
+              <img :src='item.src' alt="">
+            <!--</router-link>-->
           </li>
-           <li>
-            <router-link to="/idoms">
-              <img src='../../../static/img/home/nav2.jpg' alt="">
-            </router-link>
-          </li>
-           <li>
-            <router-link to="/handmake">
-              <img src='../../../static/img/home/nav3.jpg' alt="">
-            </router-link>
-          </li>
-           <li>
-            <router-link to="/music">
-              <img src='../../../static/img/home/nav4.jpg' alt="">
-            </router-link>
-          </li>
-           <li>
-            <router-link to="/music">
-              <img src='../../../static/img/home/nav5.jpg' alt="">
-            </router-link>
-          </li>
+
            <li>
              <a href="http://127.0.0.1/diplomaProject/birds/">
               <img src='../../../static/img/home/nav6.jpg' alt="">
              </a>
-            </router-link>
           </li>
 
         </ul>
@@ -384,6 +364,7 @@
     </div>
 
 
+
   </div>
 </template>
 
@@ -412,6 +393,17 @@
 
     data() {
       return {
+        arrlesson:[
+          {rou:"music",src:"../../../static/img/home/nav1.jpg"},
+          {rou:"idoms",src:"../../../static/img/home/nav2.jpg"},
+          {rou:"handmake",src:"../../../static/img/home/nav3.jpg"},
+          {rou:"music",src:"../../../static/img/home/nav4.jpg"},
+          {rou:"home",src:"../../../static/img/home/nav5.jpg"},
+//          {rou:"home",src:"../../../static/img/home/nav6.jpg"},
+//          {rou:"home",src:"../../../static/img/home/nav7.jpg"},
+//          {rou:"home",src:"../../../static/img/home/nav8.jpg"},
+
+        ],
         arrshopcar:[
           {src:"../../../static/img/shopcar/1.png",text1:"趣味英语",text2:"英语",text3:"幼儿英语启蒙教育兴起，有句话“不能输在起跑线上”。那幼儿英语启蒙教育又什么好处呢。其实孩子3岁开始就可以开始接触英语了，一般幼儿英语都是外教老师带着孩子做游戏，讲故事，认识一些事物。主要目的是培养孩子的开口说话，以防出现现在孩子们的通病，哑巴英语，只会考试，不会运用。幼儿英语启蒙是不单单是英语的发音，还有培养孩子的发散思维，"},
           {src:"../../../static/img/shopcar/2.png",text1:"趣味英语",text2:"英语",text3:"幼儿英语启蒙教育兴起，有句话“不能输在起跑线上”。那幼儿英语启蒙教育又什么好处呢。其实孩子3岁开始就可以开始接触英语了，一般幼儿英语都是外教老师带着孩子做游戏，讲故事，认识一些事物。主要目的是培养孩子的开口说话，以防出现现在孩子们的通病，哑巴英语，只会考试，不会运用。幼儿英语启蒙是不单单是英语的发音，还有培养孩子的发散思维，"},
@@ -437,6 +429,11 @@
     },
 
     methods: {
+      //课程点击进入不同的页面
+      move(rou){
+//        alert(1)
+        this.$router.push("/lesson?lesson="+rou);//进入不同的路由-
+      },
       goshopcar(index){
 //         alert(index);
          this.$router.push("/shop/lesson");
@@ -539,6 +536,7 @@
 
 
 //          4.0article中的排他
+           $(".article_tag_text2").css({display:"none"});
           $(".article_tag li").mouseover(function (){
             $(this).find(".article_tag_text2").css({display:"block"}).siblings().css({display:"block"});
             $(this).stop().animate({width:"27%",height:"90%",opacity:0.6},400).siblings().stop().animate({width:"18%",height:"70%",opacity:1},400).find(".article_tag_text2").css({display:"none"}).siblings().css({display:"block"});

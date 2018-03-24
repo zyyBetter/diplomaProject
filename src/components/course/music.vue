@@ -85,6 +85,23 @@
    </article>
 -->
    <course :sendmes="arr"></course>
+   <article id="course">
+     <div class="clearfix">
+       <ul id="list">
+         <li v-for="a in arr">
+           <!--<p>{{sendmes}}</p>-->
+           <img :src="a.src" alt="">
+           <div>
+             <span>{{a.text1}}</span>
+             <span>{{a.text2}}</span>
+           </div>
+         </li>
+
+
+       </ul>
+     </div>
+   </article>
+
 
  </div>
 </template>
@@ -113,9 +130,28 @@ import course from "../common/course.vue"
     }
   },
   created:function (){
-  this.g()
+  this.g();
+  this.animate();
   },
     methods:{
+      animate(){
+        $(function () {
+
+          $("#list li").mouseover(
+            function (){
+              $(this).stop().animate({top:"-10px"},500);
+//              alert(1)
+            }
+          )
+//          6.2音乐导航的图片(鼠标移出)
+          $("#list li").mouseout(
+            function (){
+              $(this).stop().animate({top:"0px"},500);
+            }
+          )
+
+        })
+      },
     g(){
       var va = document.getElementById("ca");
       console.log(va);
@@ -221,6 +257,7 @@ header div span{
     float: right;
     width: 30%;
   }
+  */
 
 article{
   width: 100%;
@@ -239,9 +276,13 @@ article #list li{
   margin-left:20px;
   margin-top: 20px;
   float: left;
+  position: relative;
+
 }
 article #list li img{
   width: 100%;
   height: 100%;
-}*/
+}
+
+
 </style>

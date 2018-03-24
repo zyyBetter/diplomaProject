@@ -4,7 +4,7 @@ import Router from 'vue-router'
 
 import home from '../components/home/home.vue';
 import lesson from '../components/shopcar/lesson.vue'
-import music from '../components/course/music.vue'
+import lesson1 from '../components/course/music.vue'
 import story from '../components/course/story.vue'
 import idioms from '../components/course/idioms.vue'
 import handmake from '../components/course/handmake.vue'
@@ -27,7 +27,7 @@ export default new Router({
   routes: [
     {path: '/', redirect: "/home"},
     {path: '/home', component: home},
-    {path: '/music', component: music},
+    // {path: '/music', component: music},
     {path: '/idioms', component: idioms},
     {path: '/handmake', component: handmake},
     {path: '/handwrite', component: handwrite},
@@ -42,6 +42,7 @@ export default new Router({
     {path: '/rules', component: rules},
     {path: '/comments', component: comments},
     {path: '/shop/lesson', component: lesson},
+    {path: '/lesson', component: lesson1},
     {path:'/shopcar',component:shopcar}
     // {path: '/course', component:course},
 

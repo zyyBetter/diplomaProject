@@ -57,11 +57,11 @@
    </div>
 
    <!--课程导航的部分-->
-   <article id="course">
+  <!-- <article id="course">
      <div class="clearfix">
        <ul id="list">
          <li v-for="a in sendmes">
-           <!--<p>{{sendmes}}</p>-->
+           &lt;!&ndash;<p>{{sendmes}}</p>&ndash;&gt;
            <img :src="a.src" alt="">
            <div>
              <span>{{a.text1}}</span>
@@ -73,7 +73,7 @@
        </ul>
      </div>
    </article>
-
+-->
 
  </div>
 </template>
@@ -87,9 +87,9 @@
       msg:"idioms"
     }
   },
-    props:[
+   /* props:[
       'sendmes'
-    ],
+    ],*/
   created:function (){
 
   },
@@ -195,7 +195,7 @@
     width: 30%;
   }
 
-  article{
+ /* article{
     width: 100%;
     height: 1000px;
     background: deeppink;
@@ -216,6 +216,6 @@
   article #list li img{
     width: 100%;
     height: 100%;
-  }
+  }*/
 </style>
 
