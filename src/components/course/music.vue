@@ -5,7 +5,7 @@
    <article id="course" v-show="isshow">
      <div class="clearfix">
        <ul id="list">
-         <li v-for="a in arr" @click="watchMV">
+         <li v-for="a in arr" @click="watchMV(a.video)">
            <!--<p>{{sendmes}}</p>-->
            <img :src="a.src" alt="">
            <div>
@@ -27,7 +27,7 @@
        <param value="always" name="allowScriptAccess">
        <param value="true" name="allowFullScreen">
        <param value="internal" name="allowNetworking">
-       <embed width="645" height="433" align="middle" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" allownetworking="internal" loop="false" play="true" name="videogreen" wmode="transparent" id="FFvideogreen" quality="high" src="http://s.61baobao.com//flash/2016/7/014.swf">
+       <embed width="645" height="433" align="middle" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" allownetworking="internal" loop="false" play="true" name="videogreen" wmode="transparent" id="FFvideogreen" quality="high" :src="video">
      </object>
 
 
@@ -66,20 +66,20 @@ import course from "../common/course.vue"
           {src: "../../../static/img/poem/10.png", text1: "望庐山瀑布", text2: "dd"}],
 
       music:[
-          {src: "../../../static/img/music/1.png", text1: "地图", text2: "dd"},
-          {src: "../../../static/img/music/2.png", text1: "大雁", text2: "dd"},
-          {src: "../../../static/img/music/3.png", text1: "推磨嘎摇磨嘎", text2: "dd"},
-          {src: "../../../static/img/music/4.png", text1: "石榴婆婆", text2: "dd"},
-          {src: "../../../static/img/music/5.png", text1: "猪宝宝的大餐", text2: "dd"},
-          {src: "../../../static/img/music/6.png", text1: "啄木鸟", text2: "dd"},
-          {src: "../../../static/img/music/7.png", text1: "铃铃铃", text2: "dd"},
-          {src: "../../../static/img/music/8.png", text1: "马大嫂", text2: "dd"},
-          {src: "../../../static/img/music/9.png", text1: "看天", text2: "dd"},
-          {src: "../../../static/img/music/10.png", text1: "十个手指头", text2: "dd"},
-          {src: "../../../static/img/music/11.png", text1: "小蚂蚁搬虫虫", text2: "dd"},
-          {src: "../../../static/img/music/12.png", text1: "骆驼志气大", text2: "dd"},
-          {src: "../../../static/img/music/13.png", text1: "小司机", text2: "dd"},
-          {src: "../../../static/img/music/14.png", text1: "大树", text2: "dd"},
+          {src: "../../../static/img/music/1.png", text1: "地图", text2: "dd",video:"http://s.61baobao.com//flash/2016/5/112.swf"},
+          {src: "../../../static/img/music/2.png", text1: "大雁", text2: "dd",video:"http://s.61baobao.com//flash/2016/5/112.swf"},
+          {src: "../../../static/img/music/3.png", text1: "推磨嘎摇磨嘎", text2: "dd",video:"http://s.61baobao.com//flash/2016/5/081.swf"},
+          {src: "../../../static/img/music/4.png", text1: "石榴婆婆", text2: "dd",video:"http://s.61baobao.com//flash/2016/4/118.swf"},
+          {src: "../../../static/img/music/5.png", text1: "猪宝宝的大餐", text2: "dd",video:"http://s.61baobao.com//flash/2016/4/110.swf"},
+          {src: "../../../static/img/music/6.png", text1: "啄木鸟", text2: "dd",video:"http://s.61baobao.com//flash/2016/4/101.swf"},
+          {src: "../../../static/img/music/7.png", text1: "铃铃铃", text2: "dd",video:"http://s.61baobao.com//flash/2016/4/081.swf"},
+          {src: "../../../static/img/music/8.png", text1: "马大嫂", text2: "dd",video:"http://s.61baobao.com//flash/2016/4/072.swf"},
+          {src: "../../../static/img/music/9.png", text1: "看天", text2: "dd",video:"http://s.61baobao.com//flash/2016/4/062.swf"},
+          {src: "../../../static/img/music/10.png", text1: "十个手指头", text2: "dd",video:"http://s.61baobao.com//flash/2016/3/069.swf"},
+          {src: "../../../static/img/music/11.png", text1: "小蚂蚁搬虫虫", text2: "dd",video:"http://s.61baobao.com//flash/2016/4/040.swf"},
+          {src: "../../../static/img/music/12.png", text1: "骆驼志气大", text2: "dd",video:"http://s.61baobao.com//flash/2016/4/026.swf"},
+          {src: "../../../static/img/music/13.png", text1: "小司机", text2: "dd",video:"http://s.61baobao.com//flash/2016/4/020.swf"},
+          {src: "../../../static/img/music/14.png", text1: "大树", text2: "dd",video:"http://s.61baobao.com//flash/2016/4/001.swf"},
           ],
         paint:[
           {src: "../../../static/img/paint/1.png", text1: "学画圣诞树", text2: "dd"},
@@ -124,6 +124,7 @@ import course from "../common/course.vue"
       lesson:"",
       arr:[],
       isshow:true,
+      video:"",
     }
   },
   created:function (){
@@ -140,10 +141,13 @@ import course from "../common/course.vue"
     //子组件传值给父组件
       send_keyword(id){
 //        alert(id);
+        this.isshow = true;
         this.arr  = this.alllArr[id];
       },
-      watchMV(){ //点击播放视频
+      watchMV(video){ //点击播放视频
          this.isshow = false;
+         this.video = video;
+        alert(this.video)
       },
       animate(){
         $(function () {
