@@ -14,22 +14,13 @@
      <ul class="title_01">
        <li>所有的分类:
          <ul class="title_02">
-           <li>童谣</li>
-           <li>故事</li>
-           <li>手工制作</li>
-           <li>书法</li>
-           <li>故事</li>
-           <li>橡树鸟</li>
-         </ul></li>
+           <li v-for="item in arr1" @click="sendmes(item.id)">{{item.title}}</li>
+         </ul>
+       </li>
        <li>
          分类:
          <ul class="title_02">
-           <li>童谣</li>
-           <li>故事</li>
-           <li>手工制作</li>
-           <!--<li>书法</li>-->
-           <!--<li>故事</li>-->
-           <!--<li>橡树鸟</li>-->
+           <li v-for="item in arr2">{{item.title}}</li>
          </ul>
        </li>
        <li>专题:
@@ -56,25 +47,6 @@
      </ul>
    </div>
 
-   <!--课程导航的部分-->
-  <!-- <article id="course">
-     <div class="clearfix">
-       <ul id="list">
-         <li v-for="a in sendmes">
-           &lt;!&ndash;<p>{{sendmes}}</p>&ndash;&gt;
-           <img :src="a.src" alt="">
-           <div>
-             <span>{{a.text1}}</span>
-             <span>{{a.text2}}</span>
-           </div>
-         </li>
-
-
-       </ul>
-     </div>
-   </article>
--->
-
  </div>
 </template>
 
@@ -84,7 +56,21 @@
   export default {
   data () {
     return {
-      msg:"idioms"
+      msg:"idioms",
+      arr1:[
+        {title:"童谣",id:"music"},
+        {title:"诗词",id:"poem"},
+        {title:"手工制作",id:"handmake"},
+        {title:"绘画",id:"paint"},
+        {title:"故事",id:"idoms"},
+      ],
+      arr2:[
+        {title:"童谣",id:"music"},
+        {title:"故事",id:"music"},
+        {title:"手工制作",id:"music"},
+        {title:"橡树鸟",id:"music"}
+
+      ],
     }
   },
    /* props:[
@@ -94,6 +80,9 @@
 
   },
     methods:{
+      sendmes(id){
+        this.$emit("keyword",id)
+      }
 
     }
 }

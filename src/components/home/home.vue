@@ -395,10 +395,10 @@
       return {
         arrlesson:[
           {rou:"music",src:"../../../static/img/home/nav1.jpg"},
-          {rou:"idoms",src:"../../../static/img/home/nav2.jpg"},
+          {rou:"poem",src:"../../../static/img/home/nav2.jpg"},
           {rou:"handmake",src:"../../../static/img/home/nav3.jpg"},
-          {rou:"music",src:"../../../static/img/home/nav4.jpg"},
-          {rou:"home",src:"../../../static/img/home/nav5.jpg"},
+          {rou:"paint",src:"../../../static/img/home/nav4.jpg"},
+          {rou:"idoms",src:"../../../static/img/home/nav5.jpg"},
 //          {rou:"home",src:"../../../static/img/home/nav6.jpg"},
 //          {rou:"home",src:"../../../static/img/home/nav7.jpg"},
 //          {rou:"home",src:"../../../static/img/home/nav8.jpg"},

@@ -18,6 +18,7 @@
           <button  @click="add(item.name,item.src,item.price)">加入购物车</button>
         </div>
 
+
       </li>
       </ul>
     </div>

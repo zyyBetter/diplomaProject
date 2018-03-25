@@ -1,6 +1,7 @@
 <template>
   <div id="temp">
-    <div class="all clearfix" v-for="item in list">
+    <ul>
+    <li class="all clearfix" v-for="item in list">
       <img :src="item.src" alt="">
       <h2 class="title">{{item.name}}</h2>
       <div class="count">
@@ -9,7 +10,8 @@
         <span @click="down(item.name,item.count)">-</span>
       </div>
       <h3 class="price">总价格:<strong>{{item.price*item.count}}</strong></h3>
-    </div>
+    </li>
+    </ul>
   </div>
 </template>
 
@@ -65,8 +67,13 @@
 <style scoped>
   .all {
     width: 100%;
-    background-color: white;
     position: relative;
+    height: 100%;
+    background: white;
+    margin-top: 20px;
+    border: 1px solid silver;
+    padding: 10px;
+
   }
 
   .all img {
@@ -81,7 +88,7 @@
 
   .count {
     position: absolute;
-    left: 21%;
+    right: 21%;
     top: 20%;
     width: 200px;
   }
