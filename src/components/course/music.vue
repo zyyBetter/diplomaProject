@@ -1,9 +1,10 @@
 <template>
  <div id="temp">
-
+<!--头部的组件-->
    <course  @keyword="send_keyword"></course>
+
    <article id="course" v-show="isshow">
-     <div class="clearfix">
+     <div class=" clearfix">
        <ul id="list">
          <li v-for="a in arr" @click="watchMV(a.video)">
            <!--<p>{{sendmes}}</p>-->
@@ -24,13 +25,13 @@
      <div style="margin-left: 10% ;float: left;width: 20%;background: papayawhip;">
        <span style=" float: left;display: inline-block;width: 30px;height: 30px;background: url('../../../static/img/lesson1/int.png') 0 -690px no-repeat"></span>
        <span style="font-size: 18px;line-height: 30px;width: 100px;float: left;">猜你喜欢的</span>
-       <ul>
-         <li v-for="item in fav" style="width: 100%;overflow: hidden;padding: 10px;">
+       <ul class="clearfix">
+         <li v-for="item in fav" style="width: 100%;padding: 10px;">
            <div style="float: left;"><img :src="item.src" alt=""></div>
            <div>
              <p style="margin-top: 10px;">{{item.text1}}</p>
              <p style="margin-top: 10px;">[{{item.text1}}]</p>
-             <button style="background: #f66b20 url('../../../static/img/lesson1/int.png') -95px -504px;margin-top: 15px;color:white;border: none;width: 60px;" @click="play">播放</button>
+             <button style="background: #f66b20 url('../../../static/img/lesson1/int.png') -95px -504px;margin-top: 15px;color:white;border: none;width: 60px;" @click="play(item.video)">播放</button>
            </div>
          </li>
        </ul>
@@ -44,7 +45,7 @@
        <param value="always" name="allowScriptAccess">
        <param value="true" name="allowFullScreen">
        <param value="internal" name="allowNetworking">
-       <embed width="645" height="433" align="middle" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" allownetworking="internal" loop="false" play="true" name="videogreen" wmode="transparent" id="FFvideogreen" quality="high" :src="video">
+       <embed width="830" height="600" align="middle" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" allownetworking="internal" loop="false" play="true" name="videogreen" wmode="transparent" id="FFvideogreen" quality="high" :src="video">
      </object>
      </div>
 
@@ -137,15 +138,25 @@ import course from "../common/course.vue"
       ]
       },
       fav:[{
-        src: "../../../static/img/idoms/7.png", text1: "狗血淋头", text2: "dd",video:"http://s.61baobao.com//flash/2016/1/074.swf"
+        src: "../../../static/img/fav/1.png", text1: "小苹果", text2: "中文儿歌",video:"http://s.61baobao.com//flash/2014/7/069.swf"
       },{
-        src: "../../../static/img/idoms/7.png", text1: "狗血淋头", text2: "dd",video:"http://s.61baobao.com//flash/2016/1/074.swf"
+        src: "../../../static/img/fav/2.png", text1: "打电话儿歌", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/dadianhua2.swf"
       },{
-        src: "../../../static/img/idoms/7.png", text1: "狗血淋头", text2: "dd",video:"http://s.61baobao.com//flash/2016/1/074.swf"
+        src: "../../../static/img/fav/3.png", text1: "小小少年", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/2012/shaonian.swf"
       },{
-        src: "../../../static/img/idoms/7.png", text1: "狗血淋头", text2: "dd",video:"http://s.61baobao.com//flash/2016/1/074.swf"
+        src: "../../../static/img/fav/4.png", text1: "幸福拍手", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/2012/paishouge2.swf"
       },{
-        src: "../../../static/img/idoms/7.png", text1: "狗血淋头", text2: "dd",video:"http://s.61baobao.com//flash/2016/1/074.swf"
+        src: "../../../static/img/fav/5.png", text1: "江南style", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/2012/jiangnan.swf"
+      },{
+        src: "../../../static/img/fav/6.png", text1: "甩葱歌", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/cong.swf"
+      },{
+        src: "../../../static/img/fav/7.png", text1: "祝你生日快乐", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/2012/shengri.swf"
+      },{
+        src: "../../../static/img/fav/8.png", text1: "常用汉字（一）", text2: "dd中文儿歌",video:"http://s.61baobao.com//zt/qinbao/shizi/001.swf"
+      },{
+        src: "../../../static/img/fav/9.png", text1: "常用汉字（二）", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/shizi/010.swf"
+      },{
+        src: "../../../static/img/fav/10.png", text1: "国学启蒙", text2: "d中文儿歌",video:"http://s.61baobao.com//common/flash/2013/qinbaoguoxueqimeng/1.swf"
       },
       ],
 
@@ -167,8 +178,10 @@ import course from "../common/course.vue"
   },
     methods:{
     //点击播放
-      play(){
-        alert(0)
+      play(video){
+//        alert(0);
+        this.video = video;
+
       },
     //子组件传值给父组件
       send_keyword(id){
@@ -179,7 +192,7 @@ import course from "../common/course.vue"
       watchMV(video){ //点击播放视频
          this.isshow = false;
          this.video = video;
-        alert(this.video)
+//        alert(this.video)
       },
       animate(){
         $(function () {
@@ -214,22 +227,29 @@ import course from "../common/course.vue"
 
 
 article{
-  width: 100%;
+  width: 80%;
   /*height: 1000px;*/
   /*background: deeppink;*/
-  margin-top:20px;
+  /*margin-top:20px;*/
   border: 1px solid silver;
+  margin: 0 auto;
+
 }
 article #list {
   width: 100%;
   height: 100%;
   overflow: hidden;
+
+  /*overflow: scroll;*/
 }
 article #list li{
   width: 30%;
   /*background: darkcyan;*/
-  margin-left:20px;
+  margin-left:25px;
   margin-top: 30px;
+  /*display: flex;
+  justify-content:center;
+    align-items:center;*/
   float: left;
   position: relative;
 
@@ -251,5 +271,9 @@ article #list li img{
   color: white;
 
 }
+  .list_left{
+
+
+  }
 
 </style>

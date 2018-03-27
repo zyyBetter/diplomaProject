@@ -33,6 +33,9 @@ import $ from "jquery";
 import vueResource from "vue-resource";
 Vue.use(vueResource);
 
+// import { InfiniteScroll } from 'mint-ui';
+// Vue.use(InfiniteScroll);
+
 
 
 

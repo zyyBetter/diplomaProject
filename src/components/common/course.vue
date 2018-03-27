@@ -12,18 +12,24 @@
     <!--分类-->
    <section id="title">
      <ul class="title_01">
-       <li>所有的分类:
+       <li >
+         <span class="title_bg" style="background-position: -72px -316px"></span>
+         所有的分类:
          <ul class="title_02">
            <li v-for="item in arr1" @click="sendmes(item.id)">{{item.title}}</li>
          </ul>
        </li>
        <li>
+         <span class="title_bg" style="background-position: -20px -316px"></span>
+
          分类:
          <ul class="title_02">
            <li v-for="item in arr2">{{item.title}}</li>
          </ul>
        </li>
-       <li>专题:
+       <li>
+         <span class="title_bg" style="background-position: -36px -316px"></span>
+         专题:
          <ul class="title_02">
            <li>防火</li>
            <li>新年</li>
@@ -31,7 +37,9 @@
            <li>早活动</li>
            <li>故事</li>
          </ul></li>
-       <li>科目:</li>
+       <li>
+         <span class="title_bg" style="background-position: -54px -316px"></span>
+         科目:</li>
      </ul>
    </section>
 <!--导航-->
@@ -118,17 +126,24 @@
   #title{
     width: 100%;
     height: 200px;
-    /*background: darkgoldenrod;*/
+    background: white;
   }
   #title .title_01{
     width: 100%;
     /*height: 100%;*/
     overflow: hidden;
     border: 1px solid silver;
+
   }
   #title .title_01>li {
     border-bottom: 1px solid silver;
 
+  }
+  .title_bg{
+    display: inline-block;
+    width: 18px;
+    height: 16px;
+    background: url("../../../static/img/lesson1/int.png") no-repeat;
   }
   #title .title_01 li {
     /*width: 100%;*/
