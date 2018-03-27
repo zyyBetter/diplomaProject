@@ -8,7 +8,7 @@
    <div id="panel">
      <!--面板的头部-->
      <div class="panel-header">
-       <h2>SeeMyGo教育系统</h2>
+       <h2>启蒙教育注册</h2>
      </div>
      <!--面板的中间内容-->
      <div class="panel-content">

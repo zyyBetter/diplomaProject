@@ -3,6 +3,51 @@
 <!--头部的组件-->
    <course  @keyword="send_keyword"></course>
 
+   <div style="margin-top: -30px;"><img src="../../../static/img/moves/bg.jpg" alt=""></div>
+
+   <div id="box">
+     <!--商品列表-->
+     <ul>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+
+     </ul>
+     <!--蒙板-->
+     <div id="mask" @mousedown="moveing">
+       <span></span>
+     </div>
+   </div>
+
+
+
    <article id="course" v-show="isshow">
      <div class=" clearfix">
        <ul id="list">
@@ -22,7 +67,7 @@
 
    <section v-show="!isshow" class="clearfix">
 
-     <div style="margin-left: 10% ;float: left;width: 20%;background: papayawhip;">
+     <div style="float: left;width: 20%;background: papayawhip;">
        <span style=" float: left;display: inline-block;width: 30px;height: 30px;background: url('../../../static/img/lesson1/int.png') 0 -690px no-repeat"></span>
        <span style="font-size: 18px;line-height: 30px;width: 100px;float: left;">猜你喜欢的</span>
        <ul class="clearfix">
@@ -37,8 +82,8 @@
        </ul>
      </div>
 
-     <div style="float: right;width: 70%;background: darkgreen;padding: -100px;">
-     <object width="100%" height="433" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" id="videogreen" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+     <div style="float: left;width: 60%;background: darkgreen;padding: -100px;">
+     <object width="60%" height="433" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" id="videogreen" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
        <param value="http://yuntv.letv.com/bcloud.swf?uu=e83fdad654&amp;pu=55087b3b4d&amp;vu=bc4c03b1a4&amp;auto_play=1&amp;gpcflag=1" name="movie">
        <param value="high" name="quality">
        <param name="wmode" value="transparent">
@@ -172,7 +217,6 @@ import course from "../common/course.vue"
 //    this.getmes();
 //    alert(this.arr)
 
-  this.g();
   this.animate();
 //  alert( this.lesson)
   },
@@ -212,9 +256,50 @@ import course from "../common/course.vue"
 
         })
       },
-    g(){
-      var va = document.getElementById("ca");
-      console.log(va);
+
+      moveing(){
+      // 1.获取需要的标签
+      var box = document.getElementById('box');
+      var oul = box.children[0];
+      var mask = document.getElementById('mask').children[0];
+
+      // 2.动态计算滚动条的宽度
+      // 滚动条的长度 / 盒子的长度 = 盒子的长度 / 内容的长度
+      // 滚动条长度 = ( 盒子的宽度 / 内容的宽度) * 盒子的宽度
+      mask.style.width = box.offsetWidth / oul.offsetWidth * box.offsetWidth + 'px';
+
+      // 3.滚动条移动
+      mask.onmousedown = function (event) {
+        var event = event || window.event;
+        var offsetX = event.clientX - mask.offsetLeft;
+
+        // 移动事件
+        document.onmousemove = function (event) {
+          var event = event || window.event;
+
+          // 1.计算移动的距离
+          var x = event.clientX - offsetX;
+          // 2.临界值判断
+          if(x < 0){
+            x = 0;
+          }else if(x >= box.offsetWidth - mask.offsetWidth -2){
+            x = box.offsetWidth - mask.offsetWidth -2;
+          }
+          mask.style.left = x + 'px';
+
+          // 2.内容移动
+          // 内容走的距离 / 滚动条走的距离 =（内容的长度 - 盒子的长度） / (盒子长度 - 滚动条的长度)
+          oul.style.left = -(oul.offsetWidth - box.offsetWidth) / (box.offsetWidth - mask.offsetWidth) * x + 'px';
+
+          return false;
+        };
+        return false;
+      };
+
+      document.onmouseup = function () {
+        document.onmousemove = null;
+      }
+
 
     }
 
@@ -224,10 +309,54 @@ import course from "../common/course.vue"
 <link rel="stylesheet" href="css/video-js.css" type="text/css"/>
 
 <style scoped>
+  #temp{
+    width: 80%;
+  }
+
+  #box{
+    width: 100%;
+    height: 170px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+
+  }
+  #box ul{
+    list-style: none;
+    width: 2600px;
+    position: absolute;
+    left:0;
+    top: 5px;
+  }
+  #box ul li{
+    float: left;
+  }
+  #mask{
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: greenyellow;
+
+  }
+  #mask span{
+    width: 100px;
+    background-color: red;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+    cursor: pointer;
+  }
 
 
 article{
-  width: 80%;
+  width: 100%;
   /*height: 1000px;*/
   /*background: deeppink;*/
   /*margin-top:20px;*/
@@ -243,7 +372,7 @@ article #list {
   /*overflow: scroll;*/
 }
 article #list li{
-  width: 30%;
+  width: 22%;
   /*background: darkcyan;*/
   margin-left:25px;
   margin-top: 30px;

@@ -14,7 +14,11 @@
 
     <!--中间导航栏部分-->
     <div  id="bar">
-      <span id="bar_title">课程选择 >> 启蒙</span>
+      <div class="bar02_bottom_top">
+        <span>知识</span>
+        <!--<span>活动</span>-->
+      </div>
+      <!--<span id="bar_title">课程选择 >> 启蒙</span>-->
         <div id="bar_nav">
           <ul class="bar_nav_mp3">
 
@@ -87,7 +91,11 @@
     </div>
 
     <!--专题部分 使用插件-->
-    <div style="overflow: hidden" id="bar02">
+    <div style="overflow: hidden" id="bar02" >
+      <div class="bar02_bottom_top">
+        <span>知识</span>
+        <!--<span>活动</span>-->
+      </div>
       <!--左边面板-->
       <div class="clearfix">
       <div id="bar02_top" >
@@ -678,7 +686,7 @@
     margin-top: 60px;
     /*margin-right: 50px;*/
     padding-left: 20px;
-    border: 1px solid pink;
+    /*border: 1px solid pink;*/
     /*box-shadow: 0px 10px 5px #ffe1e8;*/
     /*background: palegreen;*/
     border-radius: 20px;
@@ -689,6 +697,7 @@
   #bar_nav{
     width: 100%;
     height: 40px;
+    border-top: 2px solid seagreen;
     /*background:darkcyan;*/
 
   }
@@ -802,6 +811,7 @@
   #bar02 {
     width: 100%;
     /*height: 600px;*/
+    border-top: 2px solid seagreen;
 
   }
 
@@ -809,7 +819,7 @@
   #bar02_top {
     width: 28%;
     height: 100%;
-    margin-top: 100px;
+    margin-top: 15px;
     border: 1px solid pink;
     box-shadow: 10px 10px 5px #ffe1e8;
     border-radius: 20px;
@@ -818,6 +828,7 @@
     overflow: hidden;
     /*float: left;*/
     float: left;
+
 
   }
 
@@ -843,7 +854,7 @@
     font-size: 18px;
     background: #fff2f4;
     border-radius: 5px;
-    border: 1px solid #fbd2dd;
+    border: 2px solid #fbd2dd;
     color: deeppink;
     box-shadow: 5px 5px 2px #fbd2dd;
     cursor: pointer;
@@ -866,7 +877,7 @@
     height: 400px;
     background:darkcyan;
     float: right;;
-    margin-top: 110px;
+    margin-top: 20px;
   }
 
   #bar02_top_bottom {
@@ -904,8 +915,8 @@
   }
 
   #bar02_bottom{
-    border-top: 1px solid darkcyan;
-    margin-top: 30px;
+    border-top: 2px solid darkcyan;
+    margin-top: 60px;
     margin-bottom:60px;
   }
   .bar02_bottom_top{
@@ -945,7 +956,7 @@
 
   #bar02_right {
     /*border: 6px solid pink;*/
-    /*margin-top: 20px;*/
+    margin-top: -30px;
     border-radius: 20px;
     width: 100%;
     /*height: 100%;*/
@@ -958,7 +969,7 @@
   #bar02_right01{
     margin-top:60px;
     width: 100%;
-    border-top: 1px solid darkcyan;
+    border-top: 2px solid darkcyan;
     /*height: 600px;*/
     /*background: cyan;*/
 

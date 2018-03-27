@@ -43,7 +43,7 @@
      </ul>
    </section>
 <!--导航-->
-   <div id="nav">
+  <!-- <div id="nav">
      <ul class="nav_list1">
        <li>推荐</li>
        <li>最新</li>
@@ -53,7 +53,7 @@
        <li><input type="checkbox" checked>免费课程</li>
        <li><input type="checkbox">会员课程</li>
      </ul>
-   </div>
+   </div>-->
 
  </div>
 </template>
@@ -97,6 +97,9 @@
 </script>
 
 <style scoped>
+  #temp{
+    width: 100%;
+  }
   header{
     width: 100%;
     height: 80px;

@@ -47,7 +47,11 @@
 
     <!--右边的固定的导航栏-->
     <div class="rightWall">
-      <ul class="top">
+
+      <img src="../static/img/home/backTop.png" alt="">
+      <span class="mask1" @click="backT"></span>
+
+     <!-- <ul class="top">
         <li>学习中心</li>
         <li>
           <img src="../static/img/login/weixin.png">
@@ -59,11 +63,11 @@
           <img src="../static/img/login/qq.png">
         </li>
         <li id="backT">
-          <!--回到顶部-->
+          &lt;!&ndash;回到顶部&ndash;&gt;
           <i class="el-icon-arrow-up" ></i>
         </li>
 
-      </ul>
+      </ul>-->
 
 
     </div>
@@ -136,18 +140,18 @@
     $(window).scroll(function (event) {
       //滚动距离大于150时显示返回顶部
       if ($(window).scrollTop() > 200) {
-        $('.rightWall').show();
+        $('.rightWall').show(200);
 
       } else {
-        $('.rightWall').hide();
+        $('.rightWall').hide(500);
       }
     });
 
     //返回顶部点击事件
-    $('#backT').click(function () {
+   /* $('#backT').click(function () {
 //      $("#app").animate({scrollTop: 0}, 600)
       window.scrollTo(0,0);
-    });
+    });*/
   })
 
   export default {
@@ -161,9 +165,13 @@
       restore() {
         inp.style.width = "100px";
 
+      },
+      backT() {
+        window.scrollTo(0, 0);
       }
-
     }
+
+
 
   }
 </script>
@@ -173,6 +181,15 @@
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     text-align: center;
     color: #2c3e50;
+  }
+  .mask1{
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    position: absolute;
+    z-index:22;
+    top: 60px;
+    right:-5px;
   }
 
   nav {
@@ -238,17 +255,18 @@
   }
 
   .rightWall {
-    width: 40px;
-    height: 100%;
+    width: 60px;
+    height: 300px;
     position: fixed;
-    background: white;
-    right: 0;
-    top: 0;
-    border-left: 1px solid gainsboro;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    margin-top: 60px;
-
+    bottom: 30px;
+    right:26px;
+    opacity: 0.6;
+    /*padding-top: 60px;*/
+    /*padding-bottom: 60px;*/
+    /*margin-bottom: 60px;*/
+  }
+  .rightWall:hover {
+    opacity:1;
   }
 
   .rightWall ul {
