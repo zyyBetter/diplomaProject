@@ -8,36 +8,10 @@
    <div id="box">
      <!--商品列表-->
      <ul>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
-       <li><img src="../../../static/images/img1.jpg" alt=""></li>
+       <li  v-for="item in arrNar" >
+         <img :src="item.src" alt="" @click="playVideo(item.video)">
+         <p>{{item.text1}}</p>
+       </li>
 
      </ul>
      <!--蒙板-->
@@ -116,6 +90,28 @@ import course from "../common/course.vue"
 
   data () {
     return {
+      arrNar:[
+        {src: "../../../static/img/nar/1.jpg", text1: "兔子跳",video:"http://s.61baobao.com//zt/qinbao/2012/tuziwu.swf"},
+        {src: "../../../static/img/nar/2.jpg", text1: "爱我你就抱抱我",video:"http://s.61baobao.com//common/flash/2012/09/51.swf"},
+        {src: "../../../static/img/nar/3.jpg", text1: "猪之歌",video:"http://s.61baobao.com//common/flash/2013/9/22.swf"},
+        {src: "../../../static/img/nar/4.jpg", text1: "小喇叭",video:"http://s.61baobao.com//zt/qinbao/2012/xiaolaba.swf"},
+        {src: "../../../static/img/nar/5.jpg", text1: "两只老虎",video:"http://s.61baobao.com//zt/qinbao/2011/062.swf"},
+        {src: "../../../static/img/nar/6.jpg", text1: "妈妈的吻",video:"http://s.61baobao.com//zt/qinbao/2012/mamadewen.swf"},
+        {src: "../../../static/img/nar/7.jpg", text1: "小老鼠上台灯",video:"http://s.61baobao.com//zt/qinbao/2011/022.swf"},
+        {src: "../../../static/img/nar/8.jpg", text1: "拔萝卜",video:"http://s.61baobao.com//zt/qinbao/baluobo2.swf"},
+        {src: "../../../static/img/nar/9.jpg", text1: "种太阳",video:"http://s.61baobao.com//zt/qinbao/2011/132.swf"},
+        {src: "../../../static/img/nar/10.jpg", text1: "数鸭子",video:"http://s.61baobao.com//zt/qinbao/2011/042.swf"},
+        {src: "../../../static/img/nar/5.jpg", text1: "咕哩动画",video:"http://s.61baobao.com//flash/2016/7/010.swf"},
+        {src: "../../../static/img/nar/12.jpg", text1: "kiyomi",video:"http://s.61baobao.com//zt/qinbao/2012/maibaoge.swf"},
+        {src: "../../../static/img/nar/1.jpg", text1: "兔子跳",video:"http://s.61baobao.com//zt/qinbao/2012/tuziwu.swf"},
+        {src: "../../../static/img/nar/2.jpg", text1: "爱我你就抱抱我",video:"http://s.61baobao.com//common/flash/2012/09/51.swf"},
+        {src: "../../../static/img/nar/3.jpg", text1: "猪之歌",video:"http://s.61baobao.com//common/flash/2013/9/22.swf"},
+        {src: "../../../static/img/nar/4.jpg", text1: "小喇叭",video:"http://s.61baobao.com//zt/qinbao/2012/xiaolaba.swf"},
+        {src: "../../../static/img/nar/5.jpg", text1: "两只老虎",video:"http://s.61baobao.com//zt/qinbao/2011/062.swf"},
+        {src: "../../../static/img/nar/6.jpg", text1: "妈妈的吻",video:"http://s.61baobao.com//zt/qinbao/2012/mamadewen.swf"},
+        {src: "../../../static/img/nar/5.jpg", text1: "咕哩动画",video:"http://s.61baobao.com//zt/qinbao/2012/maibaoge.swf"},
+        {src: "../../../static/img/nar/12.jpg", text1: "kiyomi",video:"http://s.61baobao.com//flash/2015/8/101.swf"},
+      ],
       alllArr: {
         poem:[
           {src: "../../../static/img/poem/1.png", text1: "登岳阳楼记", text2: "dd",video:"http://s.61baobao.com//flash/2016/7/010.swf"},
@@ -221,6 +217,12 @@ import course from "../common/course.vue"
 //  alert( this.lesson)
   },
     methods:{
+      playVideo(video){
+        alert(video)
+//        alert(1);
+        this.isshow = false;
+        this.video = video;
+      },
     //点击播放
       play(video){
 //        alert(0);
@@ -332,6 +334,8 @@ import course from "../common/course.vue"
   }
   #box ul li{
     float: left;
+    width: 5%;
+    margin-top: 20px;
   }
   #mask{
     width: 100%;
@@ -401,7 +405,6 @@ article #list li img{
 
 }
   .list_left{
-
 
   }
 

@@ -4,7 +4,7 @@
     <!--左边盒子-->
     <div id="box_left">
       <!--轮播图-->
-      <slider></slider>
+      <slider id="sliders"></slider>
 
       <!--评论区域-->
       <div id="comment" class="clearfix">
@@ -298,6 +298,10 @@
     box-sizing: border-box;
     float: left;
     /*padding-top: -100px;*/
+    /*background:darkmagenta;*/
+  }
+  #sliders{
+    margin-top: 0px;
   }
 
   slider {
