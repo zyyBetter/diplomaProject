@@ -93,7 +93,7 @@
     <!--专题部分 使用插件-->
     <div style="overflow: hidden" id="bar02" >
       <div class="bar02_bottom_top">
-        <span>知识</span>
+        <span>推荐</span>
         <!--<span>活动</span>-->
       </div>
       <!--左边面板-->
@@ -178,7 +178,13 @@
       </div>
 
       <div id="bar02_top_center" class="clearfix">
-        jjjjjjjjjjjjjjjjjjjjj
+        <ul class="list_bar02">
+          <li v-for="item in arrGroom">
+            <img :src="item.src" alt="">
+            <p>{{item.txt}}</p>
+          </li>
+
+        </ul>
       </div>
       </div>
 
@@ -419,6 +425,13 @@
           {src:"../../../static/img/shopcar/4.png",text1:"趣味英语",text2:"英语",text3:"幼儿英语启蒙教育兴起，有句话“不能输在起跑线上”。那幼儿英语启蒙教育又什么好处呢。其实孩子3岁开始就可以开始接触英语了，一般幼儿英语都是外教老师带着孩子做游戏，讲故事，认识一些事物。主要目的是培养孩子的开口说话，以防出现现在孩子们的通病，哑巴英语，只会考试，不会运用。幼儿英语启蒙是不单单是英语的发音，还有培养孩子的发散思维，"},
           {src:"../../../static/img/shopcar/1.png",text1:"趣味英语",text2:"英语",text3:"幼儿英语启蒙教育兴起，有句话“不能输在起跑线上”。那幼儿英语启蒙教育又什么好处呢。其实孩子3岁开始就可以开始接触英语了，一般幼儿英语都是外教老师带着孩子做游戏，讲故事，认识一些事物。主要目的是培养孩子的开口说话，以防出现现在孩子们的通病，哑巴英语，只会考试，不会运用。幼儿英语启蒙是不单单是英语的发音，还有培养孩子的发散思维，"},
 
+        ],
+        arrGroom:[
+          {src:"../../../static/img/groom/1.jpg",txt:"儿童睡前故事"},
+          {src:"../../../static/img/groom/2.jpg",txt:"儿歌大全100首"},
+          {src:"../../../static/img/groom/3.jpg",txt:"儿童视频连连看"},
+          {src:"../../../static/img/groom/4.jpg",txt:"儿童公主歌"},
+          {src:"../../../static/img/groom/5.jpg",txt:"0-3岁儿歌"},
         ],
 
         imgarr: [0, 1, 2],
@@ -874,12 +887,36 @@
 
   #bar02_top_center{
     width: 70%;
-    height: 400px;
-    background:darkcyan;
+    height: 450px;
+    background: #f7fbff;
     float: right;;
     margin-top: 20px;
   }
+  #bar02_top_center  .list_bar02{
+    width: 100%;
+    height: 100%;
 
+  }
+  #bar02_top_center  .list_bar02 li {
+    width: 33%;
+    height: 50%;
+    float: left;
+    /*padding-top: 2%;*/
+  }
+  #bar02_top_center  .list_bar02 li img {
+    width: 93%;
+    vertical-align: middle;
+  }
+  #bar02_top_center  .list_bar02 li img:hover {
+    animation:mymove 1s infinite;
+    /*transform:scale(2,2);*/
+  }
+@keyframes mymove {
+  0% {transform:scale(1)}
+  50% {transform:scale(1.1)}
+  100% {transform:scale(1)}
+
+}
   #bar02_top_bottom {
     width: 100%;
     height: 100%;
