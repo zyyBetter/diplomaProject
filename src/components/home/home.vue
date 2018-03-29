@@ -180,7 +180,7 @@
       <div id="bar02_top_center" class="clearfix">
         <ul class="list_bar02">
           <li v-for="item in arrGroom">
-            <img :src="item.src" alt="">
+            <img :src="item.src" alt="" @click="sendGroom(item.id)">
             <p>{{item.txt}}</p>
           </li>
 
@@ -427,11 +427,10 @@
 
         ],
         arrGroom:[
-          {src:"../../../static/img/groom/1.jpg",txt:"儿童睡前故事"},
-          {src:"../../../static/img/groom/2.jpg",txt:"儿歌大全100首"},
-          {src:"../../../static/img/groom/3.jpg",txt:"儿童视频连连看"},
-          {src:"../../../static/img/groom/4.jpg",txt:"儿童公主歌"},
-          {src:"../../../static/img/groom/5.jpg",txt:"0-3岁儿歌"},
+          {src:"../../../static/img/groom/1.jpg",txt:"儿童睡前故事",id:'sleep'},
+          {src:"../../../static/img/groom/2.jpg",txt:"儿歌大全100首",id:'music'},
+          {src:"../../../static/img/groom/4.jpg",txt:"儿童公主歌",id:'gir'},
+          {src:"../../../static/img/groom/5.jpg",txt:"0-3岁儿歌",id:'age'},
         ],
 
         imgarr: [0, 1, 2],
@@ -450,6 +449,9 @@
     },
 
     methods: {
+      sendGroom(id){
+        this.$router.push("/story?id="+id);//进入不同的路由-
+      },
       //课程点击进入不同的页面
       move(rou){
 //        alert(1)
