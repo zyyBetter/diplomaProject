@@ -56,7 +56,7 @@
        </ul>
      </div>
 
-     <div style="float: left;width: 60%;background: darkgreen;padding: -100px;">
+     <div style="float: left;width: 60%;padding: -100px;">
      <object width="60%" height="433" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" id="videogreen" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
        <param value="http://yuntv.letv.com/bcloud.swf?uu=e83fdad654&amp;pu=55087b3b4d&amp;vu=bc4c03b1a4&amp;auto_play=1&amp;gpcflag=1" name="movie">
        <param value="high" name="quality">
@@ -64,7 +64,8 @@
        <param value="always" name="allowScriptAccess">
        <param value="true" name="allowFullScreen">
        <param value="internal" name="allowNetworking">
-       <embed width="830" height="600" align="middle" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" allownetworking="internal" loop="false" play="true" name="videogreen" wmode="transparent" id="FFvideogreen" quality="high" :src="video">
+
+       <embed width="830" height="600"  controls="console"  align="middle" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" allownetworking="internal" loop="false" play="true" name="videogreen" wmode="transparent" id="FFvideogreen" quality="high" :src="video">
      </object>
      </div>
 

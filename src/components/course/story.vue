@@ -33,14 +33,26 @@
      </ul>
    </div>
 
-     <div class="article_right"   >
+     <div class="article_right"  v-show="ishowVideo"  >
 
-       <ul>
-         <li v-for="item in arrdetail">
+       <ul id="list">
+         <li v-for="item in arrdetail" @click="changeVideo(item.video)">
            <img :src="item.src" alt="">
            <p>{{item.txt}}</p>
          </li>
        </ul>
+
+
+     </div>
+
+
+     <!--点击切换MP4播放-->
+     <div class="article_right" v-show="!ishowVideo">
+
+
+       <video id="video" width="100%" height="600px" preload controls>
+         <source v-bind:src="videos" type='video/mp4'  style="width: 100%; height: 100%;">
+       </video>
      </div>
    </article>
 
@@ -58,6 +70,8 @@
   export default {
   data () {
     return {
+      ishowVideo:true,
+      videos:"",
       arrNar:[
         {txt:"睡前故事",id:"sleep"},
         {txt:"儿歌大全",id:"music"},
@@ -91,13 +105,34 @@
       sleep:{
         head:{src:"../../../../static/img/groom/1.jpg",title:"儿童睡前故事",detail:'月亮爬上树梢，星星不断眨眼，孩子却不肯睡觉，这可愁坏了爸妈。不如试试给孩子看看六一宝宝为您特别呈现的儿童睡前故事，让孩子伴随着唯美的童话故事，香甜入睡。'},
         num:[
-          {src:"../../../../static/img/groom/2.jpg",txt:"ss"}
+          {src:"../../../../static/img/sleep/1.jpg",txt:"守株待兔",video:"http://bevavideo-web.beva.cn/ad8ad056d79f645afd57f6a44ef48231/5abd988b/769f439e8c/h360/video.mp4"},
+         {src:"../../../../static/img/sleep/2.jpg",txt:"小蝌蚪找妈妈",video:"http://bevavideo-web.beva.cn/89592dd9ca657b7f1cc5fc608935f75c/5abd9d07/4a085ad591/h360/video.mp4"},
+          {src:"../../../../static/img/sleep/3.jpg",txt:"小蝌蚪找妈妈",video:"http://bevavideo-web.beva.cn/89592dd9ca657b7f1cc5fc608935f75c/5abd9d07/4a085ad591/h360/video.mp4"},
+  {src:"../../../../static/img/sleep/4.jpg",txt:"狼与小羊",video:"http://bevavideo-web.beva.cn/84e37478683de549806ac407827bd435/5abd9ddd/c2a4a9a549/h360/video.mp4"},
+ {src:"../../../../static/img/sleep/5.jpg",txt:"皇帝的新装",video:"http://bevavideo-web.beva.cn/34bb9ae7aa64f4ba4460fccc96947949/5abd9e29/c011ab14f8/h360/video.mp4"},
+{src:"../../../../static/img/sleep/6.jpg",txt:"拔萝卜",video:"http://bevavideo-web.beva.cn/ef8b42d4029c923a3987be255e254cfc/5abd9e5b/544ec0213b/h360/video.mp4"},
+{src:"../../../../static/img/sleep/7.jpg",txt:"聪明的一休",video:"http://bevavideo-web.beva.cn/ca55a81c46ccd8388db1b8fd3231fb96/5abd9e61/ed54235661/h360/video.mp4"},
+
         ]
       },
       music:{
-        head:{src:"../../../../static/img/groom/2.jpg",title:"儿歌大全100首 ",detail:'亲宝儿歌视频大全为小朋友们提供了最好看儿歌，全部都是小朋友们喜爱的经典儿歌，也都是亲宝网全力制作的新版亲宝儿歌，绝对好看绝对好听。'},
+        head:{src:"../../../../static/img/groom/2.jpg",title:"儿歌大全100首 ",detail:'儿歌视频大全为小朋友们提供了最好看儿歌，全部都是小朋友们喜爱的经典儿歌，也都是全力制作的新版亲宝儿歌，绝对好看绝对好听。'},
         num:[
-          {src:"../../../../static/img/groom/1.jpg",txt:"ss"}
+          {src:"../../../../static/img/hund/1.jpg",txt:"kissbaby",video:"http://bevavideo-web.beva.cn/38dbf3375d957d331f287db2081efa25/5abda16b/24d5e0d1de/h360/video.mp4"},
+          {src:"../../../../static/img/hund/2.jpg",txt:"雪宝宝",video:"http://bevavideo-web.beva.cn/cbe972ab9b51515248e04dd0b942a4db/5abda28b/e973f838fb/h360/video.mp4"},
+         {src:"../../../../static/img/hund/3.jpg",txt:"一只哈巴狗",video:"http://bevavideo-web.beva.cn/815de221af87702b6385c556d6adee62/5abda312/5522495d45/h360/video.mp4"},
+  {src:"../../../../static/img/hund/4.jpg",txt:"数数歌",video:"http://bevavideo-web.beva.cn/ad1368fbe85006d09baa95ab3dae10cd/5abda37e/01fe3aec97/h360/video.mp4"},
+ {src:"../../../../static/img/hund/5.jpg",txt:"爱我你就抱抱我",video:"http://bevavideo-web.beva.cn/cacc072765e2606d0f59ac6511ab3698/5abda3c2/16aebe18c7/h360/video.mp4"},
+ {src:"../../../../static/img/hund/6.jpg",txt:"洗手歌",video:"http://bevavideo-web.beva.cn/88eefc0cb7f21e8301913bd43b1c52d6/5abda3f7/c8c401d1a0/h360/video.mp4"},
+ {src:"../../../../static/img/hund/7.jpg",txt:"小蝌蚪找妈妈",video:"http://bevavideo-web.beva.cn/e288db12d5b9fad82d5518659979bdd5/5abda421/1b6ec0e500/h360/video.mp4"},
+ {src:"../../../../static/img/hund/8.jpg",txt:"家庭礼貌歌",video:"http://bevavideo-web.beva.cn/b5a4366eb6824837ccb5e9fb05fa9b64/5abda461/f79ac6962a/h360/video.mp4"},
+ {src:"../../../../static/img/hund/9.jpg",txt:"小兔子开铺子",video:"http://bevavideo-web.beva.cn/df23a13869483bd2727b6300a4272e81/5abda47a/93ffaeaabe/h360/video.mp4"},
+ {src:"../../../../static/img/hund/10.jpg",txt:"雪宝宝",video:""},
+ {src:"../../../../static/img/hund/11.jpg",txt:"雪宝宝",video:""},
+ {src:"../../../../static/img/hund/12.jpg",txt:"雪宝宝",video:""},
+ {src:"../../../../static/img/hund/13.jpg",txt:"雪宝宝",video:""},
+ {src:"../../../../static/img/hund/14.jpg",txt:"雪宝宝",video:""},
+
         ]
       },
       gir:{
@@ -132,7 +167,17 @@
       getId(id){
         this.arrhead  = this.respon[id].head;
         this.arrdetail  = this.respon[id].num;
+        this.ishowVideo = true;
 //        alert(id)
+      },
+      changeVideo(video){
+        this.ishowVideo = false;
+        setTimeout(function(){
+          alert(this.videos)
+
+        },100);
+        this.videos = video;
+
       }
 
     }
@@ -221,12 +266,21 @@
     float: right;
     width: 78%;
     background: papayawhip;
+    padding-top: 30px;
   }
   .article_right ul{
     width: 100%;
+    overflow: hidden;
+
   }
   .article_right ul li {
     width: 33%;
+    float: left;
+  }
+
+  #list li img{
+    width: 90%;
+    height: 90%;
   }
 
 
