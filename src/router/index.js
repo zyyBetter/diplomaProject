@@ -19,6 +19,7 @@ import comments from '../components/comment/comments.vue'
 import login from '../components/login/login.vue'
 import register from '../components/login/register.vue'
 import rules from '../components/login/rules.vue'
+import active_submit from '../components/submit/activite_submit.vue'
 // import course from '../components/course/course.vue'
 Vue.use(Router);
 
@@ -43,7 +44,8 @@ export default new Router({
     {path: '/comments', component: comments},
     {path: '/shop/lesson', component: lesson},
     {path: '/lesson', component: lesson1},
-    {path:'/shopcar',component:shopcar}
+    {path:'/shopcar',component:shopcar},
+    {path:'/active_submit',component:active_submit}
     // {path: '/course', component:course},
 
   ]
