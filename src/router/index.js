@@ -6,9 +6,9 @@ import home from '../components/home/home.vue';
 import lesson from '../components/shopcar/lesson.vue'
 import lesson1 from '../components/course/music.vue'
 import story from '../components/course/story.vue'
-import idioms from '../components/course/idioms.vue'
-import handmake from '../components/course/handmake.vue'
-import handwrite from '../components/course/handwrite.vue'
+// import idioms from '../components/course/idioms.vue'
+// import handmake from '../components/course/handmake.vue'
+// import handwrite from '../components/course/handwrite.vue'
 import newyear from '../components/subject/newyear.vue'
 import fire from '../components/subject/fire.vue'
 import read from '../components/subject/read.vue'
@@ -29,9 +29,9 @@ export default new Router({
     {path: '/', redirect: "/home"},
     {path: '/home', component: home},
     // {path: '/music', component: music},
-    {path: '/idioms', component: idioms},
-    {path: '/handmake', component: handmake},
-    {path: '/handwrite', component: handwrite},
+    // {path: '/idioms', component: idioms},
+    // {path: '/handmake', component: handmake},
+    // {path: '/handwrite', component: handwrite},
     {path: '/weather', component: weather},
     {path: '/dingdang', component: dingdang},
     {path: '/read', component: read},

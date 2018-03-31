@@ -49,10 +49,10 @@
      <!--点击切换MP4播放-->
      <div class="article_right" v-show="!ishowVideo">
 
-
-       <video id="video" width="100%" height="600px" preload controls>
-         <source v-bind:src="videos" type='video/mp4'  style="width: 100%; height: 100%;">
-       </video>
+       <video :src="videos" width="100%" height="600px" preload controls></video>
+      <!-- <video id="video" width="100%" height="600px" preload controls>
+         <source src="http://127.0.0.1/diplomaProject/3/1.mp4" type='video/mp4'  style="width: 100%; height: 100%;">
+       </video>-->
      </div>
    </article>
 
@@ -101,7 +101,7 @@
         src: "../../../static/img/fav/10.png", text1: "国学启蒙", text2: "d中文儿歌",video:"http://s.61baobao.com//common/flash/2013/qinbaoguoxueqimeng/1.swf"
       },
       ],
-      respon:{
+     /* respon:{
       sleep:{
         head:{src:"../../../../static/img/groom/1.jpg",title:"儿童睡前故事",detail:'月亮爬上树梢，星星不断眨眼，孩子却不肯睡觉，这可愁坏了爸妈。不如试试给孩子看看六一宝宝为您特别呈现的儿童睡前故事，让孩子伴随着唯美的童话故事，香甜入睡。'},
         num:[
@@ -115,11 +115,11 @@
 
         ]
       },
-      music:{
+     /!* music:{
         head:{src:"../../../../static/img/groom/2.jpg",title:"儿歌大全100首 ",detail:'儿歌视频大全为小朋友们提供了最好看儿歌，全部都是小朋友们喜爱的经典儿歌，也都是全力制作的新版亲宝儿歌，绝对好看绝对好听。'},
         num:[
-          {src:"../../../../static/img/hund/1.jpg",txt:"kissbaby",video:"http://bevavideo-web.beva.cn/38dbf3375d957d331f287db2081efa25/5abda16b/24d5e0d1de/h360/video.mp4"},
-          {src:"../../../../static/img/hund/2.jpg",txt:"雪宝宝",video:"http://bevavideo-web.beva.cn/cbe972ab9b51515248e04dd0b942a4db/5abda28b/e973f838fb/h360/video.mp4"},
+          {src:"../../../../static/img/hund/1.jpg",txt:"kissbaby",video:"http://127.0.0.1/diplomaProject/3/1.mp4"},
+          {src:"../../../../static/img/hund/2.jpg",txt:"雪宝宝",video:"http://127.0.0.1/diplomaProject/3/1.mp4"},
          {src:"../../../../static/img/hund/3.jpg",txt:"一只哈巴狗",video:"http://bevavideo-web.beva.cn/815de221af87702b6385c556d6adee62/5abda312/5522495d45/h360/video.mp4"},
   {src:"../../../../static/img/hund/4.jpg",txt:"数数歌",video:"http://bevavideo-web.beva.cn/ad1368fbe85006d09baa95ab3dae10cd/5abda37e/01fe3aec97/h360/video.mp4"},
  {src:"../../../../static/img/hund/5.jpg",txt:"爱我你就抱抱我",video:"http://bevavideo-web.beva.cn/cacc072765e2606d0f59ac6511ab3698/5abda3c2/16aebe18c7/h360/video.mp4"},
@@ -132,9 +132,9 @@
  {src:"../../../../static/img/hund/12.jpg",txt:"雪宝宝",video:""},
  {src:"../../../../static/img/hund/13.jpg",txt:"雪宝宝",video:""},
  {src:"../../../../static/img/hund/14.jpg",txt:"雪宝宝",video:""},
-
         ]
-      },
+      },*!/
+     music:{},
       gir:{
         head:{src:"../../../../static/img/groom/4.jpg",title:"起司公主儿歌",detail:'《起司公主》是由亲宝文化在2015年全新推出的公主系动画片，公主系列是亲宝专门为女宝宝打造的早教作品，作品将父母对女儿宛若公主般的疼爱与呵护化为设计的灵感，将高贵、精致、优雅的公主元素贯穿于整个系列中，亲宝相信“每个女孩都有一个公主梦”，每个女孩也都将成为公主。'},
         num:[
@@ -147,11 +147,12 @@
           {src:"../../../../static/img/groom/1.jpg",txt:"ss"}
         ]
       }
-      },
+      },*/
       id:'',
       arr:{},
       arrhead:{},
-      arrdetail:[]
+      arrdetail:[],
+      message:""
 
 
     }
@@ -159,11 +160,38 @@
   created:function (){
     this.id = this.$route.query.id;//获取路由的参数
 //    console.log(this.id);
-    this.arrhead  = this.respon[this.id].head;
-    this.arrdetail  = this.respon[this.id].num;
-    console.log( this.arrhead)
+//    this.arrhead  = this.respon[this.id].head;
+//    this.arrdetail  = this.respon[this.id].num;
+//    console.log( this.arrhead)
+    this.getimg()
   },
     methods:{
+    getimg(){
+        var url = "http://127.0.0.1/diplomaProject/php/first.php";
+        this.$http.get(url).then(
+          function (res) {
+//            alert(1)
+//            console.log(res.bodyText);
+//            this.message = res.bodyText;
+            this.message =  JSON.parse(res.bodyText);
+
+
+            console.log(this.message);
+
+
+            this.arrhead = this.message[this.id].head;
+            this.arrdetail = this.message[this.id].num;
+            console.log(this.arrhead)
+            console.log(this.arrdetail)
+
+          },
+          function (err) {
+
+            console.log(err);
+          }
+        )
+      },
+
       getId(id){
         this.arrhead  = this.respon[id].head;
         this.arrdetail  = this.respon[id].num;
@@ -172,11 +200,12 @@
       },
       changeVideo(video){
         this.ishowVideo = false;
-        setTimeout(function(){
-          alert(this.videos)
-
-        },100);
+//        setTimeout(function(){
+//          alert(this.videos)
+//
+//        },100);
         this.videos = video;
+        alert(this.videos)
 
       }
 

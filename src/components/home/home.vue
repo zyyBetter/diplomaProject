@@ -34,23 +34,23 @@
               <span class="bar_nav_mask"></span>
             </li>
             <li>
-              <router-link to="/idioms">寓言故事</router-link>
+              <router-link to="/music">寓言故事</router-link>
               <audio src="../../../static/source/a3.mp3"></audio>
               <span class="bar_nav_mask"></span>
             </li>
             <li>
-            <router-link to="/handmake">手工制作</router-link>
+            <router-link to="/music">手工制作</router-link>
               <audio src="../../../static/source/a4.mp3"></audio>
               <span class="bar_nav_mask"></span>
             </li>
             <li>
-              <router-link to="/handwrite">书法</router-link>
+              <router-link to="/music">书法</router-link>
               <audio src="../../../static/source/a5.mp3"></audio>
               <span class="bar_nav_mask"></span>
 
             </li>
             <li>
-              <router-link to="/story">故事</router-link>
+              <router-link to="/music">故事</router-link>
               <audio src="../../../static/source/a6.mp3"></audio>
               <span class="bar_nav_mask"></span>
             </li>
@@ -123,7 +123,7 @@
                 <router-link to="/weather"><p>天气预报小知识</p></router-link>
               </li>
               <li>
-                <router-link to="/birds"><p>像素鸟,娱乐学习两不误</p></router-link>
+                <a href="http://127.0.0.1/diplomaProject/birds/"><p>像素鸟,娱乐学习两不误</p></a>
               </li>
             </ul>
           </li>

@@ -237,6 +237,7 @@
 */
         this.$http.get('http://127.0.0.1/diplomaProject/php/weibo.php?act=get&page=1').then(
           function (res) {
+            console.log(res)
             this.comments_list = JSON.stringify(res.bodyText);
             console.log(res.bodyText);
             for (var i = 0; i < this.comments_list.length; i++) {

@@ -215,9 +215,11 @@ import course from "../common/course.vue"
 //    alert(this.arr)
 
   this.animate();
+//  this.getimg();
 //  alert( this.lesson)
   },
     methods:{
+    //huoqu
       playVideo(video){
         alert(video)
 //        alert(1);
