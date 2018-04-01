@@ -15,7 +15,7 @@
 
         </div>
         <div  class="btn">
-          <button  @click="add(item.name,item.src,item.price)">加入购物车</button>
+          <button  @click="add(item.name,item.src,item.price)">加入购物车</button>9
         </div>
 
 
@@ -105,7 +105,9 @@
     },
     methods: {
       add(id, src,price) {
-        alert("成功加入购物车,请去购物车结算订单吧!!")
+
+        alert("成功加入购物车,请去购物车结算订单吧!!");
+        this.$router.push("/shopcar");
 
         //获取到本地数据
         var local_data = JSON.parse(localStorage.getItem('shop_car'));

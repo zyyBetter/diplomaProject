@@ -101,53 +101,7 @@
         src: "../../../static/img/fav/10.png", text1: "国学启蒙", text2: "d中文儿歌",video:"http://s.61baobao.com//common/flash/2013/qinbaoguoxueqimeng/1.swf"
       },
       ],
-     /* respon:{
-      sleep:{
-        head:{src:"../../../../static/img/groom/1.jpg",title:"儿童睡前故事",detail:'月亮爬上树梢，星星不断眨眼，孩子却不肯睡觉，这可愁坏了爸妈。不如试试给孩子看看六一宝宝为您特别呈现的儿童睡前故事，让孩子伴随着唯美的童话故事，香甜入睡。'},
-        num:[
-          {src:"../../../../static/img/sleep/1.jpg",txt:"守株待兔",video:"http://bevavideo-web.beva.cn/ad8ad056d79f645afd57f6a44ef48231/5abd988b/769f439e8c/h360/video.mp4"},
-         {src:"../../../../static/img/sleep/2.jpg",txt:"小蝌蚪找妈妈",video:"http://bevavideo-web.beva.cn/89592dd9ca657b7f1cc5fc608935f75c/5abd9d07/4a085ad591/h360/video.mp4"},
-          {src:"../../../../static/img/sleep/3.jpg",txt:"小蝌蚪找妈妈",video:"http://bevavideo-web.beva.cn/89592dd9ca657b7f1cc5fc608935f75c/5abd9d07/4a085ad591/h360/video.mp4"},
-  {src:"../../../../static/img/sleep/4.jpg",txt:"狼与小羊",video:"http://bevavideo-web.beva.cn/84e37478683de549806ac407827bd435/5abd9ddd/c2a4a9a549/h360/video.mp4"},
- {src:"../../../../static/img/sleep/5.jpg",txt:"皇帝的新装",video:"http://bevavideo-web.beva.cn/34bb9ae7aa64f4ba4460fccc96947949/5abd9e29/c011ab14f8/h360/video.mp4"},
-{src:"../../../../static/img/sleep/6.jpg",txt:"拔萝卜",video:"http://bevavideo-web.beva.cn/ef8b42d4029c923a3987be255e254cfc/5abd9e5b/544ec0213b/h360/video.mp4"},
-{src:"../../../../static/img/sleep/7.jpg",txt:"聪明的一休",video:"http://bevavideo-web.beva.cn/ca55a81c46ccd8388db1b8fd3231fb96/5abd9e61/ed54235661/h360/video.mp4"},
-
-        ]
-      },
-     /!* music:{
-        head:{src:"../../../../static/img/groom/2.jpg",title:"儿歌大全100首 ",detail:'儿歌视频大全为小朋友们提供了最好看儿歌，全部都是小朋友们喜爱的经典儿歌，也都是全力制作的新版亲宝儿歌，绝对好看绝对好听。'},
-        num:[
-          {src:"../../../../static/img/hund/1.jpg",txt:"kissbaby",video:"http://127.0.0.1/diplomaProject/3/1.mp4"},
-          {src:"../../../../static/img/hund/2.jpg",txt:"雪宝宝",video:"http://127.0.0.1/diplomaProject/3/1.mp4"},
-         {src:"../../../../static/img/hund/3.jpg",txt:"一只哈巴狗",video:"http://bevavideo-web.beva.cn/815de221af87702b6385c556d6adee62/5abda312/5522495d45/h360/video.mp4"},
-  {src:"../../../../static/img/hund/4.jpg",txt:"数数歌",video:"http://bevavideo-web.beva.cn/ad1368fbe85006d09baa95ab3dae10cd/5abda37e/01fe3aec97/h360/video.mp4"},
- {src:"../../../../static/img/hund/5.jpg",txt:"爱我你就抱抱我",video:"http://bevavideo-web.beva.cn/cacc072765e2606d0f59ac6511ab3698/5abda3c2/16aebe18c7/h360/video.mp4"},
- {src:"../../../../static/img/hund/6.jpg",txt:"洗手歌",video:"http://bevavideo-web.beva.cn/88eefc0cb7f21e8301913bd43b1c52d6/5abda3f7/c8c401d1a0/h360/video.mp4"},
- {src:"../../../../static/img/hund/7.jpg",txt:"小蝌蚪找妈妈",video:"http://bevavideo-web.beva.cn/e288db12d5b9fad82d5518659979bdd5/5abda421/1b6ec0e500/h360/video.mp4"},
- {src:"../../../../static/img/hund/8.jpg",txt:"家庭礼貌歌",video:"http://bevavideo-web.beva.cn/b5a4366eb6824837ccb5e9fb05fa9b64/5abda461/f79ac6962a/h360/video.mp4"},
- {src:"../../../../static/img/hund/9.jpg",txt:"小兔子开铺子",video:"http://bevavideo-web.beva.cn/df23a13869483bd2727b6300a4272e81/5abda47a/93ffaeaabe/h360/video.mp4"},
- {src:"../../../../static/img/hund/10.jpg",txt:"雪宝宝",video:""},
- {src:"../../../../static/img/hund/11.jpg",txt:"雪宝宝",video:""},
- {src:"../../../../static/img/hund/12.jpg",txt:"雪宝宝",video:""},
- {src:"../../../../static/img/hund/13.jpg",txt:"雪宝宝",video:""},
- {src:"../../../../static/img/hund/14.jpg",txt:"雪宝宝",video:""},
-        ]
-      },*!/
-     music:{},
-      gir:{
-        head:{src:"../../../../static/img/groom/4.jpg",title:"起司公主儿歌",detail:'《起司公主》是由亲宝文化在2015年全新推出的公主系动画片，公主系列是亲宝专门为女宝宝打造的早教作品，作品将父母对女儿宛若公主般的疼爱与呵护化为设计的灵感，将高贵、精致、优雅的公主元素贯穿于整个系列中，亲宝相信“每个女孩都有一个公主梦”，每个女孩也都将成为公主。'},
-        num:[
-          {src:"../../../../static/img/groom/1.jpg",txt:"ss"}
-        ]
-      },
-      age:{
-        head:{src:"../../../../static/img/groom/5.jpg",title:"0至3岁儿歌",detail:'所谓三岁看老，意思是0-3岁是宝宝早期教育的黄金时期。3岁以前对宝宝的教育决定了宝宝以后的性格及行为习惯的养成，此时，爸爸妈妈可以借助一些优良的儿歌载体，让宝宝多听一些有教育意义的儿歌视频，对宝宝的行为进行正确引导。0至3岁儿歌专题汇总了亲宝儿歌最受欢迎、最具教育意义、最有趣味性的儿歌。如果您喜欢，别忘了分享给更多拼音哦！'},
-        num:[
-          {src:"../../../../static/img/groom/1.jpg",txt:"ss"}
-        ]
-      }
-      },*/
+   
       id:'',
       arr:{},
       arrhead:{},
@@ -193,8 +147,10 @@
       },
 
       getId(id){
-        this.arrhead  = this.respon[id].head;
-        this.arrdetail  = this.respon[id].num;
+      alert(id)
+
+        this.arrhead = this.message[id].head;
+        this.arrdetail = this.message[id].num;
         this.ishowVideo = true;
 //        alert(id)
       },

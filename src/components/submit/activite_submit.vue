@@ -255,9 +255,9 @@ import pUpload from "./Photo_Uploader_Module.vue";
 
       upload_nums:function(){
         let scope=this;
-        alert('封面图片保存成功', 'middle');
+//        alert('封面图片保存成功', 'middle');
         //上传成功返回的路径
-        this.headImage =' http://oss.dyarea.com'+scope.$refs.head.clone[scope.$refs.head.clone.length-1].imageUrl;
+//        this.headImage =' http://oss.dyarea.com'+scope.$refs.head.clone[scope.$refs.head.clone.length-1].imageUrl;
       },
 
       HeadImageUrl: function () {
@@ -279,8 +279,14 @@ import pUpload from "./Photo_Uploader_Module.vue";
           let time1 = setTimeout(function () {
             scope.HeadImageUrl = getComputedStyle(document.getElementById('uploaderFiles').getElementsByClassName('weui-uploader__file')[document.getElementById('uploaderFiles').getElementsByClassName('weui-uploader__file').length - 1], false).backgroundImage.split("(")[1].split(")")[0]
             clearTimeout(time1)
-          }, 1000)}
-//				二维码图片
+          }, 1000)
+//          alert(this.HeadImageUrl)
+//          img的地址
+//          scope.HeadImageUrl
+
+        }
+
+
 
       },
       getStatus(num) {
