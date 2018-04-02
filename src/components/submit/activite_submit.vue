@@ -151,6 +151,7 @@
 
 
    <!--右边-->
+
    <div id="box_left">
      <!--轮播图-->
      <slider id="sliders"></slider>
@@ -159,13 +160,13 @@
      <div id="comment" class="clearfix">
 
 
-       <div  id="hotcom">
+       <div  id="hotcom" class="clearfix">
          <p style="font-size: 20px;color:orange;text-align: left">【最热话题】</p>
          <div class="hot_Top clearfix" >
            <div class="hot_Top_left">
              <img src="../../../static/img/submit/1.jpg" alt="">
            </div>
-           <div class="hot_Top_right">
+           <div class="hot_Top_right clearfix">
              <h2 style="color:seagreen"><img src="../../../static/img/submit/read.png" alt=""><span style="display: inline-block;position: relative;top: -10px;padding-left: 10px;">孩子们的世界是美好的</span></h2>
               <p><img src="../../../static/img/submit/store.png" alt=""><span style="display: inline-block;position: relative;top: -30px;padding-left: 35px;">有时候娃们说的话真是超级搞笑，听过的让人无奈的童言无忌的小故事...</span></p>
              <p><img src="../../../static/img/submit/comment.png" alt=""><span style="display: inline-block;position: relative;top: -10px;padding-left: 10px;">2017-09-12 12:16:30</span></p>
@@ -175,11 +176,13 @@
          </div>
 
 
-         <div class="hot_body" v-show="isshow1">
-           ddfasdf
-         </div>
 
        </div>
+
+       <div class="hot_body" v-show="isshow1">
+         ddfasdf
+       </div>
+
 
        <!--发送信息-->
        <div v-show="isshow2" class="mainbody"  style="min-height: 100vh;margin-top: -10px">
@@ -191,7 +194,6 @@
                <li   class="userImg"  v-if="HeadImageUrl!==null" :style="{backgroundImage: 'url(' + HeadImageUrl + ')'}"  id="title_img">
                  <p style="text-align:center;line-height: 50vw;">
                  </p>
-
                </li>
              </div>
            </div>
@@ -203,6 +205,82 @@
                          :upload_contain_id="'uploader'" upload_counter_id="uploadCount"
                          upload_files_id="uploaderFiles" upload_input_id="uploaderInput" photos_number="1"
                          upload_args="activityimg" ref="head" @doneStatus="getStatus(1)" ></p-upload>
+           </div>
+
+           <!-----------填写内容------>
+           <el-form ref="form" :model="form" label-width="80px">
+             <el-form-item label="文章名称">
+               <el-input v-model="form.name"></el-input>
+             </el-form-item>
+         <!--
+           <el-form-item label="活动内容">
+             <el-input type="textarea" v-model="form.desc"></el-input>
+           </el-form-item>
+           <el-form-item>
+             <el-button type="primary" @click="onSubmit">立即创建</el-button>
+             <el-button>取消</el-button>
+           </el-form-item>-->
+           </el-form>
+
+
+           <!--发表文字-->
+           <div class="up_title">
+             <span class="line"></span>
+             <p class="lineText">活动内容图文编辑</p>
+           </div>
+
+
+           <div>
+             <ul class="up_list" id="up_list">
+
+
+               <li v-for="(item,index) in addTextObj">
+
+                 <!--文字-->
+                 <div  class="text_fa"  >
+                   <span class="text_del" ><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></span>
+                   <p v-html="item.content" style="text-indent:2em;word-break:break-all"></p>
+                 </div>
+
+
+                 <!--图片-->
+                 <div   :style="{backgroundImage: 'url(' + item.content + ')'}"
+                      class="activite_pic"
+                 >
+                   <span class="img_del" @click="del_img(item)" ><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></span>
+
+                   <img style="width:100vw;" :src="item.content" alt="">
+                 </div>
+               </li>
+
+               <!--<p style="text-align:center;line-height: 5vw;position: relative;top:-50vw">-->
+                 <!--<inline-loading v-show="isshowsctivity1"  text="dengku"></inline-loading>-->
+                 <!--<loading :show="isshowsctivity1" text="图片上传中"></loading>-->
+               <!--</p>-->
+             </ul>
+
+             <!--确认是否删除文字-->
+
+
+             <!--确认删除图片-->
+
+           </div>
+
+
+           <!--按钮-->
+           <!-------添加文字------>
+           <div style="background: url('http://oss.dyarea.com/upload_img/btn1.png'); background-size: 100% 100%;width: 70%;height: 60px;" class="btn_up1"
+               ></div>
+           <!-------添加图片------>
+           <div style="background: url('http://oss.dyarea.com/upload_img/btn2.png'); background-size: 100% 100%;width: 70%;height: 60px;"  class="btn_up2"
+               >
+
+             <!-------------------添加图片------------------------->
+             <p-upload  class="addimg" widths="true" @imgChange="addChange" :low_quality="true" :no_count="true"                                       :no_show="false"
+                        :upload_contain_id="'share1'" upload_counter_id="share2"
+                        upload_files_id="share3" upload_input_id="share4"                                           photos_number="1"
+                        upload_args="activityimg" ref="head1" @doneStatus="getStatus(3)"></p-upload>
+
            </div>
 
          </div>
@@ -246,12 +324,42 @@ import pUpload from "./Photo_Uploader_Module.vue";
       isshow2:false,
       msg:"dingdang",
       HeadImageUrl: "http://oss.dyarea.com/upload_img/headimg_0321.png" ,  //标题默认图片
+      form: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+      },
+        shareImageUrl:"",
+        addTextarr:[],//添加文字
+        addTextObj:[],
+        addImgarr:[],//增加图片
     }
   },
   created:function (){
 
   },
     watch:{
+
+        add_nums:function (){
+            let scope=this;
+            //上传成功返回的路径
+            this.imgurls = scope.GLOBAL.oss +scope.$refs.head1.clone[scope.$refs.head1.clone.length-1].imageUrl;
+
+//            scope.addTextObj[scope.addTextObj.length-1].content = scope.imgurls;
+
+//            console.log(scope.addTextObj);
+//			$('html, body').animate({scrollTop: $(document).height()}, 10);
+//            $('html, body').animate({scrollTop: $('#box').offset().top}, 1000)
+
+
+
+
+        },
 
       upload_nums:function(){
         let scope=this;
@@ -266,13 +374,37 @@ import pUpload from "./Photo_Uploader_Module.vue";
       },
     },
     methods:{
+        onSubmit() {
+            console.log('submit!');
+        },
     //点击发布
       submit_activite(){
         this.isshow1 = false;
         this.isshow2 = true;
 
       },
-      getChange(num) {
+        //增加详情图片
+        addChange(){
+//				return false;
+            let scope = this;
+            let time1 = setTimeout(function () {
+                scope.shareImageUrl = getComputedStyle(document.getElementById("share3").getElementsByClassName('weui-uploader__file')[document.getElementById('share3').getElementsByClassName('weui-uploader__file').length - 1], false).backgroundImage.split("(")[1].split(")")[0];
+                clearTimeout(time1);
+//                   alert(scope.shareImageUrl)
+            }, 1000)
+
+          var obj = {};
+            console.log( scope.shareImageUrl)
+
+            obj.content = scope.shareImageUrl;
+           obj.contentType = 1;
+           scope.addTextObj.push(obj);
+           console.log( obj)
+        },
+
+
+
+        getChange(num) {
 //				标题图片
         if(num == 1){
           let scope = this;
@@ -296,6 +428,10 @@ import pUpload from "./Photo_Uploader_Module.vue";
         {
           this.upload_nums++;
         }
+          //详情图片
+      else if(num == 3){
+              this.add_nums++;
+          }
 //
       },
     }
@@ -314,9 +450,10 @@ import pUpload from "./Photo_Uploader_Module.vue";
   .uploadImg {
     width: 100%;
     position: absolute;
-    margin-top: -58px;
-    top: 50%;
+    /*margin-top: -58px;*/
+    top: 0%;
     left: 0;
+    height: 300px;
     /*opacity: 0;*/
   }
 
@@ -334,14 +471,12 @@ import pUpload from "./Photo_Uploader_Module.vue";
     margin-top: 0px;
   }
 
-  slider {
-    /*margin-top: 600px;*/
-  }
+
 
   /*评论区域*/
   #comment {
     width: 100%;
-    height: 900px;
+    /*height: 900px;*/
     margin-top: 50px;
     /*background:lightgreen;*/
     /*margin-top: -600px;*/
@@ -628,6 +763,145 @@ import pUpload from "./Photo_Uploader_Module.vue";
     height: 1000px;
     background: pink;
   }
+
+  .up_title {
+    position: relative;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
+
+    .line {
+      display: inline-block;
+      width: 94%;
+      margin-left: 3%;
+      border-top: 1px solid #999a9d;
+    }
+
+  .lineText {
+    background: #fbf9fe;
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    text-align: center;
+  }
+
+  .up_list  {
+    width: 100%;
+    height: 100%;
+    /*padding-bottom: 6vw;*/
+    background: #ffffff;
+
+
+  }
+  .up_list li {
+    height: 100%;
+    width: 100%;
+
+  }
+  .text_fa{
+    width: 85%;
+    padding: 5%;
+    padding-top: 0;
+    /*margin-bottom:-20px;*/
+    margin: 0 auto;
+
+  }
+  .text_fa div p{
+    word-break:break-all
+  }
+  .up_list img {
+    width: 100%;
+  }
+
+  .text_del {
+    width: 4vw;
+    height: 4vw;
+    display:block ;
+    position: relative;
+    z-index: 22;
+    top: 2vw;
+    left: -2vw;
+    padding-right:3vw;
+    /*background: deeppink;*/
+  }
+  .text_del img {
+    width: 100%;
+    height: 100%;
+
+  }
+  .img_del {
+    width: 4vw;
+    height: 4vw;
+    display:block ;
+    position: relative;
+    z-index: 22;
+    top: 10vw;
+    left: 6vw;
+    padding-right:3vw;
+    text-align: center;
+    line-height: 5vw;
+    /*margin-top: 10vw;*/
+
+  }
+  .img_del img {
+    width: 100%;
+    height: 100%;
+
+  }
+
+  .btn_up1 {
+    margin: 0 auto;
+    margin-top: 30px;
+    overflow: hidden;
+    background: deeppink;
+  }
+  .btn_up2 {
+    margin: 30px auto;
+    overflow: hidden;
+  }
+  .addimg{
+    width: 85%;
+    height: 20%;
+    margin-left: 15%;
+    opacity: 0;
+
+  }
+  .activite_pic{
+    width: 100vw;
+    height: 100vw;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    /*opacity: 0.5;*/
+    background: no-repeat;
+    background-origin: content-box;
+    position: relative;
+
+
+  }
+  .activite_pic1{
+    /*background: #000;*/
+    /*background-size: 100%;*/
+    background: none !important;
+    /*background-clip: padding-box;*/
+
+
+  }
+  .activite_pic{
+    width: 100vw;
+    height: 100vw;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    /*opacity: 0.5;*/
+    background: no-repeat;
+    background-origin: content-box;
+    position: relative;
+
+
+  }
+
+
 
 
 </style>

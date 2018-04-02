@@ -15,17 +15,13 @@
        <!--账号输入框-->
        <div class="user-pwd">
          <img src="../../../static/img/login/icon_people.png">
-         <input placeholder="请输入用户名/手机号" name="user">
+         <input placeholder="请输入用户名/手机号" name="user" v-model="user">
        </div>
-       <!--账号输入框-->
-       <div class="user-pwd">
-         <img src="../../../static/img/login/icon_people.png">
-         <input placeholder="请输入用户名/手机号" name="user">
-       </div>
+
        <!--密码输入框-->
        <div class="user-pwd">
          <img src="../../../static/img/login/icon_password.png">
-         <input placeholder="请输入密码" type="password" name="pwd">
+         <input placeholder="请输入密码" type="password" name="pwd" v-model="password">
        </div>
        <!--默认的设置-->
        <div class="setting">
@@ -35,7 +31,7 @@
          <a href="#" class="pull-right">忘记密码?</a>
        </div>
        <!--登录按钮-->
-       <button class="login-btn">登&nbsp;录</button>
+       <button class="login-btn" @click="login">登&nbsp;录</button>
        <!--立即注册-->
        <div class="reg">
          还没账号?&nbsp;&nbsp;
@@ -65,12 +61,27 @@
   export default {
   data () {
     return {
+        user:"",
+        password:""
     }
   },
   created:function (){
 
   },
     methods:{
+
+      login(){
+//          alert("登录")
+          var obj ={};
+          obj.user = this.user;
+          obj.password = this.password;
+          var url = 'http://127.0.0.1/diplomaProject/php/login.php';
+          this.$http.get(url).then(function (res) {
+//              this.load();
+              alert("成功")
+              console.log(res);
+          })
+      }
 
     }
 }
@@ -100,7 +111,7 @@
     /*position: absolute;*/
     /*top:50%;*/
     /*left:50%;*/
-    margin: 100px auto;
+    margin: 20px auto;
     /*margin-left: -200px;*/
     /*margin-top: -200px;*/
   }
