@@ -75,11 +75,27 @@
           var obj ={};
           obj.user = this.user;
           obj.password = this.password;
-          var url = 'http://127.0.0.1/diplomaProject/php/login.php';
-          this.$http.get(url).then(function (res) {
-//              this.load();
-              alert("成功")
-              console.log(res);
+          var url = 'http://127.0.0.1/php.php';
+          this.$http.get(url,{
+            params:{
+              type:'login',
+              name:obj.user,
+              pwd:obj.password
+            }
+          }).then(function (res){
+              if(res.body.length==0){
+                alert('没有这个用户')
+              }else{
+                for(var i=0;i<res.body.length;i++){
+                  if(res.body[i].psw==obj.password){
+                    alert('登陆成功');
+                    return
+                  }
+
+                }
+
+                alert('登录失败,密码有问题')
+              }
           })
       }
 

@@ -21,6 +21,10 @@
    <!--<article>-->
      <div id="box">
 
+      <!-- <ul>
+         <li><img src="../../../static/img/idoms/1.png" alt=""></li>
+       </ul>-->
+
      </div>
    <!--</article>-->
 
@@ -46,10 +50,10 @@
   },
 
   mounted:function (){
-//    this.getimg();
+    this.getimg();
   },
     methods:{
-  /*  getimg(){
+    getimg(){
 
       //1.0
       function $(id){
@@ -87,11 +91,11 @@
 
       }
 
-     /!* /!**
+     /* /!**
        * client() 获取屏幕的宽度
        * 使用方法 client().width
        * @returns {*}   屏幕的宽度及高度
-       *!/!*!/
+       *!/!*/
       function client(){
         if(window.innerHeight||window.innerWidth)//IE9+ 及最新浏览器
         {
@@ -122,6 +126,8 @@
         var screenW=client().width;//计算网页的宽度
         var box1W=box1.offsetWidth;
         var cols=parseInt(screenW/box1W);//计算网页的宽度可以放多少张图片
+        alert(cols)
+
         var boxW=cols*box1W;//计算大盒子的宽度
         // console.log(boxW);
         box.style.width=boxW+"px";//给大盒子设置宽度
@@ -143,7 +149,9 @@
 
           }
           else{
-            var minH=_.min(arr);  //1找出数组里面的最小的数,利用函数库
+            var minH=_Math.min(arr);  //1找出数组里面的最小的数,利用函数库
+            alert(minH)
+
 
             // console.log(minH);
             var indexMin=arr.indexOf(minH);//找出最小数的索引indexOf,方便把下一个盒子定位
@@ -240,7 +248,7 @@
         pic.src="../../../static/img/pubu/"+i+".jpg";
       }
 
-    }*/
+    }
 
     }
 }

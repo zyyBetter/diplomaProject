@@ -13,27 +13,27 @@
        <div class="user-pwd">
          <img src="../../../static/img/login/icon_people.png">
 
-         <input placeholder="请输入昵称" name="user">
+         <input placeholder="请输入昵称" name="user" v-model="name">
        </div>
        <!--账号输入框-->
        <div class="user-pwd">
          <i class="el-icon-phone"></i>
-         <input placeholder="手机号" name="number">
+         <input placeholder="手机号" name="number" v-model="tel">
        </div>
        <!--密码输入框-->
        <div class="user-pwd">
          <img src="../../../static/img/login/icon_password.png">
-         <input placeholder="请输入密码" type="password" name="pwd">
+         <input placeholder="请输入密码" type="password" name="pwd" v-model="pwd">
        </div>
        <!--确认密码输入框-->
        <div class="user-pwd">
          <img src="../../../static/img/login/icon_password.png">
-         <input placeholder="请确认密码" type="password" name="pwd">
+         <input placeholder="请确认密码" type="password" name="pwd" v-model="pwd2">
        </div>
        <!--确认密码输入框-->
        <div class="user-pwd">
          <i class="el-icon-view"></i>
-         <input placeholder="宝宝的年龄" type="number" name="age">
+         <input placeholder="宝宝的年龄" type="number" name="age" v-model="age">
        </div>
        <!--确认性别-->
        <div class="user-sex">
@@ -75,6 +75,11 @@
   export default {
   data () {
     return {
+      name:'',
+      age:'',
+      tel:'',
+      pwd:'',
+      pwd2:''
     }
   },
   created:function (){
@@ -82,7 +87,18 @@
   },
     methods:{
       resgiter(){
-        alert(1);
+        let that=this;
+        this.$http.get('http://127.0.0.1/php.php',{
+          params:{
+            type:'res',
+            name:that.name,
+            tel:that.tel,
+            pwd:that.pwd,
+            age:that.age,
+          }
+        }).then(function (res) {
+          console.log(res);
+        })
       }
     }
 }

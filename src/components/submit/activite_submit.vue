@@ -267,37 +267,15 @@
                         upload_args="activityimg" ref="head1" @doneStatus="getStatus(3)"></p-upload>
 
            </div>
-
-
-
-
          </div>
-
          <el-row>
            <el-button type="success" @click="submitAll">成功按钮</el-button>
          </el-row>
-
-
-
        </div>
-
        </div>
-
-
-
    </div>
-
-
-
-
-
-
-
-
-
      </div>
 </template>
-
 <script>
 //  import weui from '../../static/js/weui.min.js'
 //  import $ from 'jquery'
@@ -305,7 +283,6 @@ import slider from "../common/slider.vue"
 
 import $ from "jQuery";
 import pUpload from "./Photo_Uploader_Module.vue";
-
   export default {
     components: {
       pUpload,
@@ -343,7 +320,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
     }
   },
   created:function (){
-
+    this.get_save()
   },
     watch:{
 
@@ -402,7 +379,16 @@ import pUpload from "./Photo_Uploader_Module.vue";
       },
       //真正提交所有的数据
       submitAll1(){
-        this.$message('提交成功');
+        var that=this;
+        this.$http.get('http://127.0.0.1/php.php',{
+          params:{
+            type:'save',
+            obj:JSON.stringify(that.addTextObj),
+            name:that.form.name,
+            url:that.HeadImageUrl
+          }
+        }).then(function(res){
+        })
       },
     //点击修改文字
       changText(txt){
@@ -447,7 +433,15 @@ import pUpload from "./Photo_Uploader_Module.vue";
       addText(){
         this.ishowText = true;
       },
-
+get_save:function () {
+  this.$http.get('http://127.0.0.1/php.php',{
+    params:{
+      type:'get_save'
+    }
+  }).then(function (res) {
+    console.log(res.body);
+  })
+},
       //删除字体
       del_txt(txt){
 //        alert(1)
@@ -504,6 +498,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
             scope.HeadImageUrl = getComputedStyle(document.getElementById('uploaderFiles').getElementsByClassName('weui-uploader__file')[document.getElementById('uploaderFiles').getElementsByClassName('weui-uploader__file').length - 1], false).backgroundImage.split("(")[1].split(")")[0]
             clearTimeout(time1)
           }, 1000)
+
 
 
         }

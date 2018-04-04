@@ -76,6 +76,8 @@
 
         </ul>
 
+
+
       </div>
 
 
@@ -191,15 +193,24 @@
           </div>
         </div>
 
-        <div class="article_tag">
+        <div class="article_tag clearfix">
           <ul>
             <li @click="goshopcar(index)" v-for="(item,index) in childImg" >
               <div class="article_tag_first"><img :src="item.src" alt=""></div>
                 <div class="mask1">小兔子</div>
             </li>
           </ul>
+
+
+
         </div>
-    </div>
+
+
+
+        </div>
+
+
+
 
 
 
@@ -432,7 +443,7 @@
       },
       goshopcar(index){
 //         alert(index);
-         this.$router.push("/read");
+         this.$router.push("/fire");
 
       },
 //      发送ajax请求
@@ -534,7 +545,7 @@
 //          4.0article中的排他
 //           $(".article_tag_text2").css({display:"none"});
           $(".article_tag li").mouseover(function (){
-            $(this).stop().animate({width:"23%",height:"100%",opacity:1},500).siblings().stop().animate({width:"19%",height:"100%",opacity:0.8},500)
+            $(this).stop().animate({width:"23%",height:"100%",opacity:1},500).siblings().stop().animate({width:"19%",height:"100%",opacity:1},500)
           });
 
 
@@ -1118,6 +1129,7 @@
     width: 100%;
     height: 100%;
     margin-top: 40px;
+    overflow: hidden;
     /*margin-left:7%;*/
   }
 

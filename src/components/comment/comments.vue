@@ -4,7 +4,7 @@
     <!--左边盒子-->
     <div id="box_left">
       <!--轮播图-->
-      <slider id="sliders"></slider>
+      <slider></slider>
 
       <!--评论区域-->
       <div id="comment" class="clearfix">
@@ -235,11 +235,10 @@
          )
        },
 */
-        this.$http.get('http://127.0.0.1/diplomaProject/php/weibo.php?act=get&page=1').then(
+        this.$http.get('http://127.0.0.1/php/weibo.php?act=get&page=1').then(
           function (res) {
-            console.log(res)
-            this.comments_list = JSON.stringify(res.bodyText);
-            console.log(res.bodyText);
+              console.log(res.bodyText);
+              this.comments_list = eval(res.bodyText);
             for (var i = 0; i < this.comments_list.length; i++) {
               var date = new Date(this.comments_list[i].time * 1000);
               var Y = date.getFullYear() + '-';
@@ -256,7 +255,7 @@
       },
 //      1.0点击发送留言
       submit() {
-        var url = 'http://127.0.0.1/diplomaProject/php/weibo.php?act=add&content=' + this.text;
+        var url = 'http://127.0.0.1/php/weibo.php?act=add&content=' + this.text;
         this.$http.get(url).then(function (res) {
           this.load();
         })
@@ -264,19 +263,19 @@
 
 //   2.0点击赞
       add(id) {
-        this.$http.get('http://127.0.0.1/diplomaProject/php/weibo.php?act=acc&id='+id).then(function () {
+        this.$http.get('http://127.0.0.1/php/weibo.php?act=acc&id='+id).then(function () {
           this.load()
         })
       },
 //   2.0点击踩
       down(id) {
-        this.$http.get('http://127.0.0.1/diplomaProject/php/weibo.php?act=ref&id='+id).then(function () {
+        this.$http.get('http://127.0.0.1/php/weibo.php?act=ref&id='+id).then(function () {
           this.load()
         })
       },
 //   2.0点击删除
       del(id) {
-        this.$http.get('http://127.0.0.1/diplomaProject/php/weibo.php?act=del&id='+id).then(function (res) {
+        this.$http.get('http://127.0.0.1/php/weibo.php?act=del&id='+id).then(function (res) {
           this.load()
         })
       }
@@ -299,10 +298,6 @@
     box-sizing: border-box;
     float: left;
     /*padding-top: -100px;*/
-    /*background:darkmagenta;*/
-  }
-  #sliders{
-    margin-top: 0px;
   }
 
   slider {
