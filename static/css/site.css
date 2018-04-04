@@ -15,13 +15,13 @@ html,body{
   width: 100%;
   height: 100%;
   /*position: fixed;*/
-  background: url(../img/bg.jpg) repeat-x  ;
+  /*background: url(../img/bg.jpg) repeat-x  ;*/
 }
 #temp{
   /*margin-top: 60px;*/
   height: 100%;
   width: 80%;
-  margin: 60px auto;
+  margin: 50px auto;
 }
 *,
 ::before,

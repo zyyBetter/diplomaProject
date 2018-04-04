@@ -54,6 +54,7 @@
            </div>
          </li>
        </ul>
+       <div @click="getMore" style="margin-top: 15px;cursor: pointer;color:#9b9aff;margin-bottom: 10px;" v-show="getmores">点击加载更多</div>
      </div>
 
      <div style="float: left;width: 60%;padding: -100px;">
@@ -65,8 +66,10 @@
        <param value="true" name="allowFullScreen">
        <param value="internal" name="allowNetworking">
 
-       <embed width="830" height="600"  controls="console"  align="middle" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" allownetworking="internal" loop="false" play="true" name="videogreen" wmode="transparent" id="FFvideogreen" quality="high" :src="video">
+       <embed width="830" height="600"  controls="console"  align="middle" pluginspage="http://www.adobe.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" allownetworking="internal" loop="false" play="true" name="videogreen" wmode="transparent" id="FFvideogreen" quality="high" :src="video" autostart=false>
      </object>
+
+
      </div>
 
 
@@ -74,7 +77,11 @@
 
 
 
+
+
+
    </section>
+
 
 
 
@@ -191,7 +198,23 @@ import course from "../common/course.vue"
         src: "../../../static/img/fav/5.png", text1: "江南style", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/2012/jiangnan.swf"
       },{
         src: "../../../static/img/fav/6.png", text1: "甩葱歌", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/cong.swf"
-      },{
+      }
+      ],
+      fav1:[
+        {
+          src: "../../../static/img/fav/1.png", text1: "小苹果", text2: "中文儿歌",video:"http://s.61baobao.com//flash/2014/7/069.swf"
+        },{
+          src: "../../../static/img/fav/2.png", text1: "打电话儿歌", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/dadianhua2.swf"
+        },{
+          src: "../../../static/img/fav/3.png", text1: "小小少年", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/2012/shaonian.swf"
+        },{
+          src: "../../../static/img/fav/4.png", text1: "幸福拍手", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/2012/paishouge2.swf"
+        },{
+          src: "../../../static/img/fav/5.png", text1: "江南style", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/2012/jiangnan.swf"
+        },{
+          src: "../../../static/img/fav/6.png", text1: "甩葱歌", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/cong.swf"
+        },
+        {
         src: "../../../static/img/fav/7.png", text1: "祝你生日快乐", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/2012/shengri.swf"
       },{
         src: "../../../static/img/fav/8.png", text1: "常用汉字（一）", text2: "dd中文儿歌",video:"http://s.61baobao.com//zt/qinbao/shizi/001.swf"
@@ -199,13 +222,14 @@ import course from "../common/course.vue"
         src: "../../../static/img/fav/9.png", text1: "常用汉字（二）", text2: "中文儿歌",video:"http://s.61baobao.com//zt/qinbao/shizi/010.swf"
       },{
         src: "../../../static/img/fav/10.png", text1: "国学启蒙", text2: "d中文儿歌",video:"http://s.61baobao.com//common/flash/2013/qinbaoguoxueqimeng/1.swf"
-      },
+      }
       ],
 
       lesson:"",
       arr:[],
       isshow:true,
       video:"",
+      getmores:true,
     }
   },
   created:function (){
@@ -219,7 +243,11 @@ import course from "../common/course.vue"
 //  alert( this.lesson)
   },
     methods:{
-    //huoqu
+    //点击加载更多
+      getMore(){
+       this.fav = this.fav1;
+        this.getmores = false;
+      },
       playVideo(video){
         alert(video)
 //        alert(1);
@@ -379,7 +407,7 @@ article #list {
   /*overflow: scroll;*/
 }
 article #list li{
-  width: 22%;
+  width: 16%;
   /*background: darkcyan;*/
   margin-left:25px;
   margin-top: 30px;

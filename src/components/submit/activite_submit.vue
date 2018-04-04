@@ -154,7 +154,7 @@
 
    <div id="box_left">
      <!--轮播图-->
-     <slider id="sliders"></slider>
+     <slider id="sliders" :child-msg="arrimg"></slider>
 
      <!--评论区域-->
      <div id="comment" class="clearfix">
@@ -185,7 +185,7 @@
 
 
        <!--发送信息-->
-       <div v-show="isshow2" class="mainbody"  style="min-height: 100vh;margin-top: -10px">
+       <div v-show="isshow2" class="mainbody"  style="min-height: 100vh;margin-top: -10px;margin-bottom: 30px;">
          <!--第一页-->
          <!--显示图片-->
          <div class="must_fill_bar" style="position: relative;left: 0;top: 0;">
@@ -208,26 +208,13 @@
            </div>
 
            <!-----------填写内容------>
-           <el-form ref="form" :model="form" label-width="80px">
+           <el-form ref="form" :model="form" label-width="80px" style="margin-top: 30px;">
              <el-form-item label="文章名称">
-               <el-input v-model="form.name"></el-input>
+               <el-input v-model="form.name" style="width: 60%;"></el-input>
              </el-form-item>
-         <!--
-           <el-form-item label="活动内容">
-             <el-input type="textarea" v-model="form.desc"></el-input>
-           </el-form-item>
-           <el-form-item>
-             <el-button type="primary" @click="onSubmit">立即创建</el-button>
-             <el-button>取消</el-button>
-           </el-form-item>-->
+             <el-form-item label="活动内容">
+             </el-form-item>
            </el-form>
-
-
-           <!--发表文字-->
-           <div class="up_title">
-             <span class="line"></span>
-             <p class="lineText">活动内容图文编辑</p>
-           </div>
 
 
            <div>
@@ -237,40 +224,38 @@
                <li v-for="(item,index) in addTextObj">
 
                  <!--文字-->
-                 <div  class="text_fa"  >
-                   <span class="text_del" ><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></span>
+                 <div @click="changText(item)"  class="text_fa" v-show="item.contentType==0" >
+                  <!-- <el-button type="text" @click="del_txt(item)"><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></el-button>-->
+                   <span @click="del_txt(item)" class="text_del" ><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></span>
                    <p v-html="item.content" style="text-indent:2em;word-break:break-all"></p>
                  </div>
 
 
                  <!--图片-->
                  <div   :style="{backgroundImage: 'url(' + item.content + ')'}"
-                      class="activite_pic"
+                      class="activite_pic"  v-show="item.contentType==1"
                  >
                    <span class="img_del" @click="del_img(item)" ><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></span>
 
-                   <img style="width:100vw;" :src="item.content" alt="">
+                   <!--<img style="width: 100%;" :src="item.content" alt="">-->
                  </div>
                </li>
-
-               <!--<p style="text-align:center;line-height: 5vw;position: relative;top:-50vw">-->
-                 <!--<inline-loading v-show="isshowsctivity1"  text="dengku"></inline-loading>-->
-                 <!--<loading :show="isshowsctivity1" text="图片上传中"></loading>-->
-               <!--</p>-->
              </ul>
-
-             <!--确认是否删除文字-->
-
-
-             <!--确认删除图片-->
-
            </div>
+
+           <!--点击添加文字-->
+           <el-form ref="form" :model="form" label-width="80px"  v-show="ishowText">
+             <el-form-item label="活动内容" >
+               <el-input type="textarea" v-model="form.desc" style="width: 60%;" ></el-input>
+               <button @click="finish(form.desc)">提交</button>
+             </el-form-item>
+           </el-form>
 
 
            <!--按钮-->
            <!-------添加文字------>
            <div style="background: url('http://oss.dyarea.com/upload_img/btn1.png'); background-size: 100% 100%;width: 70%;height: 60px;" class="btn_up1"
-               ></div>
+            @click="addText"   ></div>
            <!-------添加图片------>
            <div style="background: url('http://oss.dyarea.com/upload_img/btn2.png'); background-size: 100% 100%;width: 70%;height: 60px;"  class="btn_up2"
                >
@@ -283,7 +268,15 @@
 
            </div>
 
+
+
+
          </div>
+
+         <el-row>
+           <el-button type="success" @click="submitAll">成功按钮</el-button>
+         </el-row>
+
 
 
        </div>
@@ -320,6 +313,12 @@ import pUpload from "./Photo_Uploader_Module.vue";
     },
   data () {
     return {
+      arrimg:[
+        "../../../static/img/home/slider17.jpg",
+        "../../../static/img/home/slider09.jpg",
+        "../../../static/img/home/slider06.jpg",
+      ],
+
       isshow1:true,
       isshow2:false,
       msg:"dingdang",
@@ -338,6 +337,9 @@ import pUpload from "./Photo_Uploader_Module.vue";
         addTextarr:[],//添加文字
         addTextObj:[],
         addImgarr:[],//增加图片
+        ishowText:false,//点击添加文字框是否显示
+      index1:0,
+      indexs:0
     }
   },
   created:function (){
@@ -350,22 +352,10 @@ import pUpload from "./Photo_Uploader_Module.vue";
             //上传成功返回的路径
             this.imgurls = scope.GLOBAL.oss +scope.$refs.head1.clone[scope.$refs.head1.clone.length-1].imageUrl;
 
-//            scope.addTextObj[scope.addTextObj.length-1].content = scope.imgurls;
-
-//            console.log(scope.addTextObj);
-//			$('html, body').animate({scrollTop: $(document).height()}, 10);
-//            $('html, body').animate({scrollTop: $('#box').offset().top}, 1000)
-
-
-
-
         },
 
       upload_nums:function(){
         let scope=this;
-//        alert('封面图片保存成功', 'middle');
-        //上传成功返回的路径
-//        this.headImage =' http://oss.dyarea.com'+scope.$refs.head.clone[scope.$refs.head.clone.length-1].imageUrl;
       },
 
       HeadImageUrl: function () {
@@ -374,6 +364,108 @@ import pUpload from "./Photo_Uploader_Module.vue";
       },
     },
     methods:{
+      open(item) {
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '删除成功!',
+
+          },
+//            this.del_txt(item)
+         /* var index =  this.addTextObj.indexOf(item)
+          this.addTextObj.splice(index,1);
+          event.stopPropagation()*/
+
+          );
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+      },
+    //提交发布的数据
+      submitAll(){
+        if(!this.form.name){
+          this.$message('文章名称为空,请输入');
+        }
+        else if(this.addTextObj == ""){
+          this.$message('请输入文章的内容');
+        }
+        else{
+          this.submitAll1()
+        }
+      },
+      //真正提交所有的数据
+      submitAll1(){
+        this.$message('提交成功');
+      },
+    //点击修改文字
+      changText(txt){
+        event.stopPropagation();
+        this.ishowText = true;
+        this.index1 = this.addTextObj.indexOf(txt);
+        alert(this.index1)
+        this.form.desc = txt.content;
+        this.indexs = -1;
+
+      },
+    //点击提交文字
+      finish(mes){
+        if(this.indexs == -1){
+          this.addTextObj[this.index1].content = mes;
+          this.index1 = 0;
+          this.indexs = 0
+          this.ishowText = false;
+        }
+        else if(!mes){
+          this.ishowText = false;
+          alert("请输入内容")
+          return false;
+
+
+        }
+        else{
+          let scope = this;
+          var obj = {};
+          obj.content = mes;
+          obj.contentType = 0;
+          scope.addTextObj.push(obj);
+          scope.ishowText = false;
+
+        }
+
+        this.form.desc ="";
+
+
+      },
+    //点击添加文字
+      addText(){
+        this.ishowText = true;
+      },
+
+      //删除字体
+      del_txt(txt){
+//        alert(1)
+
+        var index =  this.addTextObj.indexOf(item)
+        this.addTextObj.splice(index,1);
+        event.preventDefault()
+        event.stopPropagation();
+
+        return false;
+      },
+//    删除图片
+      del_img(item){
+        var index =  this.addTextObj.indexOf(item)
+        this.addTextObj.splice(index,1);
+        console.log(this.addTextObj);
+
+      },
         onSubmit() {
             console.log('submit!');
         },
@@ -385,21 +477,21 @@ import pUpload from "./Photo_Uploader_Module.vue";
       },
         //增加详情图片
         addChange(){
-//				return false;
             let scope = this;
             let time1 = setTimeout(function () {
                 scope.shareImageUrl = getComputedStyle(document.getElementById("share3").getElementsByClassName('weui-uploader__file')[document.getElementById('share3').getElementsByClassName('weui-uploader__file').length - 1], false).backgroundImage.split("(")[1].split(")")[0];
                 clearTimeout(time1);
-//                   alert(scope.shareImageUrl)
             }, 1000)
 
+          if(!scope.shareImageUrl){
+              return false;
+          }
           var obj = {};
-            console.log( scope.shareImageUrl)
-
             obj.content = scope.shareImageUrl;
            obj.contentType = 1;
            scope.addTextObj.push(obj);
-           console.log( obj)
+           alert(scope.shareImageUrl);
+           console.log(scope.addTextObj)
         },
 
 
@@ -412,9 +504,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
             scope.HeadImageUrl = getComputedStyle(document.getElementById('uploaderFiles').getElementsByClassName('weui-uploader__file')[document.getElementById('uploaderFiles').getElementsByClassName('weui-uploader__file').length - 1], false).backgroundImage.split("(")[1].split(")")[0]
             clearTimeout(time1)
           }, 1000)
-//          alert(this.HeadImageUrl)
-//          img的地址
-//          scope.HeadImageUrl
+
 
         }
 
@@ -454,12 +544,12 @@ import pUpload from "./Photo_Uploader_Module.vue";
     top: 0%;
     left: 0;
     height: 300px;
-    /*opacity: 0;*/
+    opacity: 0;
   }
 
   /*左边的盒子*/
   #box_left {
-    width: 68%;
+    width: 73%;
     /*height: 1000px;*/
     border: 1px solid seagreen;
     box-sizing: border-box;
@@ -604,7 +694,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
 
   /*右边的盒子*/
   #box_right {
-    width: 30%;
+    width: 25%;
     /*height: 1000px*/
     /*border: 1px solid seagreen;*/
     box-sizing: border-box;
@@ -764,11 +854,6 @@ import pUpload from "./Photo_Uploader_Module.vue";
     background: pink;
   }
 
-  .up_title {
-    position: relative;
-    margin-bottom: 5px;
-    margin-top: 5px;
-  }
 
 
     .line {
@@ -778,14 +863,6 @@ import pUpload from "./Photo_Uploader_Module.vue";
       border-top: 1px solid #999a9d;
     }
 
-  .lineText {
-    background: #fbf9fe;
-    width: 50%;
-    position: absolute;
-    left: 25%;
-    top: 25%;
-    text-align: center;
-  }
 
   .up_list  {
     width: 100%;
@@ -816,15 +893,13 @@ import pUpload from "./Photo_Uploader_Module.vue";
   }
 
   .text_del {
-    width: 4vw;
-    height: 4vw;
+    width: 15px;
+    height: 15px;
     display:block ;
-    position: relative;
     z-index: 22;
-    top: 2vw;
-    left: -2vw;
-    padding-right:3vw;
-    /*background: deeppink;*/
+    margin-left:-60px ;
+
+
   }
   .text_del img {
     width: 100%;
@@ -832,17 +907,10 @@ import pUpload from "./Photo_Uploader_Module.vue";
 
   }
   .img_del {
-    width: 4vw;
-    height: 4vw;
+    width: 15px;
+    height: 15px;
     display:block ;
-    position: relative;
-    z-index: 22;
-    top: 10vw;
-    left: 6vw;
-    padding-right:3vw;
-    text-align: center;
-    line-height: 5vw;
-    /*margin-top: 10vw;*/
+    margin-left:-23px ;
 
   }
   .img_del img {
@@ -869,38 +937,17 @@ import pUpload from "./Photo_Uploader_Module.vue";
 
   }
   .activite_pic{
-    width: 100vw;
-    height: 100vw;
-    -webkit-background-size: 100%;
-    background-size: 100%;
+    width: 85%;
+    height: 300px;
+    -webkit-background-size: contain;
+    background-size: contain;
     /*opacity: 0.5;*/
     background: no-repeat;
-    background-origin: content-box;
     position: relative;
+    margin: 10px auto;
 
 
   }
-  .activite_pic1{
-    /*background: #000;*/
-    /*background-size: 100%;*/
-    background: none !important;
-    /*background-clip: padding-box;*/
-
-
-  }
-  .activite_pic{
-    width: 100vw;
-    height: 100vw;
-    -webkit-background-size: 100%;
-    background-size: 100%;
-    /*opacity: 0.5;*/
-    background: no-repeat;
-    background-origin: content-box;
-    position: relative;
-
-
-  }
-
 
 
 

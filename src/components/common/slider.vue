@@ -2,15 +2,9 @@
  <div id="temp">
 
    <div class="block">
-     <el-carousel height="400px">
-       <el-carousel-item >
-         <img src="../../../static/img/home/slider00.jpg" alt="" class="imgs">
-       </el-carousel-item>
-       <el-carousel-item >
-         <img src="../../../static/img/home/slider01.jpg" alt="" class="imgs">
-       </el-carousel-item>
-       <el-carousel-item >
-         <img src="../../../static/img/home/slider02.jpg" alt="" class="imgs">
+     <el-carousel height="500px">
+       <el-carousel-item v-for="item in childMsg" >
+         <img :src="item" alt="" class="imgs">
        </el-carousel-item>
      </el-carousel>
    </div>
@@ -32,6 +26,7 @@
 
     }
   },
+    props: ['childMsg'],
   created:function (){
 
   },
@@ -43,9 +38,11 @@
 
 <style scoped>
   #temp{
-    width: 100%;
+    width: 125%;
+    height: 300px%;
     /*background: deeppink;*/
-    margin-top: 70px;
+    margin-top: 60px;
+    margin-left:-12.5%;
   }
   .block{
     width: 100%;

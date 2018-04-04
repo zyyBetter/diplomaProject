@@ -1,15 +1,7 @@
 <template>
   <div id="temp">
-    <!--头部的轮播图-->
-    <!--后台回去数据后,需要修改-->
-    <!--<div class="block">
-      <el-carousel height="400px">
-        <el-carousel-item v-for="item in imgarr" :key="item.id">
-          <img :src="'../../../static/img/home/slider0'+item+'.jpg'" alt="" class="imgs">
-        </el-carousel-item>
-      </el-carousel>
-    </div>-->
-    <slider></slider>
+
+    <slider :child-msg="arrimg" style="margin-top: 50px;"></slider>
     <!--<a href="http://127.0.0.1/diplomaProject/birds/">dddddddddd</a>-->
 
     <!--中间导航栏部分-->
@@ -23,40 +15,40 @@
           <ul class="bar_nav_mp3">
 
             <li>
-              <router-link to="/home">首页</router-link>
+              <router-link to="/home" style="color:black">首页</router-link>
               <audio src="../../../static/source/a1.mp3" id="aa"></audio>
               <span class="bar_nav_mask"></span>
             </li>
 
             <li>
-              <router-link to="/music">童谣</router-link>
+              <router-link to="/music" style="color:black">童谣</router-link>
               <audio src="../../../static/source/a2.mp3"></audio>
               <span class="bar_nav_mask"></span>
             </li>
             <li>
-              <router-link to="/music">寓言故事</router-link>
+              <router-link to="/music" style="color:black">唐诗</router-link>
               <audio src="../../../static/source/a3.mp3"></audio>
               <span class="bar_nav_mask"></span>
             </li>
             <li>
-            <router-link to="/music">手工制作</router-link>
+            <router-link to="/music" style="color:black">手工绘制</router-link>
               <audio src="../../../static/source/a4.mp3"></audio>
               <span class="bar_nav_mask"></span>
             </li>
             <li>
-              <router-link to="/music">书法</router-link>
+              <router-link to="/music" style="color:black">绘画</router-link>
               <audio src="../../../static/source/a5.mp3"></audio>
               <span class="bar_nav_mask"></span>
 
             </li>
             <li>
-              <router-link to="/music">故事</router-link>
+              <router-link to="/music" style="color:black">成语故事</router-link>
               <audio src="../../../static/source/a6.mp3"></audio>
               <span class="bar_nav_mask"></span>
             </li>
             <li>
               <!--<router-link to="/birds"></router-link>-->
-              <a href="http://127.0.0.1/diplomaProject/birds/">
+              <a href="http://127.0.0.1/diplomaProject/birds/" style="color:black">
                 像素鸟
               <span class="bar_nav_mask"></span>
               <audio src="../../../static/source/a7.mp3"></audio>
@@ -190,7 +182,28 @@
 
 
 
-      <!--右边的面板-->
+      <!--排他的动态的效果插画-->
+      <div id="article"  class="clearfix" >
+        <div class="clearfix">
+          <div class="bar02_bottom_top">
+            <span>插画</span>
+            <!--<span>活动</span>-->
+          </div>
+        </div>
+
+        <div class="article_tag">
+          <ul>
+            <li @click="goshopcar(index)" v-for="(item,index) in childImg" >
+              <div class="article_tag_first"><img :src="item.src" alt=""></div>
+                <div class="mask1">小兔子</div>
+            </li>
+          </ul>
+        </div>
+    </div>
+
+
+
+
       <div id="bar02_bottom">
         <div class="bar02_bottom_top">
           <span>专题</span>
@@ -199,51 +212,51 @@
 
         <!--轮播图-->
         <div class="bar_bottom_slider">
-      <slick ref="slick" :options="slickOptions" id="bar02_right" class="nav">
+          <slick ref="slick" :options="slickOptions" id="bar02_right" class="nav">
 
-        <div class="maskpar">
-          <router-link to="/newyear">
-            <img src='../../../static/img/home/pro1.jpg' alt="">
-            <div class="mask">春节主题</div>
-          </router-link>
-        </div>
-        <div class="maskpar">
-          <router-link to="/fire">
-            <img src='../../../static/img/home/pro2.jpg' alt="">
-            <div class="mask">消防安全主题</div>
-          </router-link>
-        </div>
+            <div class="maskpar">
+              <router-link to="/newyear">
+                <img src='../../../static/img/home/pro1.jpg' alt="">
+                <div class="mask">春节主题</div>
+              </router-link>
+            </div>
+            <div class="maskpar">
+              <router-link to="/fire">
+                <img src='../../../static/img/home/pro2.jpg' alt="">
+                <div class="mask">消防安全主题</div>
+              </router-link>
+            </div>
 
-        <div class="maskpar">
-          <router-link to="/read">
-            <img src='../../../static/img/home/pro3.jpg' alt="">
-            <div class="mask">半日活动早准备</div>
-          </router-link>
-        </div>
+            <div class="maskpar">
+              <router-link to="/read">
+                <img src='../../../static/img/home/pro3.jpg' alt="">
+                <div class="mask">半日活动早准备</div>
+              </router-link>
+            </div>
 
-        <div class="maskpar">
-          <router-link to="/dingdang">
-            <img src='../../../static/img/home/pro4.jpg' alt="">
-            <div class="mask">多啦A梦</div>
-          </router-link>
-        </div>
+            <div class="maskpar">
+              <router-link to="/dingdang">
+                <img src='../../../static/img/home/pro4.jpg' alt="">
+                <div class="mask">多啦A梦</div>
+              </router-link>
+            </div>
 
-        <div class="maskpar">
-          <router-link to="/weather">
-            <img src='../../../static/img/home/pro5.jpg' alt="">
-            <div class="mask">天气预报</div>
+            <div class="maskpar">
+              <router-link to="/weather">
+                <img src='../../../static/img/home/pro5.jpg' alt="">
+                <div class="mask">天气预报</div>
 
-          </router-link>
-        </div>
+              </router-link>
+            </div>
 
 
-        <div class="maskpar">
-          <router-link to="/birds">
-            <img src='../../../static/img/home/nav6.jpg' alt="">
-            <div class="mask">像素鸟</div>
-          </router-link>
-        </div>
-      </slick>
+            <div class="maskpar">
+              <router-link to="/birds">
+                <img src='../../../static/img/home/nav6.jpg' alt="">
+                <div class="mask">像素鸟</div>
+              </router-link>
+            </div>
+          </slick>
         </div>
         <div class="bar_bottom_slider"  id="bar02_right01">
           <div class="bar02_bottom_top">
@@ -253,106 +266,59 @@
           <ul>
             <li>
               <router-link to="">
-              <img src="../../../static/img/home/act1.jpg" alt="">
-              <p>我的圣诞我做主,环境创建</p>
-            </router-link>
+                <img src="../../../static/img/home/act1.jpg" alt="">
+                <p>我的圣诞我做主,环境创建</p>
+              </router-link>
             </li>
             <li>
               <router-link to="">
-              <img src="../../../static/img/home/act2.jpg" alt="">
-              <p>师乐汇感恩月——感恩有你，好礼相送</p>
-            </router-link>
+                <img src="../../../static/img/home/act2.jpg" alt="">
+                <p>师乐汇感恩月——感恩有你，好礼相送</p>
+              </router-link>
             </li>
             <li>
               <router-link to="">
-              <img src="../../../static/img/home/act3.jpg" alt="">
-              <p>暑假，幼师带你看世界</p>
-            </router-link>
+                <img src="../../../static/img/home/act3.jpg" alt="">
+                <p>暑假，幼师带你看世界</p>
+              </router-link>
             </li>
             <li>
               <router-link to="">
-              <img src="../../../static/img/home/act4.jpg" alt="">
-              <p>春天最后的狂欢</p>
-            </router-link>
+                <img src="../../../static/img/home/act4.jpg" alt="">
+                <p>春天最后的狂欢</p>
+              </router-link>
             </li>
             <li>
               <router-link to="">
-              <img src="../../../static/img/home/act5.jpg" alt="">
-              <p>出游踏青好时节</p>
-            </router-link>
+                <img src="../../../static/img/home/act5.jpg" alt="">
+                <p>出游踏青好时节</p>
+              </router-link>
             </li>
             <li>
               <router-link to="">
-              <img src="../../../static/img/home/act6.jpg" alt="">
-              <p>疯狂万圣节,一起来捣蛋</p>
-            </router-link>
+                <img src="../../../static/img/home/act6.jpg" alt="">
+                <p>疯狂万圣节,一起来捣蛋</p>
+              </router-link>
             </li>
             <li>
               <router-link to="">
-              <img src="../../../static/img/home/act7.jpg" alt="">
-              <p>女神节,有你更美x</p>
-            </router-link>
+                <img src="../../../static/img/home/act7.jpg" alt="">
+                <p>女神节,有你更美x</p>
+              </router-link>
             </li>
             <li>
               <router-link to="">
-              <img src="../../../static/img/home/act8.jpg" alt="">
-              <p>废旧材料玩教具</p>
-            </router-link>
+                <img src="../../../static/img/home/act8.jpg" alt="">
+                <p>废旧材料玩教具</p>
+              </router-link>
             </li>
 
           </ul>
         </div>
       </div>
-    </div>
 
-    <!--数字滚动的效果-->
-    <div id="section">
-      <div class="animation-data">
-        <ul>
-          <li>
-            <p>
-              <span class="data-change">00,000</span>
-            </p>
-            <span>次安装</span>
-          </li>
-          <li>
-            <p>
-              <span class="data-change">000,000,000</span>
-            </p>
-            <span>用户直播</span>
-          </li>
-          <li>
-            <p>
-              <span class="data-change">000,000,000</span>
-            </p>
-            <span>学习次数</span>
-          </li>
-        </ul>
-      </div>
-    </div>
 
-    <!--排他的动态的效果-->
-    <div id="article" >
-      <div class="clearfix">
-      <p  id="article_title" >
-        <span></span>
-        特色课推介
-      </p>
-      </div>
 
-      <div class="article_tag">
-        <ul>
-          <li @click="goshopcar(index)" v-for="(item,index) in arrshopcar">
-            <div class="article_tag_first"><img :src="item.src" alt=""></div>
-            <div class="article_tag_second">
-              <p class="article_tag_text">{{item.text1}}</p>
-              <span></span>
-              <p class="article_tag_text1">{{item.text2}}</p>
-              <p class="article_tag_text2">{{item.text3}}</p>
-            </div>
-          </li>
-        </ul>
-      </div>
 
     </div>
 
@@ -390,7 +356,6 @@
 //  导入轮播图
   import slider from "../common/slider.vue"
 
-  //  import animate from "../static/css/animate.css"
 
 
   export default {
@@ -398,15 +363,20 @@
       Slick,
       slider
     },
-//    transitions: {
-//      bounce: {
-//        enterClass: 'bounceIn',
-//        leaveClass: 'bounceOutRight'
-//      }
-//    },
+
 
     data() {
       return {
+        arrimg:[
+          "../../../static/img/home/16.jpg",
+          "../../../static/img/home/18.jpg",
+          "../../../static/img/home/13.jpg",
+          "../../../static/img/home/slider03.jpg",
+          "../../../static/img/home/slider06.jpg",
+          "../../../static/img/home/slider09.jpg",
+          "../../../static/img/home/14.jpg",
+
+        ],
         arrlesson:[
           {rou:"music",src:"../../../static/img/home/nav1.jpg"},
           {rou:"poem",src:"../../../static/img/home/nav2.jpg"},
@@ -418,20 +388,22 @@
 //          {rou:"home",src:"../../../static/img/home/nav8.jpg"},
 
         ],
-        arrshopcar:[
-          {src:"../../static/img/shopcar/shop1.png",text1:"《儿童注意力》",text2:"每个人都有走神的时候，但怎样才能判断孩子是否患有“注意力不集中”呢？在什么情况下我们该寻求医生的帮助或进行治疗？儿科专家认为：判断儿童是否有“注意不集中”，有以下需要量化的方面进行参考诊断，来初步评估孩子的注意力情况 ？",text3:"注意力不集中常分为：视觉注意力障碍和听觉注意力障碍。不同个体对不同刺激的敏感性不同，有的儿童接受视觉刺激不专心，有的儿童接受听觉刺激不专心，而另外一些患儿对视觉和听觉刺激均不专心。有视觉注意障碍时，表现为不喜欢看书，阅读时粗心马虎，容易出错。有听觉注意障碍时，上课听课特别不专心，平常别人对他说话他似听非听，甚至给人他的耳朵有问题的感觉。因此，这些孩子难以服从指令完成任务，甚至要大人不断的发出语言命令时才开始去执行任务。"},
-          {src:"../../static/img/shopcar/shop10.png",text1:"《趣味英语》",text2:"3-6 岁是幼儿语言发展的敏感期，在这个时期，幼儿模仿能力强，学习语音、语法的速度特别快，对第二语言的语音、语调敏感，很容易学习外语，并且在这个时期学习了外语的孩子即使几年后不接触外语，一旦再认时，外语能力也很容易恢复。",text3:"幼儿英语启蒙教育兴起，有句话“不能输在起跑线上”。那幼儿英语启蒙教育又什么好处呢。其实孩子3岁开始就可以开始接触英语了，一般幼儿英语都是外教老师带着孩子做游戏，讲故事，认识一些事物。主要目的是培养孩子的开口说话，以防出现现在孩子们的通病，哑巴英语，只会考试，不会运用。幼儿英语启蒙是不单单是英语的发音，还有培养孩子的发散思维，"},
-          {src:"../../static/img/shopcar/shop3.png",text1:"《别和龙喝下午茶：幼儿安全》",text2:"解决爸爸妈妈关心的孩子安全问题——消防安全、警惕陌生人、应对欺凌、戏水安全，让孩子提升自我保护能力；荣获“教师选择奖”等多项童书大奖，美国、加拿大常年畅销的幼儿安全主题童书，美国消防协会推荐 ",text3:"《别和龙喝下午茶》是安全教育绘本，我很有幸得到了其中一本，遇到陌生人怎么办！这本绘本风格有点蜡笔画风的感觉，清新活泼不沉闷。故事也是新颖独特！\n" +
-          "绘本中的小男孩是小主人公，他和他的朋友小龙出去玩，遇到了奇遇冒险，在这段冒险旅程中，他遇到了各式各样的陌生人，但是他谨记父母的教诲，不轻易相信陌生人！不听陌生人的指示，不吃陌生人给的东西，他不但自己做到了保护自己，同时还保护了自己的朋友小龙不受陌生人的侵害"},
-          {src:"../../static/img/shopcar/shop4.png",text1:"《幼儿启蒙》",text2:"“拇指”使人类拥有了准确的抓握能力，从而学会了使用和制造工具，最终创造出高度的人类文明。在中国语境中，竖起拇指是对智慧和决策的肯定和赞许，也有名列前茅和领先的含义。“金”以其稀缺性和不受时间改变的稳定性被人们赋予了珍稀、高贵、财富和荣耀的内涵。",text3:"要培养幼儿对科学的兴趣，首先就要激发幼儿好奇心，当幼儿向我们提出问题时，我们应耐心倾听，因势利导地帮助幼儿解答问题，而且有意表扬爱提问的幼儿，鼓励幼儿大胆质疑，积极去观察，发现，探索大自然的奥秘。这样就能激起他们的探索愿望，培养他们对科学探索的积极性与主动性"},
-          {src:"../../static/img/shopcar/shop5.png",text1:"《图书馆来了个熊馆长》",text2:" 经常带孩子去图书馆，馆内不定期有老师带孩子听故事做游戏，看到《图书馆来了个熊馆长》不禁好奇，当孩子看到图书馆有个熊馆长会怎样故事中孩子们找不到馆长梅里韦瑟小姐，与此同时却发现了图书馆里的一些异样，大大圆圆的脚印，黏黏的蜂蜜，散落地面的图书……",text3:"(一场关于阅读与想象力的奇幻之旅，亲子阅读专家李一慢倾情推荐，国际广播电台双语主持人贝贝中英文朗读） ,图书馆的讲故事时间到了，馆长梅里韦瑟小姐却神秘失踪。孩子们顺着一串奇怪的脚印，穿过书架、跨过银河系、越过海洋，发现一位毛茸茸的新馆长……他来自何方，这座图书馆里又隐藏着怎样的秘密？"},
 
-        ],
         arrGroom:[
           {src:"../../../static/img/groom/1.jpg",txt:"儿童睡前故事",id:'sleep'},
           {src:"../../../static/img/groom/2.jpg",txt:"儿歌大全100首",id:'music'},
           {src:"../../../static/img/groom/4.jpg",txt:"儿童公主歌",id:'gir'},
           {src:"../../../static/img/groom/5.jpg",txt:"0-3岁儿歌",id:'age'},
+        ],
+        childImg:[
+          {src:"../../../static/img/chahua/11.jpg",txt:"0-3岁儿歌",id:'age'},
+          {src:"../../../static/img/chahua/22.jpg",txt:"0-3岁儿歌",id:'age'},
+          {src:"../../../static/img/chahua/33.jpg",txt:"0-3岁儿歌",id:'age'},
+          {src:"../../../static/img/chahua/44.jpg",txt:"0-3岁儿歌",id:'age'},
+          {src:"../../../static/img/chahua/55.jpg",txt:"0-3岁儿歌",id:'age'},
+
+//          {src:"../../../static/img/chahua/5.jpg",txt:"0-3岁儿歌",id:'age'},
+//          {src:"../../../static/img/chahua/5.png",txt:"0-3岁儿歌",id:'age'},
         ],
 
         imgarr: [0, 1, 2],
@@ -460,7 +432,7 @@
       },
       goshopcar(index){
 //         alert(index);
-         this.$router.push("/shop/lesson");
+         this.$router.push("/read");
 
       },
 //      发送ajax请求
@@ -560,12 +532,11 @@
 
 
 //          4.0article中的排他
-           $(".article_tag_text2").css({display:"none"});
+//           $(".article_tag_text2").css({display:"none"});
           $(".article_tag li").mouseover(function (){
-            $(this).find(".article_tag_text1").css({display:"none"}).siblings().css({display:"block"});
-            $(this).find(".article_tag_text2").css({display:"block",color:"green",fontSize:'16px'}).siblings().find(".article_tag_text2").css({display:"none"});
-            $(this).stop().animate({width:"27%",height:"100%",opacity:1},400).siblings().stop().animate({width:"18%",height:"70%",opacity:0.6},400).find(".article_tag_text2").css({display:"none"}).siblings().css({display:"block"});
+            $(this).stop().animate({width:"23%",height:"100%",opacity:1},500).siblings().stop().animate({width:"19%",height:"100%",opacity:0.8},500)
           });
+
 
 
 //1.0专题导航蒙版动画
@@ -587,7 +558,7 @@
 
             $("#bar02_top_bottom>li").mouseover(function () {
               var index = $(this).index();
-              $("#bar02_title>li").css({fontSize:'20px'}).eq(index).css({fontSize:'23px',fontWeight:"bolder"});
+              $("#bar02_title>li").css({fontSize:'16px'}).eq(index).css({fontSize:'18px',fontWeight:"bolder"});
             });
 
 
@@ -728,6 +699,7 @@
     margin-left: 2%;
   }
   #bar_nav  .bar_nav_mp3  li{
+
     position: relative;
     float: left;
     width: 13%;
@@ -818,12 +790,7 @@
     height: 100%;
   }
 
-/*
-  .nav > div:hover {
-    transform: translateY(15px) scale(1.2);
-    box-shadow: -10px 10px 100px black
-  }
-*/
+
 
   #bar02 {
     width: 100%;
@@ -957,7 +924,7 @@
 
   #bar02_bottom{
     border-top: 2px solid darkcyan;
-    margin-top: 60px;
+    margin-top: 50px;
     margin-bottom:60px;
   }
   .bar02_bottom_top{
@@ -1118,15 +1085,15 @@
   }
   #article{
     width: 100%;
-    height: 600px;
+    height: 530px;
     border-radius: 20px;
     margin-top:60px;
+    overflow: hidden;
 
   }
   #article #article_title{
     width: 15% ;
     height: 50px;
-    /*background: darkblue;*/
     float: left;
     font-size: 20px;
     font-weight:bolder;
@@ -1153,22 +1120,36 @@
     margin-top: 40px;
     /*margin-left:7%;*/
   }
+
   #article .article_tag li{
     float: left;
     width: 18%;
-    height: 80%;
-    /*background: cyan;*/
-    border: 1px solid silver;
     box-sizing: border-box;
     position: relative;
+    background-size:100%;
+    margin: 0 auto;
   }
+
   #article .article_tag li img{
+
     width: 100%;
+  }
+  .mask1{
+    position: absolute;
+    width: 20%;
+    height: 80%;
+    text-align: center;
+    color:white;
+    font-size:30px;
+    /*line-height: 100%;*/
+    left: 40%;
+    top: 0%  ;
+    Writing-mode:tb-rl
   }
   /*打开页面默认第三的LI是放大的*/
   #article .article_tag li:nth-of-type(3){
-    width: 27%;
-    height: 90%;
+    width: 23%;
+    height: 100%;
     /*transform: translateY(-10%);*/
   }
 

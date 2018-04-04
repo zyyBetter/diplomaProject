@@ -15,7 +15,11 @@
               <router-link to="/home">首页</router-link>
             </li>
             <li>
-              <router-link to="/lesson">课程</router-link>
+              <router-link to="/lesson?lesson=music">课程</router-link>
+            </li>
+            <li>
+              <router-link to="/active_submit">活动</router-link>
+
             </li>
             <li>
               <router-link to="/comments">评论</router-link>
@@ -23,14 +27,11 @@
             <li>
               <router-link to="/shopcar">购物车</router-link>
             </li>
-            <li>
-              <router-link to="/home">会员</router-link>
 
-            </li>
           </ul>
         </el-col>
         <el-col hidden-xs-only :sm="8" :md="8" :lg="10">
-          <input placeholder="请搜索..." @click="change" @blur="restore" id="inp" class="hidden-sm-and-down">
+          <input placeholder="请搜索..." @click="change" @blur="restore" id="inp" class="hidden-sm-and-down" style="padding-left: 4px">
           <ul class="navlogin">
             <li>
               <router-link to="/login"><span>登录</span></router-link>
@@ -159,7 +160,7 @@
     methods: {
       change() {
         var inp = document.getElementById("inp");
-        inp.style.width = "200px";
+        inp.style.width = "120px";
         inp.style.transform = "translate(0px)";
       },
       restore() {
@@ -183,7 +184,7 @@
     color: #2c3e50;
   }
   .mask1{
-    width: 60px;
+    width: 50px;
     height: 60px;
     display: inline-block;
     position: absolute;
@@ -194,8 +195,8 @@
 
   nav {
     width: 100%;
-    height: 60px;
-    background: black;
+    height: 50px;
+    background: rgba(0,0,0,0.6);
     overflow: hidden;
     position: fixed;
     left: 0;
@@ -205,9 +206,9 @@
   }
 
   #imgs {
-    height: 50px;
+    height: 30px;
     /*width: 100px;*/
-    margin-top: 5px;
+    margin-top: 10px;
   }
 
   .navbar li {
@@ -224,8 +225,8 @@
 
   input {
     width: 100px;
-    height: 40px;
-    border-radius: 10px;
+    height: 30px;
+    border-radius: 6px;
     float: left;
     margin-left: 150px;
     /*margin-right:150px;*/
@@ -234,9 +235,9 @@
   }
 
   ul li {
-    line-height: 60px;
+    line-height: 50px;
     height: 100%;
-    font-size: 20px;
+    font-size: 14px;
     cursor: pointer;
   }
 

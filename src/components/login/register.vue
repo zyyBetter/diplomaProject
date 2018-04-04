@@ -107,7 +107,7 @@
     /*重写*/
     text-align: left;
     border-radius: 5px;
-    box-shadow: -10px 20px 100px black;
+    /*box-shadow: -10px 20px 100px black;*/
     /*定位*/
     margin: 10px auto;
   }
