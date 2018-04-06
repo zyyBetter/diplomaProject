@@ -33,7 +33,7 @@
    <div id="box">
 
        <ul class="clearfix">
-         <li class="clearfix"  v-for="item in filteredData" @click="details">
+         <li class="clearfix"  v-for="item in filteredData" @click="details(item.mes)">
            <img :src="item.src" alt="">
            <p style="font-size:16px;margin-right: 8px;float: left;width: 100%;text-align: left"></i>{{item.txt1}}</p>
            <p style="color: #9aabb8;text-align: left;"><span style="display:inline-block;border-radius:3px ;padding: 3px;background: #dfe5e9;font-size:10px;">原创</span><i class="el-icon-view" style="margin-right:5px;margin-left: 10px;"></i>{{item.txt2}}<i class="el-icon-star-on" style="margin-right:5px;margin-left: 10px;"></i>{{item.txt3}}<i class="el-icon-loading" style="margin-right:5px;margin-left: 10px;"></i>{{item.txt4}}</p>
@@ -45,7 +45,7 @@
    </div>
 
 
-   <Detail v-show="!mainshow"></Detail>
+   <Detail v-show="!mainshow" :child-msg="arrimg"></Detail>
 
 
 
@@ -65,6 +65,7 @@
   export default {
   data () {
     return {
+      arrimg:"",
       mainshow:true,
       msg:"fire",
       logo:'',
@@ -132,9 +133,10 @@
       this.getimg(this.num)
     },
     methods:{
-      details(){
+      details(mes){
         this.mainshow = false;
-
+        this.arrimg = mes;
+        console.log(this.arrimg);
       },
       //进行动画
       animate(){
@@ -189,7 +191,7 @@
             for(var i=0;i<this.message.length;i++){
               this.arrMess.push(this.message[i])
             }
-            console.log(this.arrMess)
+//            console.log(this.arrMess)
 
           },
           function (err) {
@@ -201,7 +203,7 @@
       getMore(){
 
         this.num++;
-        alert( this.num);
+//        alert( this.num);
         this.getimg(this.num);
       }
 //

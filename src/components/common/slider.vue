@@ -39,7 +39,7 @@
 <style scoped>
   #temp{
     width: 125%;
-    height: 300px%;
+    height: 300px;
     /*background: deeppink;*/
     margin-top: 60px;
     margin-left:-12.5%;

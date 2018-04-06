@@ -111,7 +111,7 @@
                 <router-link to="/read"><p>半日早读课,学习不能断</p></router-link>
               </li>
               <li>
-                <router-link to="/read"><p>多啦A梦,遇见最美的你</p></router-link>
+                <router-link to="/dingdang"><p>多啦A梦,遇见最美的你</p></router-link>
               </li>
               <li>
                 <router-link to="/weather"><p>天气预报小知识</p></router-link>
@@ -682,7 +682,7 @@
 
   #bar {
     /*background-image: url("../../../static/img/home/h_b.jpg");*/
-    margin-top: 60px;
+    margin-top: 250px;
     /*margin-right: 50px;*/
     padding-left: 20px;
     /*border: 1px solid pink;*/
