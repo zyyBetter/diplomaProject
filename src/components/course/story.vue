@@ -101,7 +101,7 @@
         src: "../../../static/img/fav/10.png", text1: "国学启蒙", text2: "d中文儿歌",video:"http://s.61baobao.com//common/flash/2013/qinbaoguoxueqimeng/1.swf"
       },
       ],
-   
+
       id:'',
       arr:{},
       arrhead:{},
@@ -122,7 +122,12 @@
     methods:{
     getimg(){
         var url = "http://127.0.0.1/diplomaProject/php/first.php";
-        this.$http.get(url).then(
+        this.$http.get(url,{
+            params:{
+              type:'music',
+            }
+          }
+        ).then(
           function (res) {
 //            alert(1)
 //            console.log(res.bodyText);

@@ -180,7 +180,12 @@
        </div>
 
        <div class="hot_body" v-show="isshow1">
-         ddfasdf
+         <ul>
+           <li v-for="item in arrMes">
+             <div :style="{backgroundImage: 'url(' + item.url + ')'}"></div>
+             <p>{{item.name}}</p>
+           </li>
+         </ul>
        </div>
 
 
@@ -315,6 +320,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
         addTextObj:[],
         addImgarr:[],//增加图片
         ishowText:false,//点击添加文字框是否显示
+      arrMes :[],//获取列表发布的信息
       index1:0,
       indexs:0
     }
@@ -440,6 +446,7 @@ get_save:function () {
     }
   }).then(function (res) {
     console.log(res.body);
+    this.arrMes = res.body;
   })
 },
       //删除字体
@@ -846,12 +853,27 @@ get_save:function () {
     margin-top: 30px;
     width: 100%;
     height: 1000px;
-    background: pink;
+    /*background: pink;*/
+  }
+
+
+  .hot_body ul{
+    width: 100%;
+    height: 100%;
+  }
+  .hot_body ul li{
+    border: 1px solid silver;
+    width: 100%;
+    height: 150px;
+  }
+  .hot_body ul li div{
+    width: 30%;
+    height: 100px;
   }
 
 
 
-    .line {
+  .line {
       display: inline-block;
       width: 94%;
       margin-left: 3%;

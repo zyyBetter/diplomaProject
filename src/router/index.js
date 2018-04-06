@@ -12,7 +12,7 @@ import story from '../components/course/story.vue'
 import newyear from '../components/subject/newyear.vue'
 import fire from '../components/subject/fire.vue'
 import read from '../components/subject/read.vue'
-import dingdang from '../components/subject/dingdang.vue'
+// import dingdang from '../components/subject/dingdang.vue'
 import weather from '../components/subject/weather.vue'
 import shopcar from '../components/shopcar/shopcar.vue'
 import comments from '../components/comment/comments.vue'
@@ -33,7 +33,7 @@ export default new Router({
     // {path: '/handmake', component: handmake},
     // {path: '/handwrite', component: handwrite},
     {path: '/weather', component: weather},
-    {path: '/dingdang', component: dingdang},
+    // {path: '/dingdang', component: dingdang},
     {path: '/read', component: read},
     {path: '/story', component: story},
     {path: '/newyear', component: newyear},

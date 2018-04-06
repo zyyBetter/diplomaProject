@@ -1,32 +1,53 @@
 <template>
  <div id="temp">
 
+   <div v-show="mainshow">
    <section>
-     <!--头部的照片-->
-     <div id="sec_head">
-       <div><img src="../../../static/img/home/pro2.jpg" alt=""></div>
-       <!--头部的文字-->
-       <div id="sec__head_ri">
-         <span class="sec_head_title">消防安全主题</span>
-         <p>消防安全演练活动方案、教案、总结、反思，防火安全常识以及相关的环创内容。</p>
-       </div>
-       <!--按钮效果-->
-       <div id="sec_head_btn">
-        加入教育圈子
-       </div>
+
+
+     <ul id="list">
+       <li><img src="../../../static/img/chahua2/53.png" alt=""></li>
+       <li><img src="../../../static/img/chahua2/54.png" alt=""></li>
+       <li><img src="../../../static/img/chahua2/50.png" alt=""></li>
+       <li><img src="../../../static/img/chahua2/51.png" alt=""></li>
+       <li><img src="../../../static/img/chahua2/52.png" alt=""></li>
+     </ul>
+     <div class="slider_ctl">
+       <span class="slider_prev" @click="turnLeft"></span>
+       <span class="slider_next" @click="turnRight"></span>
      </div>
+
+
 
    </section>
 
-   <!--<article>-->
-     <div id="box">
+   <div id="box1" class="clearfix">
 
-      <!-- <ul>
-         <li><img src="../../../static/img/idoms/1.png" alt=""></li>
-       </ul>-->
-
+     <div>
+     <i class="el-icon-search" ></i>
+     <input type="text" v-model="logo" placeholder="请搜索" id="inp">
      </div>
-   <!--</article>-->
+
+   </div>
+
+   <div id="box">
+
+       <ul class="clearfix">
+         <li class="clearfix"  v-for="item in filteredData" @click="details">
+           <img :src="item.src" alt="">
+           <p style="font-size:16px;margin-right: 8px;float: left;width: 100%;text-align: left"></i>{{item.txt1}}</p>
+           <p style="color: #9aabb8;text-align: left;"><span style="display:inline-block;border-radius:3px ;padding: 3px;background: #dfe5e9;font-size:10px;">原创</span><i class="el-icon-view" style="margin-right:5px;margin-left: 10px;"></i>{{item.txt2}}<i class="el-icon-star-on" style="margin-right:5px;margin-left: 10px;"></i>{{item.txt3}}<i class="el-icon-loading" style="margin-right:5px;margin-left: 10px;"></i>{{item.txt4}}</p>
+         </li>
+       </ul>
+     </div>
+
+   <div id="submits" @click="getMore">点击加载 ...</div>
+   </div>
+
+
+   <Detail v-show="!mainshow"></Detail>
+
+
 
 
 
@@ -36,225 +57,163 @@
 </template>
 
 <script>
-//  import '../../../static/js/underscore.js';
 
-
-
+    import $ from 'jquery';
+    import Detail from "./dingdang.vue"
 
 
   export default {
   data () {
     return {
-      msg:"fire"
-    }
-  },
+      mainshow:true,
+      msg:"fire",
+      logo:'',
+      arrMess1:"",
+      arrMess:[],
+      num:1,
+      dataArr : [
+        {   //  1
+          width:400,
+          top:20,
+          left:50,
+          opacity:0.2,
+          zIndex:2
+        },
+        {  // 2
+          width:600,
+          top:70,
+          left:0,
+          opacity:0.8,
+          zIndex:3
+        },
+        {   // 3
+          width:800,
+          top:100,
+          left:200,
+          opacity:1,
+          zIndex:4
+        },
+        {  // 4
+          width:600,
+          top:70,
+          left:600,
+          opacity:0.8,
+          zIndex:3
+        },
+        {   //5
+          width:400,
+          top:20,
+          left:750,
+          opacity:0.2,
+          zIndex:2
+        }
+      ]
 
-  mounted:function (){
-    this.getimg();
+  }
   },
+    components: {
+      Detail
+    },
+      computed: {
+//    过滤器
+        filteredData: function () {
+          var self = this;
+          return this.arrMess.filter(function (item) {
+            return item.txt1.toLowerCase().indexOf(self.logo.toLowerCase()) !== -1;
+          })
+        }
+    },
+
+      mounted:function (){
+        this.animate();
+
+      },
+    created(){
+      this.getimg(this.num)
+    },
     methods:{
-    getimg(){
+      details(){
+        this.mainshow = false;
 
-      //1.0
-      function $(id){
-        return document.getElementById(id);
-      }
+      },
+      //进行动画
+      animate(){
+        var oul = document.getElementById("list");
+//        alert(oul);
+        var list = oul.children;
+//        alert(list)
 
-      //2.0
-      function getTagName(obj,tagName)
-      {
-        return obj.getByTagName(tagName);
-      }
+        // 规定 false没有动画 true 正在动画中
+        $(".slider_ctl").mouseover(function(){
+//          alert(11111)
+          $(this).animate({'opactiy':1},500);
+        }) ;
+        $(".slider_ctl").mouseout(function(){
+          $(this).animate({'opactiy':0},500);
+        });
 
-      //3.0
-      function scroll(){
-        //最新浏览器,IE9+
-        if(window.pageXOffset||window.pageYOffset)
-        {
-          return {
-            top:window.pageYOffset,
-            left:window.pageXOffset        }}
-        //标准模式
-        else if(document.compatMode=="css1Compat"){
-          return {
-            top:document.documentElement.scrollTop,
-            left:document.documentElement.scrollLeft
-          }
-        }
-        //怪异模式
-        else{
-          return {
-            top: document.body.scrollTop,
-            left: document.body.scrollLeft
-          }
+//旋转轮播图
+        for(var i= 0; i<list.length; i++){
+          var li = list[i];
+
+          $("#list li").eq(i).animate({"width":this.dataArr[i].width,"top":this.dataArr[i].top,"left":this.dataArr[i].left,"opacity":this.dataArr[i].opacity,"zIndex":this.dataArr[i].zIndex,},1000)
+
         }
 
-      }
 
-     /* /!**
-       * client() 获取屏幕的宽度
-       * 使用方法 client().width
-       * @returns {*}   屏幕的宽度及高度
-       *!/!*/
-      function client(){
-        if(window.innerHeight||window.innerWidth)//IE9+ 及最新浏览器
-        {
-          return{
-            height:window.innerHeight,
-            width:window.innerWidth
-          }
-        }
-        else if(document.compatMode=="css1compat"){  //标准浏览器
-          return {
-            height:document.documentElement.clientHeight,
-            width:document.documentElement.clientWidth
+      },
+      turnLeft(){
+        // 删除数组中第一个元素,添加到最后一个
+        this.dataArr.push(this.dataArr.shift());
+        this.animate()
 
-          }}
-        else
-        {
-          return { //怪异浏览器
-            height:document.body.clientHeight,
-            width:document.body.clientWidth
-
-          }
-        }
-      }
-
-
-      function waterfall(){
-        var boxChild=box.children;
-        var screenW=client().width;//计算网页的宽度
-        var box1W=box1.offsetWidth;
-        var cols=parseInt(screenW/box1W);//计算网页的宽度可以放多少张图片
-        alert(cols)
-
-        var boxW=cols*box1W;//计算大盒子的宽度
-        // console.log(boxW);
-        box.style.width=boxW+"px";//给大盒子设置宽度
-        box.style.margin="0 auto";//让大盒子居中
-
-
-        //给每张照片定位
-        var arr=[];
-        for(var j=0;j<boxChild.length;j++){
-          var boxChildH=boxChild[j].offsetHeight;//获取每一个盒子的高度
-          //当照片在第一排的时候把盒子高度直接放进数组里面
-          if(j<cols) {
-            arr.push(boxChildH);
-            boxChild[j].style.position="absolute";//盒子定位
-            boxChild[j].style.top=0+"px";
-            boxChild[j].style.left=boxChild[j].offsetWidth*j+"px";
-
-
-
-          }
-          else{
-            var minH=_Math.min(arr);  //1找出数组里面的最小的数,利用函数库
-            alert(minH)
-
-
-            // console.log(minH);
-            var indexMin=arr.indexOf(minH);//找出最小数的索引indexOf,方便把下一个盒子定位
-            // console.log(indexMin);
-            boxChild[j].style.position="absolute";//盒子定位
-            boxChild[j].style.top=minH+"px";
-            boxChild[j].style.left=boxChild[j].offsetWidth*indexMin+"px";
-            arr[indexMin]=boxChildH+minH;//更新高度
-          }
-        }
-      }
-
-
-      window.onload=function (){ //页面加载即调用
-        waterfall();
-        window.onscroll=function (){  //页面滚动的时候调用
-
-          if(loaded()==true){ // 当loaded函数为真的时候执行下面的代码
-            // alert(1);
-
-            for(var i=0;i<20;i++){//循环20次,即每次加载20张照片
-
-              var box1=document.createElement("div");  //创建新的大盒子
-              box.appendChild(box1);
-              box1.className="box1";
-
-              var box2=document.createElement("div");//创建新的小盒子
-              box1.appendChild(box2);
-              box2.className="box2"
-
-              var pic=document.createElement("img");//创建新照片节点
-              box2.appendChild(pic);
-              pic.className="pic";
-
-              var a=parseInt(_.random(0,40));  //照片的随机数
-              // console.log(a);
-              pic.src="../../../static/img/pubu/"+a+".jpg"; //设置照片获取的路径
-
-
+      },
+      turnRight(){
+        //  删除数组中最后一个元素添加到第一个
+        var ele = this.dataArr.pop();
+        this.dataArr.unshift(ele);
+        this.animate()
+      },
+      getimg(num){
+        var url = "http://127.0.0.1/diplomaProject/php/first.php";
+        this.$http.get(url,{
+            params:{
+              type:'pic',
+              index:num,
             }
-            waterfall();
-
           }
+        ).then(
+          function (res) {
+            this.message = res.bodyText;
+            this.message =  JSON.parse(res.bodyText);
+            for(var i=0;i<this.message.length;i++){
+              this.arrMess.push(this.message[i])
+            }
+            console.log(this.arrMess)
 
-        }
+          },
+          function (err) {
+
+            console.log(err);
+          }
+        )
+      },
+      getMore(){
+
+        this.num++;
+        alert( this.num);
+        this.getimg(this.num);
       }
-
-      var timer=null;
-
-      window.onresize=function(){
-
-        //函数节流
-        clearTimeout(timer);
-        timer=setTimeout(function(){
-          waterfall();
-          console.log(1);
-        },100);
-
-
-      }
-
-      function loaded(){
-        var allbox=$("box").children;
-        var lastindex=allbox.length-1;//获取最后一个盒子的索引
-        // console.log(lastindex);
-        var screenY=client().height;//获取页面的高度
-        var scrollY=scroll().top;//获取页面滚动的距离
-        var lastH=allbox[lastindex].offsetTop;
-        var isloading=lastH<=(screenY+scrollY);
-        // console.log(isloading);
-        return isloading;
-      }
-
-//滚动就调用
-
-
-
-      var box=$("box");
-      for(var i=0;i<40;i++){
-        var box1=document.createElement("div");
-        //创建图片外面的最大的盒子,并添加属性
-        box1.className="box1";
-        box.appendChild(box1);
-        var box2=document.createElement("div");
-
-        //创建图片外面的最大的盒子,并添加属性
-        box2.className="box2";
-        box1.appendChild(box2);
-
-        //创建img标签,并添加属性,添加每张图片的路径
-        var pic=document.createElement("img");
-        pic.className="pic";
-        box2.appendChild(pic);
-        pic.src="../../../static/img/pubu/"+i+".jpg";
-      }
-
-    }
+//
 
     }
 }
 </script>
 
 <style scoped>
+  #temp{
+    width: 90%;
+  }
   section{
     width: 100%;
     height: 100%;
@@ -319,9 +278,48 @@
 
   #box{
     position: relative;
-    background: deeppink;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 10px;
+    background: #eff3f5;
+    padding-top:30px;
+  }
+  #box1{
+    width: 100%;
+    height: 60px;
+    background: #f8f9fa !important;
+    margin-top: 130px;
+  }
+  #box1 div{
+    border: 1px solid silver;
+    width: 220px;
+    height: 40px;
+    background: white;
+    border-radius: 8px;
+    float: right;
+    margin-top: 10px;
+    margin-right: 60px;
+
+  }
+  #box ul{
+    width: 100%;
+    height: 100%;
+  }
+  #box ul li:hover{
+    background: white;
+  }
+  #box ul li{
+    width: 23%;
+    margin-left: 1.5%;
+    height: 280px;
+    /*border: 1px solid silver;*/
+    float: left;
+    margin-bottom: 30px;
+    padding: 13px;
+
+  }
+  #box ul li img{
+    width: 100%;
+    height: 200px;
   }
   .box1{
     float: left;
@@ -336,4 +334,67 @@
   .pic{
     width: 165px;
   }
+  #submits{
+    width: 150px;
+    height: 40px;
+    color:white;
+    font-size: 16px;
+    background: #20b573;
+    border-radius: 10px;
+    line-height:40px;
+    margin: 30px auto;
+
+  }
+  #inp{
+    padding-top:10px;
+    box-sizing: content-box;
+  }
+ section{
+    width: 1200px;
+    height: 500px;
+    margin: 30px auto;
+    position: relative;
+   margin-left: -45px;
+  }
+  section ul{
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    position: relative;
+  }
+  section ul li{
+    position: absolute;
+    left: 200px;
+    top: 0;
+  }
+  section ul li img{
+    width: 100%;
+    height: 100%;
+  }
+  .slider_ctl{
+    opacity:1;
+    background: darkblue;
+  }
+
+  .slider_ctl .slider_prev{
+    background: url("../../../static/images/prev.png") no-repeat;
+    width: 76px;
+    height: 112px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0,-50%);
+    z-index: 998;
+  }
+  .slider_ctl .slider_next{
+    background: url("../../../static/images/next.png") no-repeat;
+    width: 76px;
+    height: 112px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0,-50%);
+    z-index: 998;
+  }
+
 </style>

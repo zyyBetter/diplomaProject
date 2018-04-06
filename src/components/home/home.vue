@@ -85,8 +85,8 @@
     </div>
 
     <!--专题部分 使用插件-->
-    <div style="overflow: hidden" id="bar02" >
-      <div class="bar02_bottom_top">
+    <div style="overflow: hidden;" id="bar02" >
+      <div class="bar02_bottom_top" >
         <span>推荐</span>
         <!--<span>活动</span>-->
       </div>
@@ -111,7 +111,7 @@
                 <router-link to="/read"><p>半日早读课,学习不能断</p></router-link>
               </li>
               <li>
-                <router-link to="/dingdang"><p>多啦A梦,遇见最美的你</p></router-link>
+                <router-link to="/read"><p>多啦A梦,遇见最美的你</p></router-link>
               </li>
               <li>
                 <router-link to="/weather"><p>天气预报小知识</p></router-link>
@@ -173,9 +173,9 @@
 
       <div id="bar02_top_center" class="clearfix">
         <ul class="list_bar02">
-          <li v-for="item in arrGroom">
+          <li v-for="item in arrGroom" style="overflow: hidden">
             <img :src="item.src" alt="" @click="sendGroom(item.id)">
-            <p>{{item.txt}}</p>
+            <p style="width: 80%;height: 100%;background:rgba(255,255,255,0.6);margin: 0 auto;position: absolute;left: 10%;bottom: -80%;color:white;font-size: 20px;line-height: 50px;overflow: hidden">{{item.txt}}</p>
           </li>
 
         </ul>
@@ -401,10 +401,10 @@
         ],
 
         arrGroom:[
-          {src:"../../../static/img/groom/1.jpg",txt:"儿童睡前故事",id:'sleep'},
-          {src:"../../../static/img/groom/2.jpg",txt:"儿歌大全100首",id:'music'},
-          {src:"../../../static/img/groom/4.jpg",txt:"儿童公主歌",id:'gir'},
-          {src:"../../../static/img/groom/5.jpg",txt:"0-3岁儿歌",id:'age'},
+          {src:"../../../static/img/groom/11.jpg",txt:"音乐教室",id:'sleep'},
+          {src:"../../../static/img/groom/22.jpg",txt:"儿歌大全100首",id:'music'},
+          {src:"../../../static/img/groom/33.jpg",txt:"儿童公主歌",id:'gir'},
+          {src:"../../../static/img/groom/44.jpg",txt:"0-3岁儿歌",id:'age'},
         ],
         childImg:[
           {src:"../../../static/img/chahua/11.jpg",txt:"0-3岁儿歌",id:'age'},
@@ -880,25 +880,30 @@
 
   }
   #bar02_top_center  .list_bar02 li {
-    width: 33%;
-    height: 50%;
+    width: 50%;
+    height: 45%;
     float: left;
+    margin-bottom: 60px;
+    position: relative;
     /*padding-top: 2%;*/
   }
   #bar02_top_center  .list_bar02 li img {
-    width: 93%;
+    width: 80%;
     vertical-align: middle;
+    text-align: center;
   }
-  #bar02_top_center  .list_bar02 li img:hover {
-    animation:mymove 1s infinite;
-    /*transform:scale(2,2);*/
+  #bar02_top_center  .list_bar02 li:hover p {
+    animation:mymove 1s ;
+    /*bottom:0%*/
   }
-@keyframes mymove {
-  0% {transform:scale(1)}
-  50% {transform:scale(1.1)}
-  100% {transform:scale(1)}
 
-}
+  @keyframes mymove {
+    /*0% {bottom:-80%}*/
+    0% {bottom:100%}
+    100% {bottom:-80%}
+
+  }
+
   #bar02_top_bottom {
     width: 100%;
     height: 100%;
