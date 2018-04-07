@@ -8,7 +8,7 @@
    <div id="panel">
      <!--面板的头部-->
      <div class="panel-header">
-       <h2>启蒙教育注册</h2>
+       <h2>登录</h2>
      </div>
      <!--面板的中间内容-->
      <div class="panel-content">
@@ -57,18 +57,35 @@
 
 <script>
 
+  //非父子之间的传值
+  import {COUNTSTR,vm} from "../common/vm.js"
+  import { Toast } from 'mint-ui';
 
   export default {
   data () {
     return {
         user:"",
-        password:""
+        password:"",
+        mes:"",
+       img:""
     }
   },
   created:function (){
 
   },
     methods:{
+//输入错误的弹出框
+      open(mes,user,name) {
+        this.$alert('请输入正确的'+user, mes, {
+          confirmButtonText: '确定',
+          callback: action => {
+//            name = ""
+            if(name == 1){
+              this.password = ""
+            }
+          }
+        });
+      },
 
       login(){
 //          alert("登录")
@@ -84,17 +101,30 @@
             }
           }).then(function (res){
               if(res.body.length==0){
-                alert('没有这个用户')
+                this.mes =  "该用户不存在";
+                let user = "用户名";
+                this.open(this.mes,user)
               }else{
                 for(var i=0;i<res.body.length;i++){
                   if(res.body[i].psw==obj.password){
-                    alert('登陆成功');
+                    Toast({
+                      message: '登录成功',
+                      iconClass: 'icon el-icon-success',
+                    });
+
+                    //获取去数据库的图片 ,传值给APP组件,作为儿子,传值给父亲
+                    this.img = "../../../static/img/uerPic/"+res.body[i].id+".jpg";
+//                    this.$emit("","")
+//                    把值放在vm上面,图片的放在常量里面
+                    vm.$emit(COUNTSTR,this.img);
                     return
                   }
 
                 }
 
-                alert('登录失败,密码有问题')
+                this.mes =  "密码输入错误";
+                let user = "密码";
+                this.open(this.mes,user,1)
               }
           })
       }
@@ -123,14 +153,9 @@
     text-align: left;
     border-radius: 5px;
 
-    box-shadow: -10px 2px 100px black;
+    box-shadow: -2px 2px 60px #9aabb8;
     /*定位*/
-    /*position: absolute;*/
-    /*top:50%;*/
-    /*left:50%;*/
-    margin: 20px auto;
-    /*margin-left: -200px;*/
-    /*margin-top: -200px;*/
+    margin: 90px auto;
   }
 
   .panel-header{

@@ -75,6 +75,8 @@
      </div>
 
    </section>
+
+  <!-------左边------->
    <article>
      <div class="artcile_top">
 
@@ -197,6 +199,7 @@
     width: 100%;
     background: #eff3f5;
     padding-bottom: 60px;
+    padding-top: 20px;
 
     /*overflow: hidden;*/
   }

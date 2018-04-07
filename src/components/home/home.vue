@@ -183,6 +183,33 @@
       </div>
 
 
+      <!--数字滚动的效果-->
+      <div id="section">
+        <div class="animation-data">
+          <ul>
+            <li>
+              <p>
+                <span class="data-change">00,000</span>
+              </p>
+              <span>次安装</span>
+            </li>
+            <li>
+              <p>
+                <span class="data-change">000,000,000</span>
+              </p>
+              <span>用户直播</span>
+            </li>
+            <li>
+              <p>
+                <span class="data-change">000,000,000</span>
+              </p>
+              <span>学习次数</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
 
       <!--排他的动态的效果插画-->
       <div id="article"  class="clearfix" >

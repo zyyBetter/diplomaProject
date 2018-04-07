@@ -4,10 +4,10 @@
    <div id="panel">
      <!--面板的头部-->
      <div class="panel-header">
-       <h2>启蒙教育注册</h2>
+       <h2>账号注册</h2>
      </div>
      <!--面板的中间内容-->
-     <form action="">
+     <form >
        <div class="panel-content">
        <!--昵称-->
        <div class="user-pwd">
@@ -42,7 +42,7 @@
          <input type="radio" name="sex" value="man" checked="checked">
          女
          <input type="radio" name="sex" value="women" >-->
-         <input type="checkbox" value="sure"><router-link to="/rules" id="tiaoli">
+         <input type="checkbox" value="sure" style="width: 13px;height: 13px;"><router-link to="/rules" id="tiaoli">
          <span>《儿童教育网站条例》</span>
        </router-link>
 
@@ -71,6 +71,7 @@
 
 <script>
 
+  import { Toast } from 'mint-ui';
 
   export default {
   data () {
@@ -86,7 +87,73 @@
 
   },
     methods:{
+      //输入错误的弹出框
+      open(mes,user,name) {
+        this.$alert('请输入正确的密码', "111", {
+          confirmButtonText: '确定',
+          callback: action => {
+//            name = ""
+            if(name == 1){
+//              this.password = ""
+            }
+          }
+        });
+      },
       resgiter(){
+
+        //判断是否是手机号码的正则
+        let myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+        if(this.name.length == 0)
+          {
+//            alert("请输入用户名");
+            return false;
+
+          }
+          else if(this.name.length > 14){
+//          alert("用户名的长度不能超过14位");
+//          this.open();
+          return false;
+
+        }
+        else if(this.tel.length == 0){
+          alert("请输入电话号码");
+          return false;
+        }
+        else if(!myreg.test(this.tel)){
+          alert("请检查是否输入正确的电话号码");
+          return false;
+        }
+        else if(this.pwd.length == 0){
+          alert("请输入电话号码")
+          return false;
+        }
+        else if(this.pwd2.length == 0){
+          alert("请输入确认电话号码")
+          return false;
+        }
+        else if(this.pwd != this.pwd2){
+          alert("两次密码输入不正确,请重新输入");
+          return false;
+
+        }
+        else if(this.age == 0){
+          alert("请输入宝宝年龄");
+          return false;
+        }
+        else if(!(/(^[1-9]\d*$)/.test(this.age))){
+          alert("请输入正确的宝宝年龄");
+          return false;
+
+        }
+        else{
+          alert(1)
+//          this.resgiter2()
+        }
+
+      },
+
+
+      resgiter2(){
         let that=this;
         this.$http.get('http://127.0.0.1/php.php',{
           params:{
@@ -97,7 +164,10 @@
             age:that.age,
           }
         }).then(function (res) {
-          console.log(res);
+          Toast({
+            message: '注册成功',
+            iconClass: 'icon el-icon-success'
+          });
         })
       }
     }
@@ -114,6 +184,9 @@
     height: 2000px;
     background: darkblue;
   }
+  #temp{
+    margin-top: 90px;
+  }
 
   /*面板*/
   #panel{
@@ -126,6 +199,7 @@
     /*box-shadow: -10px 20px 100px black;*/
     /*定位*/
     margin: 10px auto;
+    box-shadow: -2px 2px 60px #9aabb8;
   }
 
   .panel-header{
@@ -148,6 +222,7 @@
   .panel-content .user-pwd{
     margin-bottom: 15px;
     height: 40px;
+    color:silver;
 
     position: relative;
   }
@@ -181,8 +256,8 @@
 
   .panel-content .user-pwd input:focus{
     outline: none;
-    border: 1px solid orange;
-    box-shadow: 0 0 10px orange;
+    border: 1px solid #ec7a9d;
+    box-shadow: 0 0 10px #ec7a9d;
   }
 
   .setting a{

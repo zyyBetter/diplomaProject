@@ -33,8 +33,9 @@
         <el-col hidden-xs-only :sm="8" :md="8" :lg="10">
           <input placeholder="请搜索..." @click="change" @blur="restore" id="inp" class="hidden-sm-and-down" style="padding-left: 4px">
           <ul class="navlogin">
+            <li  id="protior" ></li>
             <li>
-              <router-link to="/login"><span>登录</span></router-link>
+              <router-link to="/login" id="login"><span>登录</span></router-link>
             </li>
             <li>
               <router-link to="/register">注册</router-link>
@@ -52,23 +53,6 @@
       <img src="../static/img/home/backTop.png" alt="">
       <span class="mask1" @click="backT"></span>
 
-     <!-- <ul class="top">
-        <li>学习中心</li>
-        <li>
-          <img src="../static/img/login/weixin.png">
-        </li>
-        <li>
-          <img src="../static/img/login/sina.png">
-        </li>
-        <li>
-          <img src="../static/img/login/qq.png">
-        </li>
-        <li id="backT">
-          &lt;!&ndash;回到顶部&ndash;&gt;
-          <i class="el-icon-arrow-up" ></i>
-        </li>
-
-      </ul>-->
 
 
     </div>
@@ -108,7 +92,7 @@
         <!--尾部的右边部分-->
       <div id="footer_right">
         <span class="clearfix">
-                    <img src="../static/img/1.png" alt="" >
+          <img src="../static/img/1.png" alt="" >
         </span>
         <div class="footer_right_img">
           <ul class="clearfix">
@@ -120,10 +104,10 @@
       </div>
       </div>
       <div id="footer_bottom">
-        <p>©2014-2017 杭州阔知网络科技有限公司 All Rights Reserved. 浙ICP备13006852号-1 浙B2-20160872</p>
+        <p>©2014-2017 ZYY网络科技有限公司 All Rights Reserved. 粤ICP备13006852号-1 粤0B2-20160872</p>
         <p class="gongan">
           <img src="../static/img/app/reference.png" alt="">
-          <span>浙公网安备 33010802003864号</span>
+          <span>粤公网安备 33010802003864号</span>
         </p>
       </div>
     </footer>
@@ -155,6 +139,18 @@
     });*/
   })
 
+
+  import {COUNTSTR,vm} from "./components/common/vm";
+  //接收父组件传过来的图片值
+  vm.$on(COUNTSTR,function (COUNTSTR){
+    alert(COUNTSTR);
+    var protior = document.getElementById('protior');
+    var login = document.getElementById('login');
+    protior.style.display = "block";
+    protior.style.backgroundImage = "url("+COUNTSTR+")";
+    login.style.display = "none";
+
+  })
   export default {
     name: 'app',
     methods: {
@@ -439,6 +435,16 @@
   #footer_bottom .gongan img{
     position: relative;
     top: 5px;
+  }
+
+  #protior{
+    margin-top:5px;
+    margin-left: 30px;
+  width: 40px;
+    height: 40px;
+    border-radius:50%;
+    -webkit-background-size: 100%;
+    background-size: 100%;
   }
 
 

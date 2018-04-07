@@ -32,16 +32,20 @@
 
    <div id="box">
 
-       <ul class="clearfix">
-         <li class="clearfix"  v-for="item in filteredData" @click="details(item.mes)">
+       <ul class="clearfix" >
+         <li class="clearfix"  v-for="item in filteredData" @click="details(item.mes)" >
            <img :src="item.src" alt="">
            <p style="font-size:16px;margin-right: 8px;float: left;width: 100%;text-align: left"></i>{{item.txt1}}</p>
            <p style="color: #9aabb8;text-align: left;"><span style="display:inline-block;border-radius:3px ;padding: 3px;background: #dfe5e9;font-size:10px;">原创</span><i class="el-icon-view" style="margin-right:5px;margin-left: 10px;"></i>{{item.txt2}}<i class="el-icon-star-on" style="margin-right:5px;margin-left: 10px;"></i>{{item.txt3}}<i class="el-icon-loading" style="margin-right:5px;margin-left: 10px;"></i>{{item.txt4}}</p>
          </li>
-       </ul>
-     </div>
 
-   <div id="submits" @click="getMore">点击加载 ...</div>
+       </ul>
+     <div   v-loading="loading"></div>
+
+
+   </div>
+
+   <div id="submits" @click="getMore"  > {{load}}</div>
    </div>
 
 
@@ -59,12 +63,15 @@
 <script>
 
     import $ from 'jquery';
-    import Detail from "./dingdang.vue"
+    import Detail from "./dingdang.vue";
+//    import { Indicator } from 'mint-ui';
 
 
   export default {
   data () {
     return {
+      load:"点击加载 ...",
+      loading:false,
       arrimg:"",
       mainshow:true,
       msg:"fire",
@@ -190,20 +197,22 @@
             this.message =  JSON.parse(res.bodyText);
             for(var i=0;i<this.message.length;i++){
               this.arrMess.push(this.message[i])
+              this.loading = false;
+              this.load = "点击加载 ..."
+
             }
 //            console.log(this.arrMess)
 
           },
           function (err) {
-
             console.log(err);
           }
         )
       },
       getMore(){
-
+        this.load = "加载中"
+        this.loading = true;
         this.num++;
-//        alert( this.num);
         this.getimg(this.num);
       }
 //
