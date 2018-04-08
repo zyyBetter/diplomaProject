@@ -140,28 +140,28 @@
 
   p{
     width: 100px;
-    height: 2000px;
+    /*height: 2000px;*/
     background: darkblue;
   }
 
   /*面板*/
   #panel{
     width:400px;
-    height: 500px;
+    height: 400px;
     background-color: white;
     /*重写*/
     text-align: left;
     border-radius: 5px;
 
-    box-shadow: -2px 2px 60px #9aabb8;
+    box-shadow: -2px 2px 60px #f3f5f2;
     /*定位*/
-    margin: 90px auto;
+    margin: 0 40%;
   }
 
   .panel-header{
     width:100%;
     height:64px;
-    background-color: #ec7a9d;
+    background-color: #475ee0;
     border-radius: 5px 5px 0 0;
     line-height: 64px;
     color:white;
@@ -201,8 +201,8 @@
 
   .panel-content .user-pwd input:focus{
     outline: none;
-    border: 1px solid #ec7a9d;
-    box-shadow: 0 0 10px #ec7a9d;
+    border: 1px solid #475ee0;
+    box-shadow: 0 0 10px #dfe5e9;
   }
 
   .setting a{
@@ -219,7 +219,7 @@
     margin: 15px 0;
     width: 100%;
     height: 38px;
-    background-color: #ec7a9d;;
+    background-color: #475ee0;;
     /*去除边框*/
     border: 0;
     font-size: 20px;
@@ -253,6 +253,18 @@
   .panel-footer img{
     width: 30px;
     vertical-align: middle;
+  }
+  #temp{
+    width: 100%;
+    height: 100%;
+    margin-bottom: -30px;
+    background: url("../../../static/img/login/bg.png") no-repeat 0 0;
+    -webkit-background-size:cover;
+    background-size: cover;
+    padding-top:150px;
+    padding-bottom:60px;
+    /*padding-top:90px;*/
+
   }
 
 </style>

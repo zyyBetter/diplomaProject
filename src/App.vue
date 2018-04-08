@@ -35,10 +35,10 @@
           <ul class="navlogin">
             <li  id="protior" ></li>
             <li>
-              <router-link to="/login" id="login"><span>登录</span></router-link>
+              <router-link to="/login" id="login"><span style="color:white">登录</span></router-link>
             </li>
             <li>
-              <router-link to="/register">注册</router-link>
+              <router-link to="/register" style="color:white">注册</router-link>
             </li>
           </ul>
         </el-col>
@@ -192,7 +192,7 @@
   nav {
     width: 100%;
     height: 50px;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 33, 212, 0.72);
     overflow: hidden;
     position: fixed;
     left: 0;
@@ -441,6 +441,7 @@
     margin-top:5px;
     margin-left: 30px;
   width: 40px;
+    display:none;
     height: 40px;
     border-radius:50%;
     -webkit-background-size: 100%;

@@ -175,7 +175,7 @@
         <ul class="list_bar02">
           <li v-for="item in arrGroom" style="overflow: hidden">
             <img :src="item.src" alt="" @click="sendGroom(item.id)">
-            <p style="width: 80%;height: 100%;background:rgba(255,255,255,0.6);margin: 0 auto;position: absolute;left: 10%;bottom: -80%;color:white;font-size: 20px;line-height: 50px;overflow: hidden">{{item.txt}}</p>
+            <p style="width: 80%;height: 100%;margin: 0 auto;position: absolute;left: 10%;bottom: -75%;color:white;font-size: 20px;line-height: 50px;background: rgb(0,0,0,0.5);overflow: hidden">{{item.txt}}</p>
           </li>
 
         </ul>
@@ -590,13 +590,15 @@
 //  2.0        tag图切换
           $("#bar02_title>li").mouseover(function () {
             var index = $(this).index();
+//            alert(index)
+            $("#bar02_title>li").eq(index).css({fontSize:'12px',fontWeight:"bolder",background:"blue",color:"white"}).siblings().css({fontSize:'12px',background:"white",color:'black'});
 
-            $("#bar02_top_bottom>li").css({display: "none"}).eq(index).css({display: "block"})
+//            $("#bar02_top_title>li").css({color: "#475ee0"})
           });
 
             $("#bar02_top_bottom>li").mouseover(function () {
               var index = $(this).index();
-              $("#bar02_title>li").css({fontSize:'16px'}).eq(index).css({fontSize:'18px',fontWeight:"bolder"});
+
             });
 
 
@@ -709,7 +711,7 @@
 
   #bar {
     /*background-image: url("../../../static/img/home/h_b.jpg");*/
-    margin-top: 250px;
+    margin-top: 200px;
     /*margin-right: 50px;*/
     padding-left: 20px;
     /*border: 1px solid pink;*/
@@ -842,11 +844,11 @@
     width: 28%;
     height: 100%;
     margin-top: 15px;
-    border: 1px solid pink;
-    box-shadow: 10px 10px 5px #ffe1e8;
+    border: 1px solid blue;
+    /*box-shadow: 10px 10px 5px #ffe1e8;*/
     border-radius: 20px;
     /*margin-left:10px;*/
-    background: #fdf8f8;
+    /*background: #fdf8f8;*/
     overflow: hidden;
     /*float: left;*/
     float: left;
@@ -861,6 +863,7 @@
   }
   #bar02_top ul {
     width: 100%;
+    /*margin: 10px auto;*/
     margin-left: 5%;
     margin-top: 5px;
     /*overflow: hidden;*/
@@ -871,19 +874,22 @@
     float: left;
     width: 30%;
     line-height: 40px;
-    margin-left: 2px;
+    margin-left: 6px;
     height: 40px;
     font-size: 18px;
-    background: #fff2f4;
     border-radius: 5px;
-    border: 2px solid #fbd2dd;
-    color: deeppink;
-    box-shadow: 5px 5px 2px #fbd2dd;
+    border: 1px solid #475ee0;
     cursor: pointer;
+    /*background: #475ee0;*/
+    /*color:white*/
 
   }
+ /* #bar02_title li:hover {
+    background: #475ee0;
+    color:white
+  }*/
 
-  #bar02_title li:hover {
+/*  #bar02_title li:hover {
     background: url("../../../static/img/home/a1.gif") repeat;
     background-size: cover;
     color: white;
@@ -892,7 +898,7 @@
     border: 1px solid #fff2f4;
     box-shadow: none;
 
-  }
+  }*/
 
   #bar02_top_center{
     width: 70%;
@@ -927,7 +933,7 @@
   @keyframes mymove {
     /*0% {bottom:-80%}*/
     0% {bottom:100%}
-    100% {bottom:-80%}
+    100% {bottom:-75%}
 
   }
 
@@ -958,7 +964,8 @@
 
   #bar02_top_bottom ul>li {
     line-height: 60px;
-    border-bottom: 1px dashed deeppink;
+    /*border: 2px solid #fbd2dd;*/
+    border-bottom: 1px dashed #475ee0;
     cursor: pointer;
   }
   #bar02_top_bottom ul>li:hover p{
@@ -988,8 +995,8 @@
     line-height:60px;
     /*margin-left: 30px;*/
     font-size: 25px;
-    border-left: 1px solid seagreen;
-    border-right: 1px solid seagreen;
+    /*border-left: 1px solid seagreen;*/
+    /*border-right: 1px solid seagreen;*/
 
   }
   .bar02_bottom_top:nth-of-type(1) span {
@@ -1084,12 +1091,14 @@
 
 
   #section {
-    margin-top: 50px;
+    margin-top: 65px;
     padding-left: 20px;
     border-radius: 20px;
     height: 100px;
-    border: 5px solid seagreen;
-    background: rgba(46, 139, 87, 0.1) url("../../../static/img/home/swiper_1.png");
+    color:white;
+    background: #475ee0;
+    /*border: 5px solid seagreen;*/
+    /*background: rgba(46, 139, 87, 0.1) url("../../../static/img/home/swiper_1.png");*/
     background-size: cover;
   }
 
@@ -1117,7 +1126,7 @@
     font-size: 20px;
     /*margin-left:30px;*/
     /*padding-left:30px;*/
-    border-left: 5px solid seagreen;
+    border-left: 1px solid white;
     width: 30%;
     margin-top: 5px;
 
@@ -1201,10 +1210,12 @@
   #footer{
     width: 98%;
     height: 280px;
-    background: #f8e3e8;
+    /*background: #475ee0;*/
     padding-top:20px;
     margin: 50px auto;
-    box-shadow: -15px 20px 20px #f8b4c8;
+    border: 1px solid #999;
+    /*color:white !important;*/
+    /*box-shadow: -15px 20px 20px #f8b4c8;*/
 
   }
   #footer_head{
@@ -1221,9 +1232,9 @@
   #footer_list{
     width: 90%;
     height: 150px;
-    /*background: darkblue;*/
     overflow: hidden;
     margin: 0 auto;
+    color:white
   }
   #footer_list li{
     width: 20%;
@@ -1234,7 +1245,6 @@
   .article_tag_second{
     height: 65%;
     width: 100%;
-    /*background:pink;*/
     position: absolute;
     left: 0;
     bottom: 0;

@@ -1,6 +1,15 @@
 <template>
  <div id="temp" class="clearfix">
 
+<!--
+   <div style="margin-top: 300px;">
+
+     <input class="Cover_three"  type="file" ref="coverImg"  @change="changeFile($event)" accept="image/*" placeholder="shangchaun" multiple />
+
+   </div>-->
+
+   <!---------------------------------------------------------------->
+
 <!--左边-->
    <div id="box_right" class="clearfix">
 
@@ -347,6 +356,41 @@ import pUpload from "./Photo_Uploader_Module.vue";
       },
     },
     methods:{
+
+      //获取input的属性对象
+//      changeFile(e){
+//
+//        var that=this
+//        let file =   e.target.files[0];
+//        if (window.FileReader) {
+//          var reader = new FileReader();
+//          reader.readAsDataURL(file);
+//          //监听文件读取结束后事件
+//          reader.onloadend = function (e) {
+//            that.HeadImageUrl=e.target.result;
+//            console.log(that.HeadImageUrl)
+//          };
+//        } ;
+//        that.CoverUrlStatus=false;
+//
+//
+//        //提交封面图片
+//        let param = new FormData(); //创建form对象
+//        param.append('file',file,file.name);//通过append向form对象添加数据
+//        param.append('chunk','0');//添加form表单中其他数据
+////        console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
+//        var url=that.GLOBAL.url+'/api/Pictures?uploadType=activityimg'
+//        axios.post(url,param)
+//          .then(response=>{
+//            console.log( that.GLOBAL.url+response.data.result.data[0]);
+//            that.headImage=that.GLOBAL.url+response.data.result.data[0]
+//          }).catch(error=>{
+//            console.log(error)
+//          }
+//        )
+//
+//      },
+
       open(item) {
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
           confirmButtonText: '确定',
@@ -445,7 +489,7 @@ get_save:function () {
       type:'get_save'
     }
   }).then(function (res) {
-    console.log(res.body);
+//    console.log(res.body);
     this.arrMes = res.body;
   })
 },
@@ -464,7 +508,7 @@ get_save:function () {
       del_img(item){
         var index =  this.addTextObj.indexOf(item)
         this.addTextObj.splice(index,1);
-        console.log(this.addTextObj);
+//        console.log(this.addTextObj);
 
       },
         onSubmit() {
@@ -492,7 +536,7 @@ get_save:function () {
            obj.contentType = 1;
            scope.addTextObj.push(obj);
            alert(scope.shareImageUrl);
-           console.log(scope.addTextObj)
+//           console.log(scope.addTextObj)
         },
 
 
@@ -965,7 +1009,16 @@ get_save:function () {
 
 
   }
-
+  .Cover_three{
+    position: absolute;
+    top:4%;
+    /*flex: 0;*/
+    width: 100%;
+    height: 20%;
+    background: red;
+    /*opacity: 0;*/
+    z-index: 999;
+  }
 
 
 </style>

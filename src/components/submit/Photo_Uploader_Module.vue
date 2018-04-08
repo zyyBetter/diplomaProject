@@ -199,7 +199,7 @@
 			handleClickUploadList(e) {
 				var tat = e.target
 				var self=this;
-				alert("11111111");
+//				alert("11111111");
 
 				while(!tat.classList.contains('weui-uploader__file') && tat) {
 					tat = tat.parentNode
@@ -272,7 +272,9 @@
 			}else{
 				self.quality = 0.6
 			}
-			weui.uploader('#' + self.a_id, {
+			weui.uploader('#' + self.a_id,
+
+        {
 //				上传的参数
 				url: 'http://oss.dyarea.com'+'/api/pictures?uploadType='+self.u_args,
 				auto: false,
@@ -332,7 +334,7 @@
 					console.log('--onSuccess--', this, ret)
 					self.count_num++
 					console.log('上传返回'+ret)
-					console.log('res.result.data[0]  :'+ret.result.data[0])
+//					console.log('res.result.data[0]  :'+ret.result.data[0])
 					//
 					self.clone.push({
 						imageUrl:ret.result.data[0],

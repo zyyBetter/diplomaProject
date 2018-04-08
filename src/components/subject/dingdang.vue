@@ -126,6 +126,7 @@
   created:function (){
          this.getmes();
     this.load();
+    console.log(this.childMsg);
   },
     methods:{
       getmes(){

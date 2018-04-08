@@ -370,12 +370,12 @@ import course from "../common/course.vue"
   }
   #mask{
     width: 100%;
-    height: 20px;
+    height: 10px;
     background-color: #e0e0e0;
     position: absolute;
     left: 0;
     bottom: 0;
-    background: greenyellow;
+    background: darkgrey;
 
   }
   #mask span{
