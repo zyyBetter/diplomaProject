@@ -1,15 +1,6 @@
 <template>
  <div id="temp" class="clearfix">
 
-<!--
-   <div style="margin-top: 300px;">
-
-     <input class="Cover_three"  type="file" ref="coverImg"  @change="changeFile($event)" accept="image/*" placeholder="shangchaun" multiple />
-
-   </div>-->
-
-   <!---------------------------------------------------------------->
-
 <!--左边-->
    <div id="box_right" class="clearfix">
 
@@ -204,21 +195,25 @@
          <!--显示图片-->
          <div class="must_fill_bar" style="position: relative;left: 0;top: 0;">
            <div class="" style="overflow:hidden;">
-             <div >
-               <li   class="userImg"  v-if="HeadImageUrl!==null" :style="{backgroundImage: 'url(' + HeadImageUrl + ')'}"  id="title_img">
+             <div  @click="coverTop">
+               <li   class="userImg"   :style="{backgroundImage: 'url(' + HeadImageUrl + ')'}"  id="title_img">
+
+                 <input class="Cover_three"  name="pic[]" multiple id="myinput"
+
+                        type="file" ref="coverImg"  @change="changeFile($event)"
+                        accept="image/*"  multiple />
+
                  <p style="text-align:center;line-height: 50vw;">
                  </p>
                </li>
              </div>
            </div>
 
+
+
            <!--上传图片-->
-           <!--<div class="uploadImg" v-show="!titleshow" >-->
+
            <div  class="uploadImg">
-             <p-upload   widths="true" @imgChange="getChange(1)" :low_quality="true" :no_count="true" :no_show="false"
-                         :upload_contain_id="'uploader'" upload_counter_id="uploadCount"
-                         upload_files_id="uploaderFiles" upload_input_id="uploaderInput" photos_number="1"
-                         upload_args="activityimg" ref="head" @doneStatus="getStatus(1)" ></p-upload>
            </div>
 
            <!-----------填写内容------>
@@ -239,19 +234,14 @@
 
                  <!--文字-->
                  <div @click="changText(item)"  class="text_fa" v-show="item.contentType==0" >
-                  <!-- <el-button type="text" @click="del_txt(item)"><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></el-button>-->
                    <span @click="del_txt(item)" class="text_del" ><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></span>
                    <p v-html="item.content" style="text-indent:2em;word-break:break-all"></p>
                  </div>
 
 
                  <!--图片-->
-                 <div   :style="{backgroundImage: 'url(' + item.content + ')'}"
-                      class="activite_pic"  v-show="item.contentType==1"
-                 >
+                 <div   :style="{backgroundImage: 'url(' + item.content + ')'}" class="activite_pic"  v-show="item.contentType==1">
                    <span class="img_del" @click="del_img(item)" ><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></span>
-
-                   <!--<img style="width: 100%;" :src="item.content" alt="">-->
                  </div>
                </li>
              </ul>
@@ -274,11 +264,11 @@
            <div style="background: url('http://oss.dyarea.com/upload_img/btn2.png'); background-size: 100% 100%;width: 70%;height: 60px;"  class="btn_up2"
                >
 
-             <!-------------------添加图片------------------------->
-             <p-upload  class="addimg" widths="true" @imgChange="addChange" :low_quality="true" :no_count="true"                                       :no_show="false"
-                        :upload_contain_id="'share1'" upload_counter_id="share2"
-                        upload_files_id="share3" upload_input_id="share4"                                           photos_number="1"
-                        upload_args="activityimg" ref="head1" @doneStatus="getStatus(3)"></p-upload>
+             <input type="file" name="pic1[]" multiple id="myinput1" @click="uploadIMg">
+                         <!-------------------添加图片------------------------->
+             <!--<input class="Cover_three"  name="pic1[]" multiple id="myinput1" type="file" ref="coverImg1"  accept="image/*"  multiple />-->
+                    <!--@change="changeFile1($event)"-->
+
 
            </div>
          </div>
@@ -331,7 +321,9 @@ import pUpload from "./Photo_Uploader_Module.vue";
         ishowText:false,//点击添加文字框是否显示
       arrMes :[],//获取列表发布的信息
       index1:0,
-      indexs:0
+      indexs:0,
+      HeadUrl:"",
+      ActUrl:""
     }
   },
   created:function (){
@@ -339,57 +331,91 @@ import pUpload from "./Photo_Uploader_Module.vue";
   },
     watch:{
 
-        add_nums:function (){
-            let scope=this;
-            //上传成功返回的路径
-            this.imgurls = scope.GLOBAL.oss +scope.$refs.head1.clone[scope.$refs.head1.clone.length-1].imageUrl;
 
-        },
 
-      upload_nums:function(){
-        let scope=this;
-      },
-
-      HeadImageUrl: function () {
-//
-        this.$refs.head.allUpload();
-      },
     },
     methods:{
 
+      uploadIMg(){
+        var fd = new FormData();
+        fd.append("pic", document.getElementById("myinput1").files[0]);
+//        alert(fd)
+
+        var url="http://127.0.0.1/diplomaProject/php/Upload/upload.php";
+        var scope=this
+        $.ajax({
+          url:url,
+          type:"post",
+          data:fd,
+          processData:false,
+          contentType:false,
+          success:function(res){
+            console.log( res);
+
+            scope.ActUrl = "http://127.0.0.1/diplomaProject/php/Upload/uploads/"+res.data.pic.savepath+res.data.pic.savename;
+            var obj = {};
+            obj.content = scope.ActUrl;
+            obj.contentType = 1;
+            scope.addTextObj.push(obj);
+//            alert(scope.shareImageUrl);
+//            alert( scope.ActUrl)
+
+          },
+          dataType:"json"
+        })
+
+
+
+      },
+      //用事件的方式触发input的click事件
+      coverTop() {
+        return this.$refs.coverImg.click();
+      },
+
       //获取input的属性对象
-//      changeFile(e){
-//
-//        var that=this
-//        let file =   e.target.files[0];
-//        if (window.FileReader) {
-//          var reader = new FileReader();
-//          reader.readAsDataURL(file);
-//          //监听文件读取结束后事件
-//          reader.onloadend = function (e) {
-//            that.HeadImageUrl=e.target.result;
-//            console.log(that.HeadImageUrl)
-//          };
-//        } ;
-//        that.CoverUrlStatus=false;
-//
-//
-//        //提交封面图片
-//        let param = new FormData(); //创建form对象
-//        param.append('file',file,file.name);//通过append向form对象添加数据
-//        param.append('chunk','0');//添加form表单中其他数据
-////        console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
-//        var url=that.GLOBAL.url+'/api/Pictures?uploadType=activityimg'
-//        axios.post(url,param)
-//          .then(response=>{
-//            console.log( that.GLOBAL.url+response.data.result.data[0]);
-//            that.headImage=that.GLOBAL.url+response.data.result.data[0]
-//          }).catch(error=>{
-//            console.log(error)
-//          }
-//        )
-//
-//      },
+      changeFile(e){
+//---------------获取图片的数据流------------------
+        var scope=this
+        let file =   e.target.files[0];
+        if (window.FileReader) {
+          var reader = new FileReader();
+          reader.readAsDataURL(file);
+          //监听文件读取结束后事件
+          reader.onloadend = function (e) {
+            scope.HeadImageUrl=e.target.result
+          };
+        } ;
+
+
+
+//     ---------获取图片的具体的信息,并上传到服务器,并返回--------
+
+        var fd = new FormData();
+        fd.append("pic", document.getElementById("myinput").files[0]);
+        console.log(fd)
+
+
+        var url="http://127.0.0.1/diplomaProject/php/Upload/upload.php";
+
+        $.ajax({
+          url:url,
+          type:"post",
+          data:fd,
+          processData:false,
+          contentType:false,
+          success:function(res){
+            console.log( res.data.pic);
+//            scope.HeadImageUrl = "http://127.0.0.1/diplomaProject/php/Upload/uploads/"+res.data.pic.savepath+res.data.pic.savename;
+//            alert(scope.HeadImageUrl)
+//            保存图片的地址以及图片的路径
+            scope.HeadUrl = res.data.pic.savepath+res.data.pic.savename;
+            alert(scope.HeadUrl)
+
+          },
+          dataType:"json"
+        })
+
+      },
 
       open(item) {
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
@@ -402,10 +428,6 @@ import pUpload from "./Photo_Uploader_Module.vue";
             message: '删除成功!',
 
           },
-//            this.del_txt(item)
-         /* var index =  this.addTextObj.indexOf(item)
-          this.addTextObj.splice(index,1);
-          event.stopPropagation()*/
 
           );
         }).catch(() => {
@@ -417,7 +439,11 @@ import pUpload from "./Photo_Uploader_Module.vue";
       },
     //提交发布的数据
       submitAll(){
-        if(!this.form.name){
+        alert(this.HeadUrl)
+        if(this.HeadUrl == ""){
+          this.$message('请输入标题图片');
+        }
+        else if(!this.form.name){
           this.$message('文章名称为空,请输入');
         }
         else if(this.addTextObj == ""){
@@ -435,7 +461,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
             type:'save',
             obj:JSON.stringify(that.addTextObj),
             name:that.form.name,
-            url:that.HeadImageUrl
+            url:that.HeadUrl
           }
         }).then(function(res){
         })
@@ -541,31 +567,17 @@ get_save:function () {
 
 
 
-        getChange(num) {
-//				标题图片
-        if(num == 1){
-          let scope = this;
-          let time1 = setTimeout(function () {
-            scope.HeadImageUrl = getComputedStyle(document.getElementById('uploaderFiles').getElementsByClassName('weui-uploader__file')[document.getElementById('uploaderFiles').getElementsByClassName('weui-uploader__file').length - 1], false).backgroundImage.split("(")[1].split(")")[0]
-            clearTimeout(time1)
-          }, 1000)
 
 
-
-        }
-
-
-
-      },
       getStatus(num) {
 
 //				标题图片
-        if(num == 1)
+       /* if(num == 1)
         {
           this.upload_nums++;
-        }
+        }*/
           //详情图片
-      else if(num == 3){
+      if(num == 3){
               this.add_nums++;
           }
 //
@@ -582,6 +594,7 @@ get_save:function () {
     display: block;
     padding-right: 30px;
     margin-top: 14px;
+    position: relative;
   }
   .uploadImg {
     width: 100%;
@@ -1011,12 +1024,13 @@ get_save:function () {
   }
   .Cover_three{
     position: absolute;
-    top:4%;
-    /*flex: 0;*/
+    top:0%;
+    left: 0;
+    flex: 0;
     width: 100%;
-    height: 20%;
+    height: 100%;
     background: red;
-    /*opacity: 0;*/
+    opacity: 0;
     z-index: 999;
   }
 
