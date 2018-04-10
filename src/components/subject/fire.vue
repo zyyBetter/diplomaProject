@@ -82,36 +82,36 @@
       dataArr : [
         {   //  1
           width:400,
-          top:20,
-          left:50,
+          top:100,
+          left:0,
           opacity:0.2,
           zIndex:2
         },
         {  // 2
           width:600,
-          top:70,
-          left:0,
+          top:60,
+          left:50,
           opacity:0.8,
           zIndex:3
         },
         {   // 3
-          width:800,
-          top:100,
-          left:200,
+          width:900,
+          top:10,
+          left:150,
           opacity:1,
           zIndex:4
         },
         {  // 4
           width:600,
-          top:70,
-          left:600,
+          top:60,
+          left:550,
           opacity:0.8,
           zIndex:3
         },
         {   //5
           width:400,
-          top:20,
-          left:750,
+          top:100,
+          left:800,
           opacity:0.2,
           zIndex:2
         }
@@ -223,7 +223,8 @@
 
 <style scoped>
   #temp{
-    width: 90%;
+    width: 100%;
+    background: #eff3f5;
   }
   section{
     width: 100%;
@@ -365,7 +366,7 @@
     height: 500px;
     margin: 30px auto;
     position: relative;
-   margin-left: -45px;
+   /*margin-left: -45px;*/
   }
   section ul{
     width: 100%;
@@ -377,6 +378,7 @@
     position: absolute;
     left: 200px;
     top: 0;
+    border: 3px solid darkblue;
   }
   section ul li img{
     width: 100%;

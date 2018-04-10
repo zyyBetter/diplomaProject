@@ -182,8 +182,9 @@
        <div class="hot_body" v-show="isshow1">
          <ul>
            <li v-for="item in arrMes">
-             <div :style="{backgroundImage: 'url(' + item.url + ')'}"></div>
-             <p>{{item.name}}</p>
+             <div :style="{backgroundImage: 'url(' +  uerimg(item.url) + ')'}" style="-webkit-background-size: 100%;background-size: 100%;width: 30%;float: left;"></div>
+             <p style="line-height: 30px;float: right;width: 60%;">{{item.name}}</p>
+             <p>{{item.time}}</p>
            </li>
          </ul>
        </div>
@@ -240,7 +241,7 @@
 
 
                  <!--图片-->
-                 <div   :style="{backgroundImage: 'url(' + item.content + ')'}" class="activite_pic"  v-show="item.contentType==1">
+                 <div   :style="{backgroundImage: 'url(' + uerimg(item.content) + ')'}" class="activite_pic"  v-show="item.contentType==1">
                    <span class="img_del" @click="del_img(item)" ><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></span>
                  </div>
                </li>
@@ -273,7 +274,7 @@
            </div>
          </div>
          <el-row>
-           <el-button type="success" @click="submitAll">成功按钮</el-button>
+           <el-button type="success" @click="submitAll">提交</el-button>
          </el-row>
        </div>
        </div>
@@ -323,7 +324,8 @@ import pUpload from "./Photo_Uploader_Module.vue";
       index1:0,
       indexs:0,
       HeadUrl:"",
-      ActUrl:""
+      ActUrl:"",
+      currentdate:""
     }
   },
   created:function (){
@@ -335,6 +337,10 @@ import pUpload from "./Photo_Uploader_Module.vue";
 
     },
     methods:{
+    uerimg(imgurl){
+      return  "http://127.0.0.1/diplomaProject/php/Upload/uploads/"+imgurl;
+
+    },
 
       uploadIMg(){
         var fd = new FormData();
@@ -352,7 +358,8 @@ import pUpload from "./Photo_Uploader_Module.vue";
           success:function(res){
             console.log( res);
 
-            scope.ActUrl = "http://127.0.0.1/diplomaProject/php/Upload/uploads/"+res.data.pic.savepath+res.data.pic.savename;
+//            scope.ActUrl = "http://127.0.0.1/diplomaProject/php/Upload/uploads/"+res.data.pic.savepath+res.data.pic.savename;
+            scope.ActUrl = res.data.pic.savepath+res.data.pic.savename;
             var obj = {};
             obj.content = scope.ActUrl;
             obj.contentType = 1;
@@ -439,7 +446,22 @@ import pUpload from "./Photo_Uploader_Module.vue";
       },
     //提交发布的数据
       submitAll(){
-        alert(this.HeadUrl)
+        //获取当前发布的时间
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+          month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+          strDate = "0" + strDate;
+        }
+        this.currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+          + " " + date.getHours() + seperator2 + date.getMinutes()
+          + seperator2 + date.getSeconds();
+        alert(  this.currentdate )
         if(this.HeadUrl == ""){
           this.$message('请输入标题图片');
         }
@@ -455,15 +477,18 @@ import pUpload from "./Photo_Uploader_Module.vue";
       },
       //真正提交所有的数据
       submitAll1(){
+        console.log(JSON.stringify(this.addTextObj));
         var that=this;
         this.$http.get('http://127.0.0.1/php.php',{
           params:{
             type:'save',
             obj:JSON.stringify(that.addTextObj),
             name:that.form.name,
-            url:that.HeadUrl
+            url:that.HeadUrl,
+            time:that.currentdate
           }
         }).then(function(res){
+          alert("保存成功")
         })
       },
     //点击修改文字
@@ -922,6 +947,9 @@ get_save:function () {
     border: 1px solid silver;
     width: 100%;
     height: 150px;
+    padding:25px;
+
+
   }
   .hot_body ul li div{
     width: 30%;

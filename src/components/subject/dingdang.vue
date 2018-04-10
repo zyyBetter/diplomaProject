@@ -49,8 +49,14 @@
 
        <!--展示-->
        <div id="commentOn">
+
          <ul>
            <li v-for="item in comments_list">
+             <img :src="headimg" alt="">
+             <img src="../../../static/img/uerPic/3.jpg" alt="">
+             <p>xxxxxxxxxxxxx{{headimg}}</p>
+
+
              <div class="commentOn_show">
                {{item.content}}
              </div>
@@ -114,21 +120,35 @@
 <script>
 
 
+  import {COUNTSTR,vm} from "../common/vm";
+  //接收父组件传过来的图片值
+
+
   export default {
   data () {
     return {
       msg:"",
       comments_list: [],
-      text: ''
+      text: '',
+      headimg:""
     }
   },
     props: ['childMsg'],
   created:function (){
          this.getmes();
     this.load();
-    console.log(this.childMsg);
+//    接收登录后传送过来的信息
+    vm.$on(COUNTSTR,function (COUNTSTR){
+      this.headimg = COUNTSTR;
+     console.log(this.headimg)
+
+    })
   },
+    watch:{
+
+    },
     methods:{
+
       getmes(){
 //        console.log(this.childMsg)
       },
@@ -160,8 +180,13 @@
               var m = date.getMinutes() + ':';
               var s = date.getSeconds();
               this.comments_list[i].time = Y + M + D + h + m + s;
+
+
+//              ---------------------------
             }
-            console.log(this.comments_list);
+            this.headimg = COUNTSTR;
+
+            console.log(this.headimg);
           }
         )
       },
