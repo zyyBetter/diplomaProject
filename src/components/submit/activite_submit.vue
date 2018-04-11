@@ -1,4 +1,6 @@
 <template>
+
+  <div style="background: #eff3f5;margin-bottom: -50px;">
  <div id="temp" class="clearfix">
 
 <!--左边-->
@@ -154,14 +156,13 @@
 
    <div id="box_left">
      <!--轮播图-->
-     <slider id="sliders" :child-msg="arrimg"></slider>
+     <slider id="sliders" :child-msg="arrimg" v-show="isshow_slider"></slider>
 
      <!--评论区域-->
      <div id="comment" class="clearfix">
-
+       <p class="topic">【最热话题】</p>
 
        <div  id="hotcom" class="clearfix">
-         <p style="font-size: 20px;color:orange;text-align: left">【最热话题】</p>
          <div class="hot_Top clearfix" >
            <div class="hot_Top_left">
              <img src="../../../static/img/submit/1.jpg" alt="">
@@ -180,43 +181,39 @@
        </div>
 
        <div class="hot_body" v-show="isshow1">
+         <p class="topic">【所有话题】</p>
          <ul>
-           <li v-for="item in arrMes">
-             <div :style="{backgroundImage: 'url(' +  uerimg(item.url) + ')'}" style="-webkit-background-size: 100%;background-size: 100%;width: 30%;float: left;"></div>
-             <p style="line-height: 30px;float: right;width: 60%;">{{item.name}}</p>
-             <p>{{item.time}}</p>
+           <li v-for="item in arrMes" style="overflow: hidden;overflow: hidden">
+             <div :style="{backgroundImage: 'url(' +  uerimg(item.url) + ')'}" class="head"></div>
+             <div style="float: left;width: 65%;margin-left: 5%;" >
+               <div :style="{backgroundImage: 'url(' +  uerimg1(item.image) + ')'}" alt=""  class="personimg"></div>
+               <span class="headTitle">{{item.name}}</span>
+               <p>{{item.time}}</p>
+             </div>
            </li>
          </ul>
        </div>
 
 
        <!--发送信息-->
-       <div v-show="isshow2" class="mainbody"  style="min-height: 100vh;margin-top: -10px;margin-bottom: 30px;">
+       <div v-show="isshow2" class="mainbody"  >
          <!--第一页-->
          <!--显示图片-->
          <div class="must_fill_bar" style="position: relative;left: 0;top: 0;">
            <div class="" style="overflow:hidden;">
-             <div  @click="coverTop">
                <li   class="userImg"   :style="{backgroundImage: 'url(' + HeadImageUrl + ')'}"  id="title_img">
-
                  <input class="Cover_three"  name="pic[]" multiple id="myinput"
-
-                        type="file" ref="coverImg"  @change="changeFile($event)"
+                        type="file" ref="coverImg"  @click="changeFile($event)"
                         accept="image/*"  multiple />
-
                  <p style="text-align:center;line-height: 50vw;">
                  </p>
                </li>
-             </div>
            </div>
-
-
 
            <!--上传图片-->
 
            <div  class="uploadImg">
            </div>
-
            <!-----------填写内容------>
            <el-form ref="form" :model="form" label-width="80px" style="margin-top: 30px;">
              <el-form-item label="文章名称">
@@ -229,10 +226,7 @@
 
            <div>
              <ul class="up_list" id="up_list">
-
-
                <li v-for="(item,index) in addTextObj">
-
                  <!--文字-->
                  <div @click="changText(item)"  class="text_fa" v-show="item.contentType==0" >
                    <span @click="del_txt(item)" class="text_del" ><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></span>
@@ -241,8 +235,9 @@
 
 
                  <!--图片-->
-                 <div   :style="{backgroundImage: 'url(' + uerimg(item.content) + ')'}" class="activite_pic"  v-show="item.contentType==1">
+                 <div    class="activite_pic"  v-show="item.contentType==1">
                    <span class="img_del" @click="del_img(item)" ><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></span>
+                 <img :src="uerimg(item.content)" alt="" style="width: 50%;margin: 20px auto;">
                  </div>
                </li>
              </ul>
@@ -265,11 +260,8 @@
            <div style="background: url('http://oss.dyarea.com/upload_img/btn2.png'); background-size: 100% 100%;width: 70%;height: 60px;"  class="btn_up2"
                >
 
-             <input type="file" name="pic1[]" multiple id="myinput1" @click="uploadIMg">
+             <input type="file" name="pic1[]" multiple id="myinput1" @click="uploadIMg" style="opacity: 0">
                          <!-------------------添加图片------------------------->
-             <!--<input class="Cover_three"  name="pic1[]" multiple id="myinput1" type="file" ref="coverImg1"  accept="image/*"  multiple />-->
-                    <!--@change="changeFile1($event)"-->
-
 
            </div>
          </div>
@@ -280,9 +272,9 @@
        </div>
    </div>
      </div>
+  </div>
 </template>
 <script>
-//  import weui from '../../static/js/weui.min.js'
 //  import $ from 'jquery'
 import slider from "../common/slider.vue"
 
@@ -300,7 +292,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
         "../../../static/img/home/slider09.jpg",
         "../../../static/img/home/slider06.jpg",
       ],
-
+      isshow_slider:true,
       isshow1:true,
       isshow2:false,
       msg:"dingdang",
@@ -325,52 +317,45 @@ import pUpload from "./Photo_Uploader_Module.vue";
       indexs:0,
       HeadUrl:"",
       ActUrl:"",
-      currentdate:""
+      currentdate:"",
+      personlimg:""
     }
   },
   created:function (){
     this.get_save()
   },
     watch:{
-
-
-
     },
-    methods:{
-    uerimg(imgurl){
-      return  "http://127.0.0.1/diplomaProject/php/Upload/uploads/"+imgurl;
+    methods: {
+      uerimg(imgurl) {
+        return "http://127.0.0.1/diplomaProject/php/Upload/uploads/" + imgurl;
+      },
+      uerimg1(imgurl) {
+        return "http://127.0.0.1/diplomaProject/" + imgurl;
+      },
 
-    },
-
-      uploadIMg(){
+      uploadIMg() {
         var fd = new FormData();
         fd.append("pic", document.getElementById("myinput1").files[0]);
-//        alert(fd)
-
-        var url="http://127.0.0.1/diplomaProject/php/Upload/upload.php";
-        var scope=this
+        var url = "http://127.0.0.1/diplomaProject/php/Upload/upload.php";
+        var scope = this
         $.ajax({
-          url:url,
-          type:"post",
-          data:fd,
-          processData:false,
-          contentType:false,
-          success:function(res){
-            console.log( res);
-
-//            scope.ActUrl = "http://127.0.0.1/diplomaProject/php/Upload/uploads/"+res.data.pic.savepath+res.data.pic.savename;
-            scope.ActUrl = res.data.pic.savepath+res.data.pic.savename;
+          url: url,
+          type: "post",
+          data: fd,
+          processData: false,
+          contentType: false,
+          success: function (res) {
+            console.log(res);
+            scope.ActUrl = res.data.pic.savepath + res.data.pic.savename;
             var obj = {};
             obj.content = scope.ActUrl;
             obj.contentType = 1;
             scope.addTextObj.push(obj);
-//            alert(scope.shareImageUrl);
-//            alert( scope.ActUrl)
 
           },
-          dataType:"json"
+          dataType: "json"
         })
-
 
 
       },
@@ -380,50 +365,39 @@ import pUpload from "./Photo_Uploader_Module.vue";
       },
 
       //获取input的属性对象
-      changeFile(e){
+      changeFile(e) {
 //---------------获取图片的数据流------------------
-        var scope=this
-        let file =   e.target.files[0];
+        var scope = this
+        let file = e.target.files[0];
         if (window.FileReader) {
           var reader = new FileReader();
           reader.readAsDataURL(file);
           //监听文件读取结束后事件
           reader.onloadend = function (e) {
-            scope.HeadImageUrl=e.target.result
+            scope.HeadImageUrl = e.target.result
           };
-        } ;
-
-
-
+        };
 //     ---------获取图片的具体的信息,并上传到服务器,并返回--------
-
         var fd = new FormData();
         fd.append("pic", document.getElementById("myinput").files[0]);
         console.log(fd)
-
-
-        var url="http://127.0.0.1/diplomaProject/php/Upload/upload.php";
-
+        var url = "http://127.0.0.1/diplomaProject/php/Upload/upload.php";
         $.ajax({
-          url:url,
-          type:"post",
-          data:fd,
-          processData:false,
-          contentType:false,
-          success:function(res){
-            console.log( res.data.pic);
-//            scope.HeadImageUrl = "http://127.0.0.1/diplomaProject/php/Upload/uploads/"+res.data.pic.savepath+res.data.pic.savename;
-//            alert(scope.HeadImageUrl)
+          url: url,
+          type: "post",
+          data: fd,
+          processData: false,
+          contentType: false,
+          success: function (res) {
+            console.log(res.data.pic);
 //            保存图片的地址以及图片的路径
-            scope.HeadUrl = res.data.pic.savepath+res.data.pic.savename;
-            alert(scope.HeadUrl)
+            scope.HeadUrl = res.data.pic.savepath + res.data.pic.savename;
 
           },
-          dataType:"json"
+          dataType: "json"
         })
 
       },
-
       open(item) {
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
           confirmButtonText: '确定',
@@ -431,11 +405,9 @@ import pUpload from "./Photo_Uploader_Module.vue";
           type: 'warning'
         }).then(() => {
           this.$message({
-            type: 'success',
-            message: '删除成功!',
-
-          },
-
+              type: 'success',
+              message: '删除成功!',
+            },
           );
         }).catch(() => {
           this.$message({
@@ -444,8 +416,8 @@ import pUpload from "./Photo_Uploader_Module.vue";
           });
         });
       },
-    //提交发布的数据
-      submitAll(){
+      //提交发布的数据
+      submitAll() {
         //获取当前发布的时间
         var date = new Date();
         var seperator1 = "-";
@@ -461,38 +433,39 @@ import pUpload from "./Photo_Uploader_Module.vue";
         this.currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
           + " " + date.getHours() + seperator2 + date.getMinutes()
           + seperator2 + date.getSeconds();
-        alert(  this.currentdate )
-        if(this.HeadUrl == ""){
+        alert(this.currentdate)
+        if (this.HeadUrl == "") {
           this.$message('请输入标题图片');
         }
-        else if(!this.form.name){
+        else if (!this.form.name) {
           this.$message('文章名称为空,请输入');
         }
-        else if(this.addTextObj == ""){
+        else if (this.addTextObj == "") {
           this.$message('请输入文章的内容');
         }
-        else{
+        else {
           this.submitAll1()
         }
       },
       //真正提交所有的数据
-      submitAll1(){
+      submitAll1() {
         console.log(JSON.stringify(this.addTextObj));
-        var that=this;
-        this.$http.get('http://127.0.0.1/php.php',{
-          params:{
-            type:'save',
-            obj:JSON.stringify(that.addTextObj),
-            name:that.form.name,
-            url:that.HeadUrl,
-            time:that.currentdate
+        var that = this;
+        this.$http.get('http://127.0.0.1/php.php', {
+          params: {
+            type: 'save',
+            obj: JSON.stringify(that.addTextObj),
+            name: that.form.name,
+            url: that.HeadUrl,
+            time: that.currentdate,
+            image: that.personlimg, //上传当前用户的头像,
           }
-        }).then(function(res){
+        }).then(function (res) {
           alert("保存成功")
         })
       },
-    //点击修改文字
-      changText(txt){
+      //点击修改文字
+      changText(txt) {
         event.stopPropagation();
         this.ishowText = true;
         this.index1 = this.addTextObj.indexOf(txt);
@@ -501,130 +474,112 @@ import pUpload from "./Photo_Uploader_Module.vue";
         this.indexs = -1;
 
       },
-    //点击提交文字
-      finish(mes){
-        if(this.indexs == -1){
+      //点击提交文字
+      finish(mes) {
+        if (this.indexs == -1) {
           this.addTextObj[this.index1].content = mes;
           this.index1 = 0;
           this.indexs = 0
           this.ishowText = false;
         }
-        else if(!mes){
+        else if (!mes) {
           this.ishowText = false;
           alert("请输入内容")
           return false;
-
-
         }
-        else{
+        else {
           let scope = this;
           var obj = {};
           obj.content = mes;
           obj.contentType = 0;
           scope.addTextObj.push(obj);
           scope.ishowText = false;
-
         }
-
-        this.form.desc ="";
+        this.form.desc = "";
 
 
       },
-    //点击添加文字
-      addText(){
+      //点击添加文字
+      addText() {
         this.ishowText = true;
       },
-get_save:function () {
-  this.$http.get('http://127.0.0.1/php.php',{
-    params:{
-      type:'get_save'
-    }
-  }).then(function (res) {
-//    console.log(res.body);
-    this.arrMes = res.body;
-  })
-},
+      get_save: function () {
+        this.$http.get('http://127.0.0.1/php.php', {
+          params: {
+            type: 'get_save'
+          }
+        }).then(function (res) {
+          this.arrMes = res.body;
+          console.log(this.arrMes);
+        })
+      },
       //删除字体
-      del_txt(txt){
-//        alert(1)
-
-        var index =  this.addTextObj.indexOf(item)
-        this.addTextObj.splice(index,1);
+      del_txt(txt) {
+        var index = this.addTextObj.indexOf(item)
+        this.addTextObj.splice(index, 1);
         event.preventDefault()
         event.stopPropagation();
 
         return false;
       },
 //    删除图片
-      del_img(item){
-        var index =  this.addTextObj.indexOf(item)
-        this.addTextObj.splice(index,1);
-//        console.log(this.addTextObj);
+      del_img(item) {
+        var index = this.addTextObj.indexOf(item)
+        this.addTextObj.splice(index, 1);
 
       },
-        onSubmit() {
-            console.log('submit!');
-        },
-    //点击发布
-      submit_activite(){
-        this.isshow1 = false;
-        this.isshow2 = true;
-
+      onSubmit() {
+        console.log('submit!');
       },
-        //增加详情图片
-        addChange(){
-            let scope = this;
-            let time1 = setTimeout(function () {
-                scope.shareImageUrl = getComputedStyle(document.getElementById("share3").getElementsByClassName('weui-uploader__file')[document.getElementById('share3').getElementsByClassName('weui-uploader__file').length - 1], false).backgroundImage.split("(")[1].split(")")[0];
-                clearTimeout(time1);
-            }, 1000)
 
-          if(!scope.shareImageUrl){
-              return false;
+      //提醒弹框
+      open() {
+        this.$alert('请登录账号', {
+          confirmButtonText: '确定',
+          callback: action => {
+            this.$router.push("/login");
           }
-          var obj = {};
-            obj.content = scope.shareImageUrl;
-           obj.contentType = 1;
-           scope.addTextObj.push(obj);
-           alert(scope.shareImageUrl);
-//           console.log(scope.addTextObj)
-        },
+        });
+      },
 
+      //点击发布
+      submit_activite() {
 
+        //获取本地数据,是否有登录的
+        this.isshow_slider = false;
+        var data = JSON.parse(localStorage.getItem('user_mes'));
+        this.personlimg = data.image; //获取当前用户的头像
+        if (data == null) {
+          this.open();
+        }
+        else {
+          this.isshow1 = false;
+          this.isshow2 = true;
 
+        }
 
-
-      getStatus(num) {
-
-//				标题图片
-       /* if(num == 1)
-        {
-          this.upload_nums++;
-        }*/
-          //详情图片
-      if(num == 3){
-              this.add_nums++;
-          }
-//
       },
     }
 }
 </script>
 
 <style scoped>
+  #temp{
+    padding-top: 60px;
+    background: #eff3f5;
+    padding-bottom:70px;
+  }
   .userImg {
     width: 100%;
     height: 200px;
     background-size: 100% 100%;
     display: block;
-    padding-right: 30px;
     margin-top: 14px;
     position: relative;
   }
   .uploadImg {
     width: 100%;
     position: absolute;
-    /*margin-top: -58px;*/
     top: 0%;
     left: 0;
     height: 300px;
@@ -634,12 +589,8 @@ get_save:function () {
   /*左边的盒子*/
   #box_left {
     width: 73%;
-    /*height: 1000px;*/
-    border: 1px solid seagreen;
     box-sizing: border-box;
     float: right;
-    /*padding-top: -100px;*/
-    /*background:darkmagenta;*/
   }
   #sliders{
     margin-top: 0px;
@@ -650,20 +601,12 @@ get_save:function () {
   /*评论区域*/
   #comment {
     width: 100%;
-    /*height: 900px;*/
     margin-top: 50px;
-    /*background:lightgreen;*/
-    /*margin-top: -600px;*/
-
   }
 
   .takeComment {
-    /*width: 100%;*/
-    /*height: 200px;*/
     padding-top: 20px;
     background: #f3f8fd;
-    border: 1px solid silver;
-    /*border: 1px solid silver;*/
 
   }
 
@@ -672,26 +615,21 @@ get_save:function () {
     height: 130px;
     resize: none;
     color: grey;
-    border: 1px solid seagreen;
+    /*border: 1px solid seagreen;*/
     padding-top: 30px;
   }
 
   #btn_send {
-    /*margin-top: 20px;*/
   }
 
   .btns {
     margin-right: 40px;
     float: right;
     display: inline-block;
-    /*width: 60px;*/
-    /*background: deeppink;*/
   }
 
   .btns > span {
     display: inline-block;
-    /*margin-bottom:90px;*/
-    /*line-height: 40px;*/
     position: relative;
     top: -10px;
     color: gray;
@@ -701,7 +639,6 @@ get_save:function () {
   #commentOn {
     width: 100%;
     height: 600px;
-    /*background: darkblue;*/
     margin-top: 20px;
 
   }
@@ -712,19 +649,17 @@ get_save:function () {
 
   #commentOn ul li {
     width: 90%;
-    /*background: #f8e3e8;*/
     height: 150px;
     padding-top: 15px;
     margin: 0 auto;
-    border: 1px solid silver;
+    /*border: 1px solid silver;*/
 
   }
 
   #commentOn .commentOn_show {
     width: 100%;
     height: 80px;
-    /*background: darkcyan;*/
-    border: 1px solid silver;
+    /*border: 1px solid silver;*/
 
   }
 
@@ -745,7 +680,6 @@ get_save:function () {
     width: 30%;
     height: 100%;
     float: right;
-    /*background: darkmagenta;*/
   }
 
   #commentOn .commentOn_event > span {
@@ -779,19 +713,17 @@ get_save:function () {
   /*右边的盒子*/
   #box_right {
     width: 25%;
-    /*height: 1000px*/
-    /*border: 1px solid seagreen;*/
     box-sizing: border-box;
     float: left;
-    /*overflow: hidden;*/
   }
 
   #box_right .ri_top,
   #box_right .ri_bottom {
-    border: 3px solid #c0c0c0;
     width: 100%;
     height: 650px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    background: white;
+
   }
 
   #box_right .ri_top .ri_title,
@@ -826,7 +758,6 @@ get_save:function () {
   #box_right .ri_bottom .ri_list {
     width: 100%;
     height: 550px;
-    /*background: pink;*/
     overflow: hidden;
   }
 
@@ -843,9 +774,6 @@ get_save:function () {
   #box_right .ri_bottom .ri_list li:hover {
     color: #20b573;
     cursor: pointer;
-    /*font-style: oblique;*/
-    /*font-style: oblique;*/
-
   }
 
   #box_right .ri_top .ri_list li span,
@@ -883,12 +811,12 @@ get_save:function () {
   }
   #hotcom{
     width: 100%;
+    background:white;
+
   }
   #hotcom .hot_Top{
     width: 100%;
     padding:20px 0;
-    border-top: 1px solid silver;
-    border-bottom: 1px solid silver;
     position: relative;
   }
   #hotcom .hot_Top .hot_Top_left{
@@ -934,8 +862,13 @@ get_save:function () {
   .hot_body{
     margin-top: 30px;
     width: 100%;
-    height: 1000px;
-    /*background: pink;*/
+  }
+  .topic{
+   font-size: 20px;
+    color:orange;
+    text-align: left;
+    background: white;
+    margin-bottom: 2px;
   }
 
 
@@ -944,16 +877,17 @@ get_save:function () {
     height: 100%;
   }
   .hot_body ul li{
-    border: 1px solid silver;
     width: 100%;
-    height: 150px;
+    height: 180px;
     padding:25px;
-
-
+    margin-top:10px;
+    background:white;
   }
-  .hot_body ul li div{
+  .hot_body ul li .head{
     width: 30%;
-    height: 100px;
+    background-size: 100% auto;
+    float: left;
+    height: 100%;
   }
 
 
@@ -969,7 +903,6 @@ get_save:function () {
   .up_list  {
     width: 100%;
     height: 100%;
-    /*padding-bottom: 6vw;*/
     background: #ffffff;
 
 
@@ -983,7 +916,6 @@ get_save:function () {
     width: 85%;
     padding: 5%;
     padding-top: 0;
-    /*margin-bottom:-20px;*/
     margin: 0 auto;
 
   }
@@ -1043,7 +975,6 @@ get_save:function () {
     height: 300px;
     -webkit-background-size: contain;
     background-size: contain;
-    /*opacity: 0.5;*/
     background: no-repeat;
     position: relative;
     margin: 10px auto;
@@ -1061,6 +992,24 @@ get_save:function () {
     opacity: 0;
     z-index: 999;
   }
+  .mainbody{
+    margin-top: 10px;
+    margin-bottom: 30px;
+    background: white;
+  }
 
+ .personimg{
+   width: 50px !important;
+   height: 50px !important;
+   border-radius: 50%;
+   background-size: 100%;
+ }
+  .headTitle{
+   line-height: 30px;
+    width: 30%;
+    position: relative;
+    top: -20%;
+
+  }
 
 </style>

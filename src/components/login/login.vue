@@ -31,7 +31,7 @@
          <a href="#" class="pull-right">忘记密码?</a>
        </div>
        <!--登录按钮-->
-       <button class="login-btn" @click="login">登&nbsp;录</button>
+       <button class="login-btn" @click="login" @keyup.enter="login">登&nbsp;录</button>
        <!--立即注册-->
        <div class="reg">
          还没账号?&nbsp;&nbsp;
@@ -47,7 +47,7 @@
      </div>
    </div>
 
-   <Icon type="checkmark"></Icon>
+   <!--<Icon type="checkmark"></Icon>-->
 
 
 
@@ -67,7 +67,8 @@
         user:"",
         password:"",
         mes:"",
-       img:""
+       img:"",
+      image:""//头像
     }
   },
   created:function (){
@@ -88,7 +89,6 @@
       },
 
       login(){
-//          alert("登录")
           var obj ={};
           obj.user = this.user;
           obj.password = this.password;
@@ -107,6 +107,16 @@
               }else{
                 for(var i=0;i<res.body.length;i++){
                   if(res.body[i].psw==obj.password){
+                    this.image = res.body[i].image;  //获取头像的图片
+
+
+                    //设置一个对象存放数据,把登录的信息传放在临时存储中
+                    let obj = {};
+                    obj.name =  this.user;
+                    obj.image =  this.image;
+                    localStorage.setItem('user_mes', JSON.stringify(obj));
+                    console.log(JSON.stringify(obj));
+
                     Toast({
                       message: '登录成功',
                       iconClass: 'icon el-icon-success',

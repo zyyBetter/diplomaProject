@@ -80,7 +80,8 @@
       age:'',
       tel:'',
       pwd:'',
-      pwd2:''
+      pwd2:'',
+      image:"uerPic/10.jpg"
     }
   },
   created:function (){
@@ -146,8 +147,7 @@
 
         }
         else{
-          alert(1)
-//          this.resgiter2()
+          this.resgiter2()
         }
 
       },
@@ -162,6 +162,7 @@
             tel:that.tel,
             pwd:that.pwd,
             age:that.age,
+            image:that.image,
           }
         }).then(function (res) {
           Toast({

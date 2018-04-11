@@ -131,12 +131,6 @@
         $('.rightWall').hide(500);
       }
     });
-
-    //返回顶部点击事件
-   /* $('#backT').click(function () {
-//      $("#app").animate({scrollTop: 0}, 600)
-      window.scrollTo(0,0);
-    });*/
   })
 
 
@@ -167,9 +161,6 @@
         window.scrollTo(0, 0);
       }
     }
-
-
-
   }
 </script>
 
@@ -203,7 +194,6 @@
 
   #imgs {
     height: 30px;
-    /*width: 100px;*/
     margin-top: 10px;
   }
 
@@ -225,7 +215,6 @@
     border-radius: 6px;
     float: left;
     margin-left: 150px;
-    /*margin-right:150px;*/
     transition: all 0.5s ease;
     margin-top: 10px;
   }
@@ -240,8 +229,6 @@
   .navlogin {
     width: 100%;
     height: 100%;
-    /*margin-left:100px;*/
-
   }
 
   .navlogin li {
@@ -258,9 +245,6 @@
     bottom: 30px;
     right:26px;
     opacity: 0.6;
-    /*padding-top: 60px;*/
-    /*padding-bottom: 60px;*/
-    /*margin-bottom: 60px;*/
   }
   .rightWall:hover {
     opacity:1;
@@ -278,7 +262,6 @@
   }
 
   .rightWall ul li {
-    /*margin-top:;*/
     width: 100%;
     height: 20%;
 
@@ -295,8 +278,6 @@
   }
 
   .navlogin {
-    /*width: 400px;*/
-    /*float: right;*/
   }
 
   .el-icon-arrow-up {
@@ -307,17 +288,12 @@
     height: 200px;
     margin-top:30px;
     background:  url("../static/img/app/f_bg.jpg") repeat-x ;
-    /*background: #583a46;*/
-    /*overflow: hidden;*/
   }
   #footer_all{
     width: 100%;
     height: 100%;
-    /*background: darkmagenta;*/
-    /*margin: 0 auto;*/
   }
   .footer_left{
-    /*background: darkcyan;*/
     width: 60%;
     height: 100%;
     float: left;
@@ -342,26 +318,16 @@
 
 
   #footer_right{
-    /*background: white;*/
     width: 40%  ;
     height: 100%  ;
     float: right;
-    /*background: salmon;*/
-
   }
   #footer_right span{
     width: 233px;
     margin-left:40px;
-
     display: inline-block;
-    /*margin-top:30px;*/
     margin-top: 30px ;
     float: left;
-    /*background:salmon;*/
-    /*transform: translateX(-50px);*/
-
-
-
   }
   #footer_right>img{
     width: 100% ;
@@ -372,27 +338,19 @@
   .footer_right_img {
     width: 50% ;
     margin-top: 40px ;
-    /*background: chartreuse;*/
-    /*border: 6px solid seagreen;*/
     margin-left:50px;
 
   }
   .footer_right_img li{
     float: left;
     margin-left: 20px;
-    /*padding-left:20px;*/
     padding-top:30px;
-
-
-
   }
   .footer_right_img li img{
     width: 40px;
   }
   .footer_right_img li img:hover{
     animation: move 0.5s;
-
-    /*tr*/
   }
   /*底部图片的旋转放大动画*/
   @keyframes move {
@@ -428,7 +386,6 @@
   #footer_bottom .gongan{
     width: 15%;
     height: 30px;
-    /*margin:10px ;*/
     margin:15px 35%;
     color: #f5f5f5;
   }
@@ -447,7 +404,5 @@
     -webkit-background-size: 100%;
     background-size: 100%;
   }
-
-
 
 </style>
