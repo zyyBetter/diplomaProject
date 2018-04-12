@@ -3,13 +3,13 @@
     <!--头部的导航栏-->
     <nav>
       <el-row :gutter="10">
-        <el-col class="hidden-sm-and-down" :md="4" :lg="4">
+        <el-col class="hidden-sm-and-down" :md="3" :lg="3">
 
           <img src="../static/img/1.png" alt="" id="imgs">
 
         </el-col>
 
-        <el-col :xs="24" :sm="16" :md="12" :lg="10">
+        <el-col :xs="24" :sm="16" :md="15" :lg="12">
           <ul class="navbar">
             <li>
               <router-link to="/home">首页</router-link>
@@ -18,19 +18,22 @@
               <router-link to="/lesson?lesson=music">课程</router-link>
             </li>
             <li>
-              <router-link to="/active_submit">活动</router-link>
+              <router-link to="/active_submit">音乐</router-link>
 
             </li>
             <li>
-              <router-link to="/comments">评论</router-link>
+              <router-link to="/comments">插画</router-link>
             </li>
             <li>
-              <router-link to="/shopcar">购物车</router-link>
+              <router-link to="/comments">娱乐</router-link>
+            </li>
+            <li>
+              <router-link to="/shopcar">分享</router-link>
             </li>
 
           </ul>
         </el-col>
-        <el-col hidden-xs-only :sm="8" :md="8" :lg="10">
+        <el-col hidden-xs-only :sm="8" :md="6" :lg="9">
           <input placeholder="请搜索..." @click="change" @blur="restore" id="inp" class="hidden-sm-and-down" style="padding-left: 4px">
           <ul class="navlogin">
             <li  id="protior" ></li>
@@ -198,7 +201,7 @@
   }
 
   .navbar li {
-    width: 20%;
+    width: 16%;
     height: 100%;
     float: left;
     color: white;

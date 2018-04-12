@@ -299,65 +299,61 @@
         <div class="bar_bottom_slider"  id="bar02_right01">
           <div class="bar02_bottom_top">
             <!--<span>专题</span>-->
-            <span>活动</span>
+            <span>链接</span>
           </div>
-          <ul>
-            <li>
-              <router-link to="">
-                <img src="../../../static/img/home/act1.jpg" alt="">
-                <p>我的圣诞我做主,环境创建</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="../../../static/img/home/act2.jpg" alt="">
-                <p>师乐汇感恩月——感恩有你，好礼相送</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="../../../static/img/home/act3.jpg" alt="">
-                <p>暑假，幼师带你看世界</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="../../../static/img/home/act4.jpg" alt="">
-                <p>春天最后的狂欢</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="../../../static/img/home/act5.jpg" alt="">
-                <p>出游踏青好时节</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="../../../static/img/home/act6.jpg" alt="">
-                <p>疯狂万圣节,一起来捣蛋</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="../../../static/img/home/act7.jpg" alt="">
-                <p>女神节,有你更美x</p>
-              </router-link>
-            </li>
-            <li>
-              <router-link to="">
-                <img src="../../../static/img/home/act8.jpg" alt="">
-                <p>废旧材料玩教具</p>
-              </router-link>
-            </li>
+          <!--<ul>-->
+            <!--<li>-->
+              <!--<router-link to="">-->
+                <!--<img src="../../../static/img/home/act1.jpg" alt="">-->
+                <!--<p>我的圣诞我做主,环境创建</p>-->
+              <!--</router-link>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<router-link to="">-->
+                <!--<img src="../../../static/img/home/act2.jpg" alt="">-->
+                <!--<p>师乐汇感恩月——感恩有你，好礼相送</p>-->
+              <!--</router-link>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<router-link to="">-->
+                <!--<img src="../../../static/img/home/act3.jpg" alt="">-->
+                <!--<p>暑假，幼师带你看世界</p>-->
+              <!--</router-link>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<router-link to="">-->
+                <!--<img src="../../../static/img/home/act4.jpg" alt="">-->
+                <!--<p>春天最后的狂欢</p>-->
+              <!--</router-link>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<router-link to="">-->
+                <!--<img src="../../../static/img/home/act5.jpg" alt="">-->
+                <!--<p>出游踏青好时节</p>-->
+              <!--</router-link>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<router-link to="">-->
+                <!--<img src="../../../static/img/home/act6.jpg" alt="">-->
+                <!--<p>疯狂万圣节,一起来捣蛋</p>-->
+              <!--</router-link>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<router-link to="">-->
+                <!--<img src="../../../static/img/home/act7.jpg" alt="">-->
+                <!--<p>女神节,有你更美x</p>-->
+              <!--</router-link>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<router-link to="">-->
+                <!--<img src="../../../static/img/home/act8.jpg" alt="">-->
+                <!--<p>废旧材料玩教具</p>-->
+              <!--</router-link>-->
+            <!--</li>-->
 
-          </ul>
+          <!--</ul>-->
         </div>
       </div>
-
-
-
-
     </div>
 
 
@@ -835,6 +831,7 @@
   #bar02 {
     width: 100%;
     /*height: 600px;*/
+    margin-bottom: 20px;
     border-top: 2px solid seagreen;
 
   }
@@ -852,6 +849,7 @@
     overflow: hidden;
     /*float: left;*/
     float: left;
+    padding: 15px;
 
 
   }
@@ -873,9 +871,9 @@
   #bar02_title li {
     float: left;
     width: 30%;
-    line-height: 40px;
+    line-height: 50px;
     margin-left: 6px;
-    height: 40px;
+    height: 50px;
     font-size: 18px;
     border-radius: 5px;
     border: 1px solid #475ee0;
@@ -995,8 +993,8 @@
     line-height:60px;
     /*margin-left: 30px;*/
     font-size: 25px;
-    /*border-left: 1px solid seagreen;*/
-    /*border-right: 1px solid seagreen;*/
+    border-left: 1px solid seagreen;
+    border-right: 1px solid seagreen;
 
   }
   .bar02_bottom_top:nth-of-type(1) span {
@@ -1210,21 +1208,22 @@
   #footer{
     width: 98%;
     height: 280px;
-    /*background: #475ee0;*/
+    background: rgba(71, 94, 224, 0.42);
     padding-top:20px;
-    margin: 50px auto;
-    border: 1px solid #999;
-    /*color:white !important;*/
-    /*box-shadow: -15px 20px 20px #f8b4c8;*/
+    margin: 0px auto;
+    margin-bottom:60px;
+    /*border: 1px solid #999;*/
+    color:white;
+    box-shadow: -10px 10px 30px rgba(43, 43, 43, 0.32);
 
   }
   #footer_head{
     width: 150px;
     height: 60px;
+    color:white;
     margin-left: 100px;
     background: url("../../../static/img/home/footer_right.gif") no-repeat;
     background-size: cover;
-     color: white;
     font-weight:bolder;
     font-size: 20px;
     line-height: 40px;
@@ -1241,6 +1240,13 @@
     height: 50%;
     float: left;
     line-height: 100px;
+  }
+  #footer_list li a{
+    color:black
+  }
+  #footer_list li a:hover{
+    font-size:2em;
+    /*color:*/
   }
   .article_tag_second{
     height: 65%;
