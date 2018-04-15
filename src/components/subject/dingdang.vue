@@ -1,5 +1,5 @@
 <template>
- <div id="temp">
+ <div id="temp" >
 <div id="main" class="clearfix">
    <section>
      <div class="sec_head clearfix">
@@ -51,15 +51,19 @@
        <div id="commentOn">
 
          <ul>
-           <li v-for="item in comments_list">
-             <img :src="headimg" alt="">
+           <li v-for="item in comments_list" class="clearfix">
+             <div style="width: 15%;height: 100%;float: left;">
+               <img :src="headimg" alt="">
+             </div >
+
+             <div style="width: 80%;height: 100%;float: left;">
              <div class="commentOn_show">
                {{item.content}}
              </div>
              <div class="commentOn_act clearfix">
-               <div class="commentOn_time">{{
-                 item.time
-                 }}
+               <div class="commentOn_time">
+                 <i class="el-icon-time"></i>
+                 {{item.time}}
                </div>
                <div class="commentOn_event">
                  <span>{{item.acc}}<span class="add" @click="add(item.id)"></span></span>
@@ -68,6 +72,7 @@
                </div>
 
              </div>
+             </div>
            </li>
          </ul>
 
@@ -75,6 +80,12 @@
 
 
      </div>
+     <el-pagination style="background: #eff3f5;margin-top: 20px;background: rgba(248,201,118,0.67);"
+                    @current-change="handleCurrentChange"
+                    background
+                    layout="prev, pager, next"
+                    :total="pagecount ">
+     </el-pagination>
 
    </section>
 
@@ -99,73 +110,58 @@
        <p>22</p>
        </span>
 
-
      </div>
    </article>
 </div>
-
-
-
-
-
-
 
  </div>
 </template>
 
 <script>
-
-
-//  import {COUNTSTR,vm} from "../common/vm";
-  //接收父组件传过来的图片值
-
-
   export default {
   data () {
     return {
       msg:"",
       comments_list: [],
       text: '',
-      headimg:""
+      headimg:"../../../static/img/uerPic/3.jpg",
+      num:1,
+      personlimg:"",
+      data:"",
+      pagecount:0
     }
   },
     props: ['childMsg'],
   created:function (){
-         this.getmes();
     this.load();
-//    接收登录后传送过来的信息
-//    vm.$on(COUNTSTR,function (COUNTSTR){
-//      this.headimg = COUNTSTR;
-//     console.log(this.headimg)
-//
-//    })
+    this.getpagecount();
+
   },
     watch:{
 
     },
     methods:{
 
-      getmes(){
-//        console.log(this.childMsg)
-      },
-      //页面加载就请求评论
-      load() {
-        /*       getmessage() {
-         var url = "";
-         this.$http.get(url).then(
-           function (res) {
-             console.log(res.body.message);
-           },
-           function (err) {
+      handleCurrentChange(num) {
+        this.num = num;
+        this.load();
 
-             console.log(err);
-           }
-         )
-       },
-*/
-        this.$http.get('http://127.0.0.1/php/weibo.php?act=get&page=1').then(
+    },
+      //获取页码
+      getpagecount(){
+        let url = "http://127.0.0.1/php/weibo.php?act=get_page_count";
+        this.$http.get(url).then(function (res) {
+          this.pagecount =eval(res.bodyText);
+          this.pagecount = this.pagecount*10
+        })
+      },
+
+        //页面加载就请求评论
+        load() {
+          let url = "http://127.0.0.1/php/weibo.php?act=get&page="+this.num;
+          this.$http.get(url).then(
           function (res) {
-            console.log(res.bodyText);
+//            console.log(res.bodyText);
             this.comments_list = eval(res.bodyText);
             for (var i = 0; i < this.comments_list.length; i++) {
               var date = new Date(this.comments_list[i].time * 1000);
@@ -176,22 +172,38 @@
               var m = date.getMinutes() + ':';
               var s = date.getSeconds();
               this.comments_list[i].time = Y + M + D + h + m + s;
-
-
-//              ---------------------------
             }
-//            this.headimg = COUNTSTR;
-
-            console.log(this.headimg);
           }
         )
       },
+      //提醒弹框
+      open() {
+        this.$alert('请登录账号', {
+          confirmButtonText: '确定',
+          callback: action => {
+            this.$router.push("/login");
+          }
+        });
+      },
+
 //      1.0点击发送留言
       submit() {
-        var url = 'http://127.0.0.1/php/weibo.php?act=add&content=' + this.text;
+
+        this.data = JSON.parse(localStorage.getItem('user_mes'));
+        if(!this.data){    //没有登录就登录
+          this.open();
+          return false;
+        }
+        else{
+          this.personlimg = this.data.image; //获取当前用户的头像
+          var url = 'http://127.0.0.1/php/weibo.php?act=add&content=' + this.text;
         this.$http.get(url).then(function (res) {
           this.load();
+          this.getpagecount();
+          console.log(this.comments_list);
+
         })
+    }
       },
 
 //   2.0点击赞
@@ -222,29 +234,22 @@
     background: #eff3f5;
     padding-bottom: 60px;
     padding-top: 20px;
-
-    /*overflow: hidden;*/
   }
   section{
     width: 70%;
-    /*height: 1000px;*/
     background: white;
     margin-left: 2%;
     float: left;
   }
   article{
     width: 22%;
-    /*height: 1000px;*/
     float: right;
-    /*background: wheat;*/
     margin-right: 2%;
-    /*padding-top: 20px;*/
   }
   #main{
     margin-top: 30px;
   }
   .sec_head{
-    /*margin-top: 20px;*/
     padding-top: 20px;
     margin-left: 10px;
     position: relative;
@@ -318,18 +323,13 @@
   #comment {
     width: 100%;
     height: 900px;
-    /*background:lightgreen;*/
-    /*margin-top: -600px;*/
 
   }
 
   .takeComment {
-    /*width: 100%;*/
-    /*height: 200px;*/
     padding-top: 20px;
     background: #f3f8fd;
     border: 1px solid silver;
-    /*border: 1px solid silver;*/
 
   }
 
@@ -343,21 +343,16 @@
   }
 
   #btn_send {
-    /*margin-top: 20px;*/
   }
 
   .btns {
     margin-right: 40px;
     float: right;
     display: inline-block;
-    /*width: 60px;*/
-    /*background: deeppink;*/
   }
 
   .btns > span {
     display: inline-block;
-    /*margin-bottom:90px;*/
-    /*line-height: 40px;*/
     position: relative;
     top: -10px;
     color: gray;
@@ -366,10 +361,8 @@
   /*留言展示*/
   #commentOn {
     width: 100%;
-    height: 600px;
-    /*background: darkblue;*/
     margin-top: 20px;
-
+    padding: 5px;
   }
 
   #commentOn ul {
@@ -378,56 +371,58 @@
 
   #commentOn ul li {
     width: 90%;
-    /*background: #f8e3e8;*/
-    height: 150px;
+    height: 100px;
     padding-top: 15px;
-    margin: 0 auto;
-    border: 1px solid silver;
+    background: rgba(240, 240, 240, 0.44);
+    margin: 10px auto;
 
   }
+  #commentOn ul li img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
 
+
+  }
   #commentOn .commentOn_show {
     width: 100%;
-    height: 80px;
-    /*background: darkcyan;*/
-    border: 1px solid silver;
-
+    height: 60%;
+    text-align: left;
   }
 
   #commentOn .commentOn_act {
     width: 100%;
-    height: 40px;
+    height: 20%;
     margin-top: 10px;
   }
 
   #commentOn .commentOn_time {
     width: 30%;
-    height: 100%;
+    /*height: 100%;*/
     float: left;
-    line-height: 40px;
+    /*line-height: 40px;*/
   }
 
   #commentOn .commentOn_event {
-    width: 30%;
-    height: 100%;
+    width: 40%;
+    height: 20%;
     float: right;
-    /*background: darkmagenta;*/
+    /*border-bottom:10px;*/
   }
 
   #commentOn .commentOn_event > span {
-    margin-left: 15px;
-    line-height: 40px;
-    padding-bottom: 20px;
+    display: inline-block;
+    width: 25%;
 
   }
 
   #commentOn .commentOn_event span > span {
     display: inline-block;
     margin-left: 5px;
-    width: 30px;
-    height: 35px;
+    width: 20px;
+    height: 20px;
     background: url("../../../static/img/comments/icons.png") no-repeat;
-    background-size: 100%;
+    background-size: 90%;
   }
 
   #commentOn .commentOn_event span:nth-of-type(1) span {
@@ -435,11 +430,11 @@
   }
 
   #commentOn .commentOn_event span:nth-of-type(2) span {
-    background-position: 0px -30px;
+    background-position: 0px -18px;
   }
 
   #commentOn .commentOn_event span:nth-of-type(3) span {
-    background-position: 0px -60px;
+    background-position: 0px -38px;
   }
 
 

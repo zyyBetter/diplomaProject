@@ -172,7 +172,7 @@
               <p><img src="../../../static/img/submit/store.png" alt=""><span style="display: inline-block;position: relative;top: -30px;padding-left: 35px;">有时候娃们说的话真是超级搞笑，听过的让人无奈的童言无忌的小故事...</span></p>
              <p><img src="../../../static/img/submit/comment.png" alt=""><span style="display: inline-block;position: relative;top: -10px;padding-left: 10px;">2017-09-12 12:16:30</span></p>
 
-             <div id="submits" @click="submit_activite">点击发布</div>
+             <div id="submits" @click="submit_activite">点击分享</div>
            </div>
          </div>
 
@@ -548,11 +548,11 @@ import pUpload from "./Photo_Uploader_Module.vue";
         //获取本地数据,是否有登录的
         this.isshow_slider = false;
         var data = JSON.parse(localStorage.getItem('user_mes'));
-        this.personlimg = data.image; //获取当前用户的头像
         if (data == null) {
           this.open();
         }
         else {
+          this.personlimg = data.image; //获取当前用户的头像
           this.isshow1 = false;
           this.isshow2 = true;
 

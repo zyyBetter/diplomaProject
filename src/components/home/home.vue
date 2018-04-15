@@ -1,13 +1,12 @@
 <template>
   <div id="temp">
 
-    <slider :child-msg="arrimg" style="margin-top: 50px;"></slider>
-    <!--<a href="http://127.0.0.1/diplomaProject/birds/">dddddddddd</a>-->
+    <slider :child-msg="arrimg" style="margin-top: 50px;" ></slider>
 
     <!--中间导航栏部分-->
     <div  id="bar">
       <div class="bar02_bottom_top">
-        <span>知识</span>
+        <span>课程</span>
         <!--<span>活动</span>-->
       </div>
       <!--<span id="bar_title">课程选择 >> 启蒙</span>-->
@@ -47,7 +46,6 @@
               <span class="bar_nav_mask"></span>
             </li>
             <li>
-              <!--<router-link to="/birds"></router-link>-->
               <a href="http://127.0.0.1/diplomaProject/birds/" style="color:black">
                 像素鸟
               <span class="bar_nav_mask"></span>
@@ -87,7 +85,7 @@
     <!--专题部分 使用插件-->
     <div style="overflow: hidden;" id="bar02" >
       <div class="bar02_bottom_top" >
-        <span>推荐</span>
+        <span>音乐</span>
         <!--<span>活动</span>-->
       </div>
       <!--左边面板-->
@@ -141,9 +139,6 @@
               <li>
                 <router-link to="/birds"><p>牛痘的来历</p></router-link>
               </li>
-              <!--<li>
-              <router-link to="/birds"><p>小鸟为什么要迁徙?</p></router-link>
-              </li>-->
             </ul>
           </li>
           <li>
@@ -175,7 +170,7 @@
         <ul class="list_bar02">
           <li v-for="item in arrGroom" style="overflow: hidden">
             <img :src="item.src" alt="" @click="sendGroom(item.id)">
-            <p style="width: 80%;height: 100%;margin: 0 auto;position: absolute;left: 10%;bottom: -75%;color:white;font-size: 20px;line-height: 50px;background: rgb(0,0,0,0.5);overflow: hidden">{{item.txt}}</p>
+            <p style="width: 80%;height: 100%;margin: 0 auto;position: absolute;left: 10%;bottom: -75%;color:white;font-size: 20px;line-height: 50px;background: rgba(0,0,0,0.5);overflow: hidden">{{item.txt}}</p>
           </li>
 
         </ul>
@@ -189,22 +184,23 @@
           <ul>
             <li>
               <p>
+                <span class="data-change">000,000,000</span>
+              </p>
+              <span>浏览</span>
+            </li>
+            <li>
+              <p>
                 <span class="data-change">00,000</span>
               </p>
-              <span>次安装</span>
+              <span>次收藏</span>
             </li>
             <li>
               <p>
                 <span class="data-change">000,000,000</span>
               </p>
-              <span>用户直播</span>
+              <span>学习</span>
             </li>
-            <li>
-              <p>
-                <span class="data-change">000,000,000</span>
-              </p>
-              <span>学习次数</span>
-            </li>
+
           </ul>
         </div>
       </div>
@@ -216,7 +212,6 @@
         <div class="clearfix">
           <div class="bar02_bottom_top">
             <span>插画</span>
-            <!--<span>活动</span>-->
           </div>
         </div>
 
@@ -224,27 +219,15 @@
           <ul>
             <li @click="goshopcar(index)" v-for="(item,index) in childImg" >
               <div class="article_tag_first"><img :src="item.src" alt=""></div>
-                <div class="mask1">小兔子</div>
+                <div class="mask1">{{item.txt}}</div>
             </li>
           </ul>
-
-
-
         </div>
-
-
-
         </div>
-
-
-
-
-
-
 
       <div id="bar02_bottom">
         <div class="bar02_bottom_top">
-          <span>专题</span>
+          <span>分享</span>
           <!--<span>活动</span>-->
         </div>
 
@@ -298,60 +281,9 @@
         </div>
         <div class="bar_bottom_slider"  id="bar02_right01">
           <div class="bar02_bottom_top">
-            <!--<span>专题</span>-->
             <span>链接</span>
           </div>
-          <!--<ul>-->
-            <!--<li>-->
-              <!--<router-link to="">-->
-                <!--<img src="../../../static/img/home/act1.jpg" alt="">-->
-                <!--<p>我的圣诞我做主,环境创建</p>-->
-              <!--</router-link>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<router-link to="">-->
-                <!--<img src="../../../static/img/home/act2.jpg" alt="">-->
-                <!--<p>师乐汇感恩月——感恩有你，好礼相送</p>-->
-              <!--</router-link>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<router-link to="">-->
-                <!--<img src="../../../static/img/home/act3.jpg" alt="">-->
-                <!--<p>暑假，幼师带你看世界</p>-->
-              <!--</router-link>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<router-link to="">-->
-                <!--<img src="../../../static/img/home/act4.jpg" alt="">-->
-                <!--<p>春天最后的狂欢</p>-->
-              <!--</router-link>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<router-link to="">-->
-                <!--<img src="../../../static/img/home/act5.jpg" alt="">-->
-                <!--<p>出游踏青好时节</p>-->
-              <!--</router-link>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<router-link to="">-->
-                <!--<img src="../../../static/img/home/act6.jpg" alt="">-->
-                <!--<p>疯狂万圣节,一起来捣蛋</p>-->
-              <!--</router-link>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<router-link to="">-->
-                <!--<img src="../../../static/img/home/act7.jpg" alt="">-->
-                <!--<p>女神节,有你更美x</p>-->
-              <!--</router-link>-->
-            <!--</li>-->
-            <!--<li>-->
-              <!--<router-link to="">-->
-                <!--<img src="../../../static/img/home/act8.jpg" alt="">-->
-                <!--<p>废旧材料玩教具</p>-->
-              <!--</router-link>-->
-            <!--</li>-->
 
-          <!--</ul>-->
         </div>
       </div>
     </div>
@@ -417,27 +349,22 @@
           {rou:"handmake",src:"../../../static/img/home/nav3.jpg"},
           {rou:"paint",src:"../../../static/img/home/nav4.jpg"},
           {rou:"idoms",src:"../../../static/img/home/nav5.jpg"},
-//          {rou:"home",src:"../../../static/img/home/nav6.jpg"},
-//          {rou:"home",src:"../../../static/img/home/nav7.jpg"},
-//          {rou:"home",src:"../../../static/img/home/nav8.jpg"},
 
         ],
 
         arrGroom:[
-          {src:"../../../static/img/groom/11.jpg",txt:"音乐教室",id:'sleep'},
-          {src:"../../../static/img/groom/22.jpg",txt:"儿歌大全100首",id:'music'},
-          {src:"../../../static/img/groom/33.jpg",txt:"儿童公主歌",id:'gir'},
-          {src:"../../../static/img/groom/44.jpg",txt:"0-3岁儿歌",id:'age'},
+          {src:"../../../static/img/groom/11.jpg",txt:"摇篮曲",id:'sleep'},
+          {src:"../../../static/img/groom/22.jpg",txt:"教诲儿歌",id:'music'},
+          {src:"../../../static/img/groom/33.jpg",txt:"连锁调歌",id:'gir'},
+          {src:"../../../static/img/groom/44.jpg",txt:"字头歌",id:'age'},
         ],
         childImg:[
-          {src:"../../../static/img/chahua/11.jpg",txt:"0-3岁儿歌",id:'age'},
-          {src:"../../../static/img/chahua/22.jpg",txt:"0-3岁儿歌",id:'age'},
-          {src:"../../../static/img/chahua/33.jpg",txt:"0-3岁儿歌",id:'age'},
-          {src:"../../../static/img/chahua/44.jpg",txt:"0-3岁儿歌",id:'age'},
-          {src:"../../../static/img/chahua/55.jpg",txt:"0-3岁儿歌",id:'age'},
+          {src:"../../../static/img/chahua/11.jpg",txt:"无限延续I",id:'age'},
+          {src:"../../../static/img/chahua/22.jpg",txt:"<SALE BETA>",id:'age'},
+          {src:"../../../static/img/chahua/33.jpg",txt:"大米粒,大道理",id:'age'},
+          {src:"../../../static/img/chahua/44.jpg",txt:"朋友一起玩",id:'age'},
+          {src:"../../../static/img/chahua/55.jpg",txt:"萌萌的奇妙世界",id:'age'},
 
-//          {src:"../../../static/img/chahua/5.jpg",txt:"0-3岁儿歌",id:'age'},
-//          {src:"../../../static/img/chahua/5.png",txt:"0-3岁儿歌",id:'age'},
         ],
 
         imgarr: [0, 1, 2],
@@ -451,17 +378,17 @@
     },
     created: function () {
       this.get();
-//      this.getmessage();
 
     },
 
     methods: {
+      goin(){
+      },
       sendGroom(id){
         this.$router.push("/story?id="+id);//进入不同的路由-
       },
       //课程点击进入不同的页面
       move(rou){
-//        alert(1)
         this.$router.push("/lesson?lesson="+rou);//进入不同的路由-
       },
       goshopcar(index){
@@ -469,20 +396,6 @@
          this.$router.push("/fire");
 
       },
-//      发送ajax请求
-   /*       getmessage() {
-            var url = "";
-            this.$http.get(url).then(
-              function (res) {
-                console.log(res.body.message);
-              },
-              function (err) {
-
-                console.log(err);
-              }
-            )
-          },
-*/
 
 
 //     首页的动画
@@ -1089,7 +1002,7 @@
 
 
   #section {
-    margin-top: 65px;
+    margin-top: 75px;
     padding-left: 20px;
     border-radius: 20px;
     height: 100px;
@@ -1135,8 +1048,7 @@
   }
   #article{
     width: 100%;
-    height: 530px;
-    border-radius: 20px;
+    height: 650px;
     margin-top:60px;
     overflow: hidden;
 
@@ -1175,6 +1087,7 @@
   #article .article_tag li{
     float: left;
     width: 18%;
+    height: 100%;
     box-sizing: border-box;
     position: relative;
     background-size:100%;

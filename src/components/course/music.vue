@@ -3,7 +3,7 @@
 <!--头部的组件-->
    <course  @keyword="send_keyword"></course>
 
-   <div style="margin-top: -30px;"><img src="../../../static/img/moves/bg.jpg" alt=""></div>
+   <!--<div style="margin-top: -30px;margin-top: 10px;"><img src="../../../static/img/moves/bg.jpg" alt=""></div>-->
 
    <div id="box">
      <!--商品列表-->
@@ -12,7 +12,6 @@
          <img :src="item.src" alt="" @click="playVideo(item.video)">
          <p>{{item.text1}}</p>
        </li>
-
      </ul>
      <!--蒙板-->
      <div id="mask" @mousedown="moveing">
@@ -26,17 +25,13 @@
      <div class=" clearfix">
        <ul id="list">
          <li v-for="a in arr" @click="watchMV(a.video)">
-           <!--<p>{{sendmes}}</p>-->
            <img :src="a.src" alt="">
            <div>
              <span class="text1">{{a.text1}}</span>
-             <!--<span>{{a.text2}}</span>-->
            </div>
          </li>
        </ul>
      </div>
-
-
    </article>
 
    <section v-show="!isshow" class="clearfix">
@@ -57,8 +52,8 @@
        <div @click="getMore" style="margin-top: 15px;cursor: pointer;color:#9b9aff;margin-bottom: 10px;" v-show="getmores">点击加载更多</div>
      </div>
 
-     <div style="float: left;width: 60%;padding: -100px;">
-     <object width="60%" height="433" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" id="videogreen" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+     <div style="float: left;width: 60%;padding: -100px;margin-left: 1%;">
+     <object width="60%" height="33" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" id="videogreen" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
        <param value="http://yuntv.letv.com/bcloud.swf?uu=e83fdad654&amp;pu=55087b3b4d&amp;vu=bc4c03b1a4&amp;auto_play=1&amp;gpcflag=1" name="movie">
        <param value="high" name="quality">
        <param name="wmode" value="transparent">
@@ -239,8 +234,7 @@ import course from "../common/course.vue"
 //    alert(this.arr)
 
   this.animate();
-//  this.getimg();
-//  alert( this.lesson)
+
   },
     methods:{
     //点击加载更多
@@ -269,7 +263,6 @@ import course from "../common/course.vue"
       watchMV(video){ //点击播放视频
          this.isshow = false;
          this.video = video;
-//        alert(this.video)
       },
       animate(){
         $(function () {
@@ -277,7 +270,6 @@ import course from "../common/course.vue"
           $("#list li").mouseover(
             function (){
               $(this).stop().animate({top:"-10px"},500);
-//              alert(1)
             }
           )
 //          6.2音乐导航的图片(鼠标移出)
@@ -403,19 +395,16 @@ article #list {
   width: 100%;
   height: 100%;
   overflow: hidden;
-
-  /*overflow: scroll;*/
+}
+article #list li:hover{
+  background: rgba(55, 185, 125, 0.45);
 }
 article #list li{
-  width: 16%;
-  /*background: darkcyan;*/
-  margin-left:25px;
-  margin-top: 30px;
-  /*display: flex;
-  justify-content:center;
-    align-items:center;*/
+  width: 20%;
   float: left;
   position: relative;
+  margin: 0 auto;
+  padding:15px;
 
 }
 article #list li img{
@@ -426,9 +415,8 @@ article #list li img{
     display: inline-block;
     padding: 10px;
     width: 80%;
-    /*height: 40%;*/
-    background: #37b97d;
-    color: white;
+    /*background: rgba(182, 182, 185, 0.35);*/
+    color: black;
 
   }
 .text1:hover{

@@ -5,85 +5,38 @@
  <header>
    <span>课程列表</span>
    <div>
-     <span>查看班级</span>
-     <span>查看公开课</span>
+     <span>查看课程</span>
+     <span>推荐</span>
    </div>
  </header>
     <!--分类-->
    <section id="title">
      <ul class="title_01">
-       <li >
-         <span class="title_bg" style="background-position: -72px -316px"></span>
-         所有的分类:
-         <ul class="title_02">
-           <li v-for="item in arr1" @click="sendmes(item.id)">{{item.title}}</li>
-         </ul>
-       </li>
-       <li>
-         <span class="title_bg" style="background-position: -20px -316px"></span>
 
-         分类:
-         <ul class="title_02">
-           <li v-for="item in arr2">{{item.title}}</li>
-         </ul>
+       <li v-for="item in arr1" @click="sendmes(item.id)">
+         <span class="title_bg" ></span>
+         {{item.title}}
        </li>
-       <li>
-         <span class="title_bg" style="background-position: -36px -316px"></span>
-         专题:
-         <ul class="title_02">
-           <li>防火</li>
-           <li>新年</li>
-           <li>叮当</li>
-           <li>早活动</li>
-           <li>故事</li>
-         </ul></li>
-       <li>
-         <span class="title_bg" style="background-position: -54px -316px"></span>
-         科目:</li>
      </ul>
    </section>
-<!--导航-->
-  <!-- <div id="nav">
-     <ul class="nav_list1">
-       <li>推荐</li>
-       <li>最新</li>
-       <li>最热</li>
-     </ul>
-     <ul class="nav_list2">
-       <li><input type="checkbox" checked>免费课程</li>
-       <li><input type="checkbox">会员课程</li>
-     </ul>
-   </div>-->
-
  </div>
 </template>
-
 <script>
-
-
   export default {
   data () {
     return {
       msg:"idioms",
       arr1:[
-        {title:"童谣",id:"music"},
-        {title:"诗词",id:"poem"},
+        {title:"唐诗",id:"poem"},
+        {title:"成语故事",id:"idoms"},
         {title:"手工制作",id:"handmake"},
         {title:"绘画",id:"paint"},
-        {title:"故事",id:"idoms"},
-      ],
-      arr2:[
         {title:"童谣",id:"music"},
-        {title:"故事",id:"music"},
-        {title:"手工制作",id:"music"},
-        {title:"橡树鸟",id:"music"}
 
-      ],
+      ]
     }
   },
-   /* props:[
-      'sendmes'
-    ],*/
+
   created:function (){
 
   },
@@ -128,18 +81,18 @@
   }
   #title{
     width: 100%;
-    height: 200px;
+    height: 40px;
     background: white;
   }
   #title .title_01{
     width: 100%;
-    /*height: 100%;*/
     overflow: hidden;
-    border: 1px solid silver;
-
+    font-size:16px;
   }
   #title .title_01>li {
     border-bottom: 1px solid silver;
+    width: 20%;
+    float: left;
 
   }
   .title_bg{
@@ -148,10 +101,51 @@
     height: 16px;
     background: url("../../../static/img/lesson1/int.png") no-repeat;
   }
+  #title .title_01>li:nth-of-type(1) span{
+    background-position: -72px -316px;
+  }
+  #title .title_01>li:nth-of-type(1){
+    border:5px solid #e97576;
+    border-right:none !important;
+
+  }
+  #title .title_01>li:nth-of-type(2) span{
+    background-position: -36px -316px;
+
+  }
+  #title .title_01>li:nth-of-type(2){
+    border:5px solid #5fb1e9;
+    border-right:none !important;
+
+  }
+  #title .title_01>li:nth-of-type(3) span{
+    background-position:  -54px -316px;
+  }
+  #title .title_01>li:nth-of-type(3){
+    border:5px solid #f89f50;
+    border-right:none !important;
+
+  }
+  #title .title_01>li:nth-of-type(4) span{
+    background-position: -20px -316px;
+  }
+  #title .title_01>li:nth-of-type(4){
+    border:5px solid #9e59bb;
+    border-right:none !important;
+
+  }
+  #title .title_01>li:nth-of-type(5) span{
+    background-position: 0px -316px;
+  }
+  #title .title_01>li:nth-of-type(5){
+    border:5px solid #5cc9a6;
+    /*border-right:none !important;*/
+
+  }
+
+
   #title .title_01 li {
-    /*width: 100%;*/
     height: 50px;
-    /*border: 1px solid silver;*/
     text-align: left;
     padding-left: 60px;
     line-height: 50px;
@@ -168,61 +162,7 @@
     float: left;
     width: 100px;
     margin-left: 10px;
-    /*background: seagreen;*/
-
-  }
-  #nav{
-    width: 100%;
-    height: 60px;
-    margin-top: 40px;
-    background:gainsboro;
-    overflow: hidden;
-  }
-  #nav ul {
-    width: 50%;
-    height: 100%;
-  }
-  #nav .nav_list1 {
-    float: left;
-  }
-  #nav ul li {
-    float: left;
-    width: 120px;
-    line-height:60px;
-    font-size: 20px;
-  }
-  #nav ul li:hover{
-    background:#37b97d;
-    color:white;
-
   }
 
-  #nav .nav_list2{
-    float: right;
-    width: 30%;
-  }
-
- /* article{
-    width: 100%;
-    height: 1000px;
-    background: deeppink;
-    margin-top:20px;
-  }
-  article #list {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-  article #list li{
-    width: 30%;
-    background: darkcyan;
-    margin-left:20px;
-    margin-top: 20px;
-    float: left;
-  }
-  article #list li img{
-    width: 100%;
-    height: 100%;
-  }*/
 </style>
 

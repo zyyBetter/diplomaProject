@@ -18,17 +18,17 @@
               <router-link to="/lesson?lesson=music">课程</router-link>
             </li>
             <li>
-              <router-link to="/active_submit">音乐</router-link>
+              <router-link to="/story?id=age">音乐</router-link>
 
             </li>
             <li>
-              <router-link to="/comments">插画</router-link>
+              <router-link to="/fire">插画</router-link>
             </li>
             <li>
-              <router-link to="/comments">娱乐</router-link>
+              <a href="http://127.0.0.1/diplomaProject/birds/">娱乐</a>
             </li>
             <li>
-              <router-link to="/shopcar">分享</router-link>
+              <router-link to="/active_submit">分享</router-link>
             </li>
 
           </ul>

@@ -38,25 +38,12 @@
            <p style="font-size:16px;margin-right: 8px;float: left;width: 100%;text-align: left"></i>{{item.txt1}}</p>
            <p style="color: #9aabb8;text-align: left;"><span style="display:inline-block;border-radius:3px ;padding: 3px;background: #dfe5e9;font-size:10px;">原创</span><i class="el-icon-view" style="margin-right:5px;margin-left: 10px;"></i>{{item.txt2}}<i class="el-icon-star-on" style="margin-right:5px;margin-left: 10px;"></i>{{item.txt3}}<i class="el-icon-loading" style="margin-right:5px;margin-left: 10px;"></i>{{item.txt4}}</p>
          </li>
-
        </ul>
      <div   v-loading="loading"></div>
-
-
    </div>
-
    <div id="submits" @click="getMore"  > {{load}}</div>
    </div>
-
-
    <Detail v-show="!mainshow" :child-msg="arrimg"></Detail>
-
-
-
-
-
-
-
  </div>
 </template>
 
@@ -166,10 +153,7 @@
           var li = list[i];
 
           $("#list li").eq(i).animate({"width":this.dataArr[i].width,"top":this.dataArr[i].top,"left":this.dataArr[i].left,"opacity":this.dataArr[i].opacity,"zIndex":this.dataArr[i].zIndex,},1000)
-
         }
-
-
       },
       turnLeft(){
         // 删除数组中第一个元素,添加到最后一个
