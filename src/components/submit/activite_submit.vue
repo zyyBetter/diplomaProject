@@ -972,7 +972,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
   }
   .activite_pic{
     width: 85%;
-    height: 300px;
+    /*height: 300px;*/
     -webkit-background-size: contain;
     background-size: contain;
     background: no-repeat;

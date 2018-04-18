@@ -7,9 +7,7 @@
     <div  id="bar">
       <div class="bar02_bottom_top">
         <span>课程</span>
-        <!--<span>活动</span>-->
       </div>
-      <!--<span id="bar_title">课程选择 >> 启蒙</span>-->
         <div id="bar_nav">
           <ul class="bar_nav_mp3">
 
@@ -336,7 +334,7 @@
         arrimg:[
           "../../../static/img/home/16.jpg",
           "../../../static/img/home/18.jpg",
-          "../../../static/img/home/13.jpg",
+//          "../../../static/img/home/13.jpg",
           "../../../static/img/home/slider03.jpg",
           "../../../static/img/home/slider06.jpg",
           "../../../static/img/home/slider09.jpg",
@@ -344,10 +342,10 @@
 
         ],
         arrlesson:[
-          {rou:"music",src:"../../../static/img/home/nav1.jpg"},
+          {rou:"music",src:"../../../static/img/home/nav6.jpg"},
           {rou:"poem",src:"../../../static/img/home/nav2.jpg"},
           {rou:"handmake",src:"../../../static/img/home/nav3.jpg"},
-          {rou:"paint",src:"../../../static/img/home/nav4.jpg"},
+          {rou:"paint",src:"../../../static/img/home/nav7.jpg"},
           {rou:"idoms",src:"../../../static/img/home/nav5.jpg"},
 
         ],
