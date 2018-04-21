@@ -3,13 +3,13 @@
     <!--头部的导航栏-->
     <nav>
       <el-row :gutter="10">
-        <el-col class="hidden-sm-and-down" :md="3" :lg="3">
+        <el-col class="hidden-sm-and-down" :md="3" :lg="4">
 
           <img src="../static/img/1.png" alt="" id="imgs">
 
         </el-col>
 
-        <el-col :xs="24" :sm="16" :md="15" :lg="12">
+        <el-col :xs="24" :sm="16" :md="15" :lg="10">
           <ul class="navbar">
             <li>
               <router-link to="/home">首页</router-link>
@@ -33,10 +33,13 @@
 
           </ul>
         </el-col>
-        <el-col hidden-xs-only :sm="8" :md="6" :lg="9">
-          <input placeholder="请搜索..." @click="change" @blur="restore" id="inp" class="hidden-sm-and-down" style="padding-left: 4px">
+        <!--<el-col hidden-xs-only :sm="4" :md="4" :lg="8"></el-col>-->
+        <el-col hidden-xs-only :sm="8" :md="6" :lg="10">
+          <input placeholder="请搜索..." @click="change" @blur="restore" id="inp" class="hidden-sm-and-down" style="padding-left: 4px" >
+
           <ul class="navlogin">
-            <li  id="protior" ></li>
+            <li style="visibility:hidden;">ccccccccccffffffffffffffffcccccccccccccc</li>
+            <li  id="protior" @click="loginin"></li>
             <li>
               <router-link to="/login" id="login"><span style="color:white">登录</span></router-link>
             </li>
@@ -69,27 +72,19 @@
 
         <ul>
           <li>我是家长</li>
-          <li>如何注册</li>
-          <li>如何学习</li>
-          <li>如何互动</li>
+          <li><router-link to="active_submit" style="color:white">分享</router-link></li>
+
         </ul>
         <ul>
-          <li>我是老师</li>
-          <li>发布课程</li>
-          <li>使用题库</li>
-          <li>教学资料库</li>
+          <li>我是宝宝</li>
+          <li><router-link to="/lesson?lesson=music" style="color:white" >查看课程</router-link></li>
+
         </ul>
-        <ul>
-          <li>商业应用</li>
-          <li>会员专区</li>
-          <li>题库增强版</li>
-          <li>用户导入导出</li>
-        </ul>
+
         <ul>
           <li>关于我们</li>
-          <li>ES官网</li>
-          <li>官方微博</li>
-          <li>加入我们</li>
+          <li><router-link to="/rules" style="color:white">平台规则</router-link></li>
+
         </ul>
       </div>
         <!--尾部的右边部分-->
@@ -97,20 +92,14 @@
         <span class="clearfix">
           <img src="../static/img/1.png" alt="" >
         </span>
-        <div class="footer_right_img">
-          <ul class="clearfix">
-          <li><img src="../static/img/login/weixin.png"></li>
-          <li><img src="../static/img/login/qq.png"></li>
-          <li><img src="../static/img/login/sina.png"></li>
-          </ul>
-        </div>
+
       </div>
       </div>
       <div id="footer_bottom">
-        <p>©2014-2017 ZYY网络科技有限公司 All Rights Reserved. 粤ICP备13006852号-1 粤0B2-20160872</p>
+        <p>©2014-2017 ZYY网络科技有限公司 All Rights Reserved. 粤ICP备1301020号-1 粤0B2-2018-2-04</p>
         <p class="gongan">
           <img src="../static/img/app/reference.png" alt="">
-          <span>粤公网安备 33010802003864号</span>
+          <span>粤公网安备 XXXXXXX号</span>
         </p>
       </div>
     </footer>
@@ -140,17 +129,19 @@
   import {COUNTSTR,vm} from "./components/common/vm";
   //接收父组件传过来的图片值
   vm.$on(COUNTSTR,function (COUNTSTR){
-    alert(COUNTSTR);
     var protior = document.getElementById('protior');
     var login = document.getElementById('login');
     protior.style.display = "block";
-    protior.style.backgroundImage = "url("+COUNTSTR+")";
+    protior.style.backgroundImage = "url(http://127.0.0.1/diplomaProject/php/Upload/uploads/"+COUNTSTR+")";
     login.style.display = "none";
 
   })
   export default {
     name: 'app',
     methods: {
+      loginin(){
+        this.$router.push("/login")
+      },
       change() {
         var inp = document.getElementById("inp");
         inp.style.width = "120px";
@@ -211,6 +202,11 @@
   .navbar li a {
     color: white;
   }
+  #inp{
+    /*overflow: hidden !important;*/
+    display: none;
+    /*visibility: hidden;*/
+  }
 
   input {
     width: 100px;
@@ -232,6 +228,7 @@
   .navlogin {
     width: 100%;
     height: 100%;
+    float: right;
   }
 
   .navlogin li {
@@ -242,12 +239,13 @@
   }
 
   .rightWall {
-    width: 60px;
-    height: 300px;
+    width: 80px;
+    height: 120px;
     position: fixed;
-    bottom: 30px;
-    right:26px;
+    bottom: 180px;
+    right:25px;
     opacity: 0.6;
+    overflow: hidden;
   }
   .rightWall:hover {
     opacity:1;
@@ -288,7 +286,7 @@
   }
   footer{
     width: 100%;
-    height: 200px;
+    height: 100px;
     margin-top:30px;
     background:  url("../static/img/app/f_bg.jpg") repeat-x ;
   }
@@ -378,18 +376,19 @@
   /*footer底部*/
   #footer_bottom{
     width: 100%;
-    height: 100px;
+    height: 120px;
     background: #533743;
   }
   #footer_bottom p:nth-of-type(1){
-    width: 80%;
+    /*width: 80%;*/
+    text-align: center;
     color: #838383;
     padding-top:20px;
   }
   #footer_bottom .gongan{
     width: 15%;
     height: 30px;
-    margin:15px 35%;
+    margin:15px auto;
     color: #f5f5f5;
   }
   #footer_bottom .gongan img{

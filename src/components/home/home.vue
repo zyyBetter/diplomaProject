@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div id="temp">
 
     <slider :child-msg="arrimg" style="margin-top: 50px;" ></slider>
@@ -45,7 +45,7 @@
             </li>
             <li>
               <a href="http://127.0.0.1/diplomaProject/birds/" style="color:black">
-                像素鸟
+                看图识字
               <span class="bar_nav_mask"></span>
               <audio src="../../../static/source/a7.mp3"></audio>
               </a>
@@ -66,7 +66,7 @@
 
            <li>
              <a href="http://127.0.0.1/diplomaProject/birds/">
-              <img src='../../../static/img/home/nav6.jpg' alt="">
+              <img src='../../../static/img/home/nav1.jpg' alt="">
              </a>
           </li>
 
@@ -120,22 +120,22 @@
           <li>
             <ul>
               <li>
-                <router-link to="/fire"><p> 会下雨的“怪树”</p></router-link>
+                <router-link to="/active_submit"><p> 会下雨的“怪树”</p></router-link>
               </li>
               <li>
-                <router-link to="/newyear"><p>蚂蚁是怎么认路的..</p></router-link>
+                <router-link to="/active_submit"><p>蚂蚁是怎么认路的..</p></router-link>
               </li>
               <li>
-                <router-link to="/read"><p>儿童科普：蝙蝠为什么倒挂着睡觉等</p></router-link>
+                <router-link to="/active_submit"><p>儿童科普：蝙蝠为什么倒挂着睡觉等</p></router-link>
               </li>
               <li>
-                <router-link to="/dingdang"><p>下雨天蚂蚁为什么会搬家？</p></router-link>
+                <router-link to="/active_submit"><p>下雨天蚂蚁为什么会搬家？</p></router-link>
               </li>
               <li>
-                <router-link to="/weather"><p>蚂蚁是如何分辨方向的？</p></router-link>
+                <router-link to="/active_submit"><p>蚂蚁是如何分辨方向的？</p></router-link>
               </li>
               <li>
-                <router-link to="/birds"><p>牛痘的来历</p></router-link>
+                <router-link to="/active_submit"><p>牛痘的来历</p></router-link>
               </li>
             </ul>
           </li>
@@ -272,7 +272,7 @@
             <div class="maskpar">
               <router-link to="/birds">
                 <img src='../../../static/img/home/nav6.jpg' alt="">
-                <div class="mask">像素鸟</div>
+                <div class="mask">看图识字</div>
               </router-link>
             </div>
           </slick>
@@ -332,13 +332,12 @@
     data() {
       return {
         arrimg:[
-          "../../../static/img/home/16.jpg",
-          "../../../static/img/home/18.jpg",
-//          "../../../static/img/home/13.jpg",
           "../../../static/img/home/slider03.jpg",
+
+          "../../../static/img/home/18.jpg",
           "../../../static/img/home/slider06.jpg",
           "../../../static/img/home/slider09.jpg",
-          "../../../static/img/home/14.jpg",
+          "../../../static/img/home/16.jpg",
 
         ],
         arrlesson:[
@@ -497,10 +496,8 @@
 //  2.0        tag图切换
           $("#bar02_title>li").mouseover(function () {
             var index = $(this).index();
-//            alert(index)
+            $("#bar02_top_bottom>li").css({display: "none"}).eq(index).css({display: "block"})
             $("#bar02_title>li").eq(index).css({fontSize:'12px',fontWeight:"bolder",background:"blue",color:"white"}).siblings().css({fontSize:'12px',background:"white",color:'black'});
-
-//            $("#bar02_top_title>li").css({color: "#475ee0"})
           });
 
             $("#bar02_top_bottom>li").mouseover(function () {
@@ -508,6 +505,19 @@
 
             });
 
+            /*
+//  2.0        tag图切换
+          $("#bar02_title>li").mouseover(function () {
+            var index = $(this).index();
+
+            $("#bar02_top_bottom>li").css({display: "none"}).eq(index).css({display: "block"})
+          });
+
+            $("#bar02_top_bottom>li").mouseover(function () {
+              var index = $(this).index();
+              $("#bar02_title>li").css({fontSize:'20px'}).eq(index).css({fontSize:'23px',fontWeight:"bolder"});
+            });
+*/
 
 //  3.0        数字的滚动
 //          section里面的,当页面滚动到一定距离的时候数字滚动显示使用的人数

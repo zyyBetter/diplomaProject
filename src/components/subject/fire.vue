@@ -5,7 +5,7 @@
    <section>
 
 
-     <ul id="list">
+     <ul id="list"  @click="details(helpMes.mes)">
        <li><img src="../../../static/img/chahua2/53.png" alt=""></li>
        <li><img src="../../../static/img/chahua2/54.png" alt=""></li>
        <li><img src="../../../static/img/chahua2/50.png" alt=""></li>
@@ -55,131 +55,223 @@
 
 
   export default {
-  data () {
-    return {
-      load:"点击加载 ...",
-      loading:false,
-      arrimg:"",
-      mainshow:true,
-      msg:"fire",
-      logo:'',
-      arrMess1:"",
-      arrMess:[],
-      num:1,
-      dataArr : [
-        {   //  1
-          width:400,
-          top:100,
-          left:0,
-          opacity:0.2,
-          zIndex:2
-        },
-        {  // 2
-          width:600,
-          top:60,
-          left:50,
-          opacity:0.8,
-          zIndex:3
-        },
-        {   // 3
-          width:900,
-          top:10,
-          left:150,
-          opacity:1,
-          zIndex:4
-        },
-        {  // 4
-          width:600,
-          top:60,
-          left:550,
-          opacity:0.8,
-          zIndex:3
-        },
-        {   //5
-          width:400,
-          top:100,
-          left:800,
-          opacity:0.2,
-          zIndex:2
-        }
-      ]
+    data() {
+      return {
+        load: "点击加载 ...",
+        loading: false,
+        arrimg: "",
+        mainshow: true,
+        msg: "fire",
+        logo: '',
+        arrMess1: "",
+        arrMess: [],
+        num: 1,
+        dataArr: [
+          {   //  1
+            width: 400,
+            top: 100,
+            left: 0,
+            opacity: 0.2,
+            zIndex: 2
+          },
+          {  // 2
+            width: 600,
+            top: 60,
+            left: 50,
+            opacity: 0.8,
+            zIndex: 3
+          },
+          {   // 3
+            width: 900,
+            top: 10,
+            left: 150,
+            opacity: 1,
+            zIndex: 4
+          },
+          {  // 4
+            width: 600,
+            top: 60,
+            left: 550,
+            opacity: 0.8,
+            zIndex: 3
+          },
+          {   //5
+            width: 400,
+            top: 100,
+            left: 800,
+            opacity: 0.2,
+            zIndex: 2
+          }
+        ],
+        helpMes: {
+          src: "../../../static/img/chahua2/5.png", txt1: "《座驾精灵世界》", txt2: "15", txt3: "15", txt4: "16",
+          mes: {
+            title: "助人为乐的小猴子",
+            ctx: [
+              {
+                content: " 天空上万里乌云，阳光明媚，小动物们正在开心得玩耍着，到处一片欢乐的景象。",
+                type: "0"
+              }, {
+                content: " 森林里小动物有的在捉迷藏，有的在画画，还有的在讲故事，小猴子们在树上，上串下跳、你追我赶追逐着，",
+                type: "0"
+              }, {
+                content: " 正玩的起劲的时候，一只小猴发现不远处，山羊羊爷爷扛着两颗嫩绿大白菜，",
+                type: "0"
+              },
+              {
+                content: "../../../static/img/chahua2/50.png",
+                "type": "1"
+              },
 
-  }
-  },
+              {
+                content: "他走两步停一停，显得非常吃力，",
+                "type": "0"
+              }, {
+                content: "小猴心想山羊爷爷那么大的年龄，哪能拿的动那么重的大白菜呢？",
+                "type": "0"
+              }, {
+                content: "我应该去帮帮它，别的小猴子说：“你不要多管闲事了，我们还是玩我们的吧”。",
+                "type": "0"
+              },
+              {
+                content: "小猴子说：“不行我便去帮山羊爷爷”。小猴蹦蹦跳跳跑到山羊羊那里说：“山羊羊爷爷我帮你拿一颗吧”",
+                "type": "0"
+              },
+              {
+                "content": "山羊羊爷爷和蔼地说：“好孩子你太小，还是爷爷自己拿吧”。 ",
+                "type": "0"
+              },
+              {
+                content: "../../../static/img/chahua2/51.png",
+                "type": "1"
+              },
+              {
+                "content": "小猴一听爷爷不用它拿，着急的说：“山羊羊爷爷别看我长的小，我的力气可大着呢！” ",
+                "type": "0"
+              },
+              {
+                content: "../../../static/img/chahua2/52.png",
+                "type": "1"
+              },
+              {
+                "content": "说着一把夺过山羊爷爷手中的大白菜，头也不回，直往前走去，山羊爷爷紧跟上去， ",
+                "type": "0"
+              },
+              {
+                "content": "小猴子把大白菜一直送到了山羊爷爷的家中，山羊爷爷赶忙拿吃的给小猴， ",
+                "type": "0"
+              },
+              {
+                content: "../../../static/img/chahua2/53.png",
+                "type": "1"
+              },
+              {
+                "content": "感谢小猴帮了它的大忙，",
+                "type": "0"
+              }, {
+                "content": "小猴连忙摆手，“不用了，山羊爷爷！ ",
+                "type": "0"
+              }, {
+                "content": "这是我应该的，山羊爷爷激动地直夸小猴真是一个懂事的孩子。 ",
+                "type": "0"
+              },
+              {
+                content: "../../../static/img/chahua2/54.png",
+                "type": "1"
+              },
+              {
+                "content": "不久以后，小猴帮助山羊爷爷的事情一传十、十传百，整个森林里的小动物们都知道了， ",
+                "type": "0"
+              }, {
+                "content": "大家都夸小猴是一个助人为乐的小猴，小猴听了心里美滋滋的。 ",
+                "type": "0"
+              },
+            ]
+          }
+        },
+
+      }
+    },
     components: {
       Detail
     },
-      computed: {
+    computed: {
 //    过滤器
-        filteredData: function () {
-          var self = this;
-          return this.arrMess.filter(function (item) {
-            return item.txt1.toLowerCase().indexOf(self.logo.toLowerCase()) !== -1;
-          })
-        }
+      filteredData: function () {
+        var self = this;
+        return this.arrMess.filter(function (item) {
+          return item.txt1.toLowerCase().indexOf(self.logo.toLowerCase()) !== -1;
+        })
+      }
     },
 
-      mounted:function (){
-        this.animate();
+    mounted: function () {
+      this.animate();
 
-      },
-    created(){
+    },
+    created() {
       this.getimg(this.num)
     },
-    methods:{
-      details(mes){
+    methods: {
+      details(mes) {
         this.mainshow = false;
         this.arrimg = mes;
         console.log(this.arrimg);
       },
       //进行动画
-      animate(){
+      animate() {
         var oul = document.getElementById("list");
 //        alert(oul);
         var list = oul.children;
 //        alert(list)
 
         // 规定 false没有动画 true 正在动画中
-        $(".slider_ctl").mouseover(function(){
+        $(".slider_ctl").mouseover(function () {
 //          alert(11111)
-          $(this).animate({'opactiy':1},500);
-        }) ;
-        $(".slider_ctl").mouseout(function(){
-          $(this).animate({'opactiy':0},500);
+          $(this).animate({'opactiy': 1}, 500);
+        });
+        $(".slider_ctl").mouseout(function () {
+          $(this).animate({'opactiy': 0}, 500);
         });
 
 //旋转轮播图
-        for(var i= 0; i<list.length; i++){
+        for (var i = 0; i < list.length; i++) {
           var li = list[i];
 
-          $("#list li").eq(i).animate({"width":this.dataArr[i].width,"top":this.dataArr[i].top,"left":this.dataArr[i].left,"opacity":this.dataArr[i].opacity,"zIndex":this.dataArr[i].zIndex,},1000)
+          $("#list li").eq(i).animate({
+            "width": this.dataArr[i].width,
+            "top": this.dataArr[i].top,
+            "left": this.dataArr[i].left,
+            "opacity": this.dataArr[i].opacity,
+            "zIndex": this.dataArr[i].zIndex,
+          }, 1000)
         }
       },
-      turnLeft(){
+      turnLeft() {
         // 删除数组中第一个元素,添加到最后一个
         this.dataArr.push(this.dataArr.shift());
         this.animate()
 
       },
-      turnRight(){
+      turnRight() {
         //  删除数组中最后一个元素添加到第一个
         var ele = this.dataArr.pop();
         this.dataArr.unshift(ele);
         this.animate()
       },
-      getimg(num){
+      getimg(num) {
         var url = "http://127.0.0.1/diplomaProject/php/first.php";
-        this.$http.get(url,{
-            params:{
-              type:'pic',
-              index:num,
+        this.$http.get(url, {
+            params: {
+              type: 'pic',
+              index: num,
             }
           }
         ).then(
           function (res) {
             this.message = res.bodyText;
-            this.message =  JSON.parse(res.bodyText);
-            for(var i=0;i<this.message.length;i++){
+            this.message = JSON.parse(res.bodyText);
+            for (var i = 0; i < this.message.length; i++) {
               this.arrMess.push(this.message[i])
               this.loading = false;
               this.load = "点击加载 ..."
@@ -193,16 +285,17 @@
           }
         )
       },
-      getMore(){
+      getMore() {
         this.load = "加载中"
         this.loading = true;
         this.num++;
         this.getimg(this.num);
       }
-//
+
 
     }
-}
+
+  }
 </script>
 
 <style scoped>
@@ -283,7 +376,7 @@
     width: 100%;
     height: 60px;
     background: #f8f9fa !important;
-    margin-top: 130px;
+    margin-top: 60px;
   }
   #box1 div{
     border: 1px solid silver;
@@ -350,10 +443,9 @@
     height: 500px;
     margin: 30px auto;
     position: relative;
-   /*margin-left: -45px;*/
   }
   section ul{
-    width: 100%;
+    width: 120%;
     height: 100%;
     list-style: none;
     position: relative;
@@ -393,5 +485,7 @@
     transform: translate(0,-50%);
     z-index: 998;
   }
+
+
 
 </style>

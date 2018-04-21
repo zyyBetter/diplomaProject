@@ -31,10 +31,10 @@
 
 <style scoped>
   #temp{
-    width: 125%;
+    width: 110%;
     height: 300px;
     margin-top: 60px;
-    margin-left:-12.5%;
+    margin-left:-5%;
   }
   .block{
     width: 100%;

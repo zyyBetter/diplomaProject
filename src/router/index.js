@@ -3,10 +3,11 @@ import lesson from '../components/shopcar/lesson.vue'
 import lesson1 from '../components/course/music.vue'
 import story from '../components/course/story.vue'
 
-import newyear from '../components/subject/newyear.vue'
+// import newyear from '../components/subject/admin.vue'
 import fire from '../components/subject/fire.vue'
 import read from '../components/subject/read.vue'
-// import dingdang from '../components/subject/dingdang.vue'
+import admin from '../components/admin/admin.vue'
+// import dingdang from '../components/admin/admin.vue'
 import weather from '../components/subject/weather.vue'
 import shopcar from '../components/shopcar/shopcar.vue'
 import comments from '../components/comment/comments.vue'
@@ -25,7 +26,6 @@ export default new Router({
     {path: '/weather', component: weather},
     {path: '/read', component: read},
     {path: '/story', component: story},
-    {path: '/newyear', component: newyear},
     {path: '/fire', component: fire},
     {path: '/login', component: login},
     {path: '/register', component: register},
@@ -34,7 +34,8 @@ export default new Router({
     {path: '/shop/lesson', component: lesson},
     {path: '/lesson', component: lesson1},
     {path:'/shopcar',component:shopcar},
-    {path:'/active_submit',component:active_submit}
+    {path:'/active_submit',component:active_submit},
+    {path:'/admin',component:admin}
     // {path: '/course', component:course},
 
   ]

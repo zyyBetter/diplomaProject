@@ -4,10 +4,10 @@
     <!--头部-->
  <header>
    <span>课程列表</span>
-   <div>
+  <!-- <div>
      <span>查看课程</span>
      <span>推荐</span>
-   </div>
+   </div>-->
  </header>
     <!--分类-->
    <section id="title">

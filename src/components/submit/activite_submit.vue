@@ -1,10 +1,17 @@
 <template>
 
-  <div style="background: #eff3f5;margin-bottom: -50px;">
+  <div style="background: #eff3f5;margin-bottom: -50px; position: relative;">
+
+
+    <div id="temp1" v-show="isshow4" @click="closeimgl">
+      <img :src="imgs" alt="" style="width: 50%;margin: 10% auto;">
+      <p @click="closeimgl"><img src="../../../static/img/submit/del02_0319.png" alt="" ></p>
+    </div>
  <div id="temp" class="clearfix">
 
 <!--左边-->
    <div id="box_right" class="clearfix">
+     <div><img src="../../../static/img/submit/title.jpg" alt="" style="width: 100%;"></div>
 
      <div class="ri_top">
        <div class="ri_title">
@@ -26,7 +33,7 @@
              蚂蚁是怎么认路的
            </p>
          </li>
-         <li>
+         <li @click="bat">
            <p>
              <span>3</span>
              蝙蝠为什么倒挂着睡觉等
@@ -153,10 +160,13 @@
 
 
    <!--右边-->
+   <div id="box1">
 
-   <div id="box_left">
+   </div>
+
+   <div id="box_left" >
      <!--轮播图-->
-     <slider id="sliders" :child-msg="arrimg" v-show="isshow_slider"></slider>
+     <!--<slider id="sliders" :child-msg="arrimg" v-show="isshow_slider"></slider>-->
 
      <!--评论区域-->
      <div id="comment" class="clearfix">
@@ -169,29 +179,45 @@
            </div>
            <div class="hot_Top_right clearfix">
              <h2 style="color:seagreen"><img src="../../../static/img/submit/read.png" alt=""><span style="display: inline-block;position: relative;top: -10px;padding-left: 10px;">孩子们的世界是美好的</span></h2>
-              <p><img src="../../../static/img/submit/store.png" alt=""><span style="display: inline-block;position: relative;top: -30px;padding-left: 35px;">有时候娃们说的话真是超级搞笑，听过的让人无奈的童言无忌的小故事...</span></p>
+              <p><img src="../../../static/img/submit/store.png" alt="" style="margin-top: 20px;"><span style="display: inline-block;position: relative;top: -30px;padding-left: 35px;">有时候娃们说的话真是超级搞笑，听过的让人无奈的童言无忌的小故事...</span></p>
              <p><img src="../../../static/img/submit/comment.png" alt=""><span style="display: inline-block;position: relative;top: -10px;padding-left: 10px;">2017-09-12 12:16:30</span></p>
 
              <div id="submits" @click="submit_activite">点击分享</div>
            </div>
          </div>
+       </div>
 
-
+       <div class="hot_body" v-show="isshow3" style="background: white;padding-top: 30px;">
+         <div v-for="item in allMes1">
+         <div v-if="item.type" @click="larimg(item.c)"><img :src="item.c" alt=""></div>
+         <div v-if="!item.type" style="width: 40%;margin: 20px auto;"><p>{{item.c}}</p></div>
+         </div>
+         <div></div>
 
        </div>
 
        <div class="hot_body" v-show="isshow1">
          <p class="topic">【所有话题】</p>
          <ul>
-           <li v-for="item in arrMes" style="overflow: hidden;overflow: hidden">
+           <li v-for="item in arrMes" style="overflow: hidden;overflow: hidden" @click="change(item.obj)">
              <div :style="{backgroundImage: 'url(' +  uerimg(item.url) + ')'}" class="head"></div>
+
              <div style="float: left;width: 65%;margin-left: 5%;" >
-               <div :style="{backgroundImage: 'url(' +  uerimg1(item.image) + ')'}" alt=""  class="personimg"></div>
-               <span class="headTitle">{{item.name}}</span>
-               <p>{{item.time}}</p>
+               <h2 class="headTitle"><img src="../../../static/img/submit/read.png" alt="" style="margin-right: 10px;position: relative;top: -2px;" >{{item.name}}</h2>
+               <p style="width: 80%;text-align: left"><img src="../../../static/img/submit/comment.png" alt="" style="margin-left: 5px;">{{item.time}}</p>
+               <img :src="uerimg1(item.image)" alt="" style=" width: 90px;
+    height: 90px; border-radius: 50%;margin-top: -60px;" class="personimg">
+
              </div>
            </li>
          </ul>
+
+         <el-pagination style="margin-top: 20px;background:white;"
+                        background
+                        layout="prev, pager, next"
+                        :total="10 ">
+         </el-pagination>
+
        </div>
 
 
@@ -229,14 +255,14 @@
                <li v-for="(item,index) in addTextObj">
                  <!--文字-->
                  <div @click="changText(item)"  class="text_fa" v-show="item.contentType==0" >
-                   <span @click="del_txt(item)" class="text_del" ><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></span>
+                   <span @click="del_txt(item)" class="text_del" ><img src="../../../static/img/submit/del02_0319.png" alt=""></span>
                    <p v-html="item.content" style="text-indent:2em;word-break:break-all"></p>
                  </div>
 
 
                  <!--图片-->
                  <div    class="activite_pic"  v-show="item.contentType==1">
-                   <span class="img_del" @click="del_img(item)" ><img src="http://oss.dyarea.com/upload_img/del02_0319.png" alt=""></span>
+                   <span class="img_del" @click="del_img(item)" ><img src="../../../static/img/submit/del02_0319.png" alt=""></span>
                  <img :src="uerimg(item.content)" alt="" style="width: 50%;margin: 20px auto;">
                  </div>
                </li>
@@ -294,9 +320,11 @@ import pUpload from "./Photo_Uploader_Module.vue";
       ],
       isshow_slider:true,
       isshow1:true,
+      isshow3:false,
+      isshow4:false,
       isshow2:false,
       msg:"dingdang",
-      HeadImageUrl: "http://oss.dyarea.com/upload_img/headimg_0321.png" ,  //标题默认图片
+      HeadImageUrl: "../../static/img/submit/headimg_0321.png" ,  //标题默认图片
       form: {
         name: '',
         region: '',
@@ -305,9 +333,10 @@ import pUpload from "./Photo_Uploader_Module.vue";
         delivery: false,
         type: [],
         resource: '',
-        desc: ''
+        desc: '',
       },
-        shareImageUrl:"",
+      showleft:true,
+      shareImageUrl:"",
         addTextarr:[],//添加文字
         addTextObj:[],
         addImgarr:[],//增加图片
@@ -318,15 +347,43 @@ import pUpload from "./Photo_Uploader_Module.vue";
       HeadUrl:"",
       ActUrl:"",
       currentdate:"",
-      personlimg:""
+      personlimg:"",
+      imgs:"",
+      allMes1:[
+        {c:"蝙蝠根本就站不住,不能行走。蝙蝠能飞，它的翅膀是翼膜，把脚与头部连接，有了这张翼膜虽然能飞，但是站就很难，蝙蝠是站不住的，所以只能倒吊.",type:0},
+        {c:"../../../static/img/bat/1.png",type:1},
+        {c:"它喜欢住的黑暗湿冷洞穴里倒吊睡起来更舒服,而且成了生活习性.这也是个省力的办法，松开树枝，伸开翅膀就能飞了.挂着睡还有助于血液循环和恢复体力。",type:0},
+        {c:"../../../static/img/bat/5.png",type:1},
+        {c:" 它的爪子只能吊住自己而不能支撑自己,蝙蝠的血管里有瓣膜，血液就不会倒流,不会脑冲血",type:0},
+        {c:"../../../static/img/bat/3.png",type:1},
+        {c:"蝙蝠是具有飞行能力的哺乳动物，它的前肢连着又宽又大的翼膜，后肢又短又小，并被翼膜连住。",type:0},
+        {c:"../../../static/img/bat/4.png",type:1},
+        {c:"蝙蝠落地时，只能伏在地面，慢慢爬行，动作很慢。因此，蝙蝠便随时倒挂着，一旦有了危险，便能容易地伸开翼膜起飞。",type:0},
+        {c:"../../../static/img/bat/bat.png",type:1},
+
+      ]
+//      getpagecount:0,
     }
   },
   created:function (){
-    this.get_save()
+    this.get_save();
+    this.getpagecount()
   },
     watch:{
     },
     methods: {
+      closeimgl(){
+        this.isshow4 = false;
+      },
+      larimg(img){
+        this.isshow4 = true;
+        this.imgs = img
+      },
+      bat(){
+         this.isshow1 = false;
+          this.isshow3 = true;
+          this.txt =  this.allMes1;
+      },
       uerimg(imgurl) {
         return "http://127.0.0.1/diplomaProject/php/Upload/uploads/" + imgurl;
       },
@@ -346,7 +403,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
           processData: false,
           contentType: false,
           success: function (res) {
-            console.log(res);
+//            console.log(res);
             scope.ActUrl = res.data.pic.savepath + res.data.pic.savename;
             var obj = {};
             obj.content = scope.ActUrl;
@@ -358,10 +415,6 @@ import pUpload from "./Photo_Uploader_Module.vue";
         })
 
 
-      },
-      //用事件的方式触发input的click事件
-      coverTop() {
-        return this.$refs.coverImg.click();
       },
 
       //获取input的属性对象
@@ -380,7 +433,6 @@ import pUpload from "./Photo_Uploader_Module.vue";
 //     ---------获取图片的具体的信息,并上传到服务器,并返回--------
         var fd = new FormData();
         fd.append("pic", document.getElementById("myinput").files[0]);
-        console.log(fd)
         var url = "http://127.0.0.1/diplomaProject/php/Upload/upload.php";
         $.ajax({
           url: url,
@@ -389,7 +441,6 @@ import pUpload from "./Photo_Uploader_Module.vue";
           processData: false,
           contentType: false,
           success: function (res) {
-            console.log(res.data.pic);
 //            保存图片的地址以及图片的路径
             scope.HeadUrl = res.data.pic.savepath + res.data.pic.savename;
 
@@ -433,7 +484,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
         this.currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
           + " " + date.getHours() + seperator2 + date.getMinutes()
           + seperator2 + date.getSeconds();
-        alert(this.currentdate)
+//        alert(this.currentdate)
         if (this.HeadUrl == "") {
           this.$message('请输入标题图片');
         }
@@ -449,7 +500,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
       },
       //真正提交所有的数据
       submitAll1() {
-        console.log(JSON.stringify(this.addTextObj));
+//        console.log(JSON.stringify(this.addTextObj));
         var that = this;
         this.$http.get('http://127.0.0.1/php.php', {
           params: {
@@ -461,7 +512,11 @@ import pUpload from "./Photo_Uploader_Module.vue";
             image: that.personlimg, //上传当前用户的头像,
           }
         }).then(function (res) {
-          alert("保存成功")
+          alert("保存成功");
+          this.isshow1 = true;
+          this.isshow2 = false;
+          this.get_save();
+
         })
       },
       //点击修改文字
@@ -469,7 +524,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
         event.stopPropagation();
         this.ishowText = true;
         this.index1 = this.addTextObj.indexOf(txt);
-        alert(this.index1)
+//        alert(this.index1)
         this.form.desc = txt.content;
         this.indexs = -1;
 
@@ -499,6 +554,23 @@ import pUpload from "./Photo_Uploader_Module.vue";
 
 
       },
+
+      change(mes){
+        mes = mes.slice(1,-1);
+//        mes = eval(mes)
+        console.log(mes);
+
+      },
+      //获取页码
+      getpagecount(){
+        let url = "http://127.0.0.1/php.php?act=get_page_count";
+        this.$http.get(url).then(function (res) {
+          console.log(res);
+//          this.pagecount =eval(res.bodyText);
+//          this.pagecount = this.pagecount*10
+        })
+      },
+
       //点击添加文字
       addText() {
         this.ishowText = true;
@@ -565,10 +637,23 @@ import pUpload from "./Photo_Uploader_Module.vue";
 
 <style scoped>
   #temp{
-    padding-top: 60px;
+    padding-top: 30px;
     background: #eff3f5;
     padding-bottom:70px;
   }
+   #temp1{
+     width: 100%;
+     height: 100%;
+     position: absolute;
+     left: 0;
+     top:0;
+     z-index: 99999;
+     background: rgba(0,0,0,0.3);
+    /*padding-top: 30px;*/
+    /*background: #eff3f5;*/
+    /*padding-bottom:70px;*/
+  }
+
   .userImg {
     width: 100%;
     height: 200px;
@@ -588,12 +673,17 @@ import pUpload from "./Photo_Uploader_Module.vue";
 
   /*左边的盒子*/
   #box_left {
-    width: 73%;
+    width: 78%;
     box-sizing: border-box;
     float: right;
   }
   #sliders{
     margin-top: 0px;
+  }
+  #box1{
+    width: 78%;
+    box-sizing: border-box;
+    float: right;
   }
 
 
@@ -601,7 +691,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
   /*评论区域*/
   #comment {
     width: 100%;
-    margin-top: 50px;
+    /*margin-top: 50px;*/
   }
 
   .takeComment {
@@ -712,7 +802,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
 
   /*右边的盒子*/
   #box_right {
-    width: 25%;
+    width: 20%;
     box-sizing: border-box;
     float: left;
   }
@@ -753,6 +843,9 @@ import pUpload from "./Photo_Uploader_Module.vue";
     margin-left: 20px;
     margin-top: 25px;
   }
+  .ri_list{
+    font-size: 12px;
+  }
 
   #box_right .ri_top .ri_list,
   #box_right .ri_bottom .ri_list {
@@ -767,7 +860,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
     height: 10%;
     line-height: 50px;
     overflow: hidden;
-    font-size: 16px;
+    font-size: 12px;
   }
 
   #box_right .ri_top .ri_list li:hover,
@@ -815,7 +908,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
 
   }
   #hotcom .hot_Top{
-    width: 100%;
+    width: 70%;
     padding:20px 0;
     position: relative;
   }
@@ -828,8 +921,8 @@ import pUpload from "./Photo_Uploader_Module.vue";
     width: 100%;
   }
   #hotcom .hot_Top .hot_Top_right {
-    float: left;
-    width: 50%;
+    float: right;
+    width: 60%;
     margin-left: 2%;
     padding-left: 30px;
   }
@@ -856,7 +949,8 @@ import pUpload from "./Photo_Uploader_Module.vue";
     line-height:40px;
     position: absolute;
     bottom: 30px ;
-    right: 40px;
+    right: 0px;
+    float: right;
 
   }
   .hot_body{
@@ -885,7 +979,7 @@ import pUpload from "./Photo_Uploader_Module.vue";
   }
   .hot_body ul li .head{
     width: 30%;
-    background-size: 100% auto;
+    background-size: 100% 100%;
     float: left;
     height: 100%;
   }
@@ -1002,13 +1096,17 @@ import pUpload from "./Photo_Uploader_Module.vue";
    width: 50px !important;
    height: 50px !important;
    border-radius: 50%;
-   background-size: 100%;
+   background-size: 10%;
+   float: right;
+   background: green;
  }
   .headTitle{
+    width: 80%;
    line-height: 30px;
-    width: 30%;
     position: relative;
     top: -20%;
+    text-align: left;
+    margin-right: 5px;
 
   }
 

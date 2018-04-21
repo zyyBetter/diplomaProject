@@ -1,6 +1,7 @@
 <template>
  <div id="temp" >
 <div id="main" class="clearfix">
+  <!--<span id="share_weibo" @click="changeurl" ishow="ishow_weibo"></span>-->
    <section>
      <div class="sec_head clearfix">
      <img src="../../../static/img/details.png" alt="">
@@ -13,8 +14,8 @@
        </p>
 
        <p style="color: #9aabb8;text-align: left;margin-top: 6px;">
-         <i class="el-icon-view" style="margin-right:5px;margin-left: 10px;"></i>11
-         <i class="el-icon-star-on" style="margin-right:5px;margin-left: 10px;"></i>11
+         <i class="el-icon-view" style="margin-right:5px;margin-left: 10px;"></i>{{read1}}
+         <i class="el-icon-star-on" style="margin-right:5px;margin-left: 10px;"></i>15
          <i class="el-icon-loading" style="margin-right:5px;margin-left: 10px;"></i>11
          <i class="el-icon-date" style="margin-right:5px;margin-left: 10px;"></i>2015-2-9
        </p>
@@ -22,9 +23,10 @@
 
      <div style="padding-top: 20px;">
        <h2>{{childMsg.title}}</h2>
-       <ul id="listCon">
+       <!--<ul id="listCon" @mouseup="getText">-->
+       <ul id="listCon" >
          <li v-for="item in childMsg.ctx" >
-           <p style="line-height: 8px;" v-show="item.type ==0">{{item.content}}</p>
+           <p style="line-height: 8px;" v-show="item.type ==0" class="shareText">{{item.content}}</p>
            <img :src="item.content" alt="" v-show="item.type">
          </li>
        </ul>
@@ -39,7 +41,6 @@
            请输入评论~~~~
          </textarea>
          <div class="takeSbmComment clearfix">
-           <!--<input id="btn_send" type="button" class="inputs" value="czxcczx" />-->
            <span class="btns">
            <span>(可按Enter回复)</span>
            <img src="../../../static/img/comments/btn.png" alt="" id="btn_send" @click.enter="submit">
@@ -53,7 +54,7 @@
          <ul>
            <li v-for="item in comments_list" class="clearfix">
              <div style="width: 15%;height: 100%;float: left;">
-               <img :src="headimg" alt="">
+               <img :src=" uerimg1(item.img)" alt="">
              </div >
 
              <div style="width: 80%;height: 100%;float: left;">
@@ -68,7 +69,8 @@
                <div class="commentOn_event">
                  <span>{{item.acc}}<span class="add" @click="add(item.id)"></span></span>
                  <span>{{item.ref}}<span class="down" @click="down(item.id)"></span></span>
-                 <span><span class="del" @click="del(item.id)"></span></span>
+                 <span v-if="item.img == personlimg"><span class="del" @click="del(item.id,item.userID)"></span></span>
+                 <span v-if="item.img != personlimg" style="visibility: hidden"><span class="del"></span></span>
                </div>
 
              </div>
@@ -102,12 +104,12 @@
      <div class="artcile_bottom clearfix">
        <span>
          <p>浏览</p>
-         <p>11</p>
+         <p  class="pon">{{read1}}</p>
        </span>
 
        <span>
- <p>赞</p>
-       <p>22</p>
+      <p>关注</p>
+       <p @click="zan" class="pon">{{zan1}}</p>
        </span>
 
      </div>
@@ -118,29 +120,66 @@
 </template>
 
 <script>
+
   export default {
+
   data () {
     return {
       msg:"",
       comments_list: [],
       text: '',
-      headimg:"../../../static/img/uerPic/3.jpg",
+      headimg:"",
       num:1,
       personlimg:"",
       data:"",
-      pagecount:0
-    }
+      pagecount:0,
+      selectedText:"",
+      ishow_weibo:false,
+      read1:123,
+      zan1:145,
+      userID:0
+
+  }
   },
     props: ['childMsg'],
   created:function (){
+
     this.load();
     this.getpagecount();
+    this.getzan();
+
+    if(JSON.parse(localStorage.getItem('user_mes')))
+    {
+      this.data = JSON.parse(localStorage.getItem('user_mes'));
+      this.personlimg = this.data.image;
+      this.userID = this.data.userID;
+    }
+
 
   },
     watch:{
 
     },
     methods:{
+      uerimg1(imgurl) {
+        return "http://127.0.0.1/diplomaProject/php/Upload/uploads/" + imgurl;
+      },
+
+      getzan(){
+        var data = JSON.parse(localStorage.getItem('liulan'));
+        if(data == null){
+          let obj = {};
+          obj.read1 =  this.read1;
+          obj.zan1 =  this.zan1;
+          localStorage.setItem('liulan', JSON.stringify(obj));
+        }
+        else{
+          this.read1 = data.read1;
+          this.zan1 = data.zan1;
+        }
+
+       this.read();
+      },
 
       handleCurrentChange(num) {
         this.num = num;
@@ -149,7 +188,7 @@
     },
       //获取页码
       getpagecount(){
-        let url = "http://127.0.0.1/php/weibo.php?act=get_page_count";
+        let url = "http://127.0.0.1/diplomaProject/php/weibo.php?act=get_page_count";
         this.$http.get(url).then(function (res) {
           this.pagecount =eval(res.bodyText);
           this.pagecount = this.pagecount*10
@@ -158,11 +197,11 @@
 
         //页面加载就请求评论
         load() {
-          let url = "http://127.0.0.1/php/weibo.php?act=get&page="+this.num;
+          let url = "http://127.0.0.1/diplomaProject/php/weibo.php?act=get&page="+this.num;
           this.$http.get(url).then(
           function (res) {
-//            console.log(res.bodyText);
             this.comments_list = eval(res.bodyText);
+            console.log(this.comments_list);
             for (var i = 0; i < this.comments_list.length; i++) {
               var date = new Date(this.comments_list[i].time * 1000);
               var Y = date.getFullYear() + '-';
@@ -172,6 +211,7 @@
               var m = date.getMinutes() + ':';
               var s = date.getSeconds();
               this.comments_list[i].time = Y + M + D + h + m + s;
+
             }
           }
         )
@@ -181,7 +221,7 @@
         this.$alert('请登录账号', {
           confirmButtonText: '确定',
           callback: action => {
-            this.$router.push("/login");
+            this.$router.push("/login?status=story");
           }
         });
       },
@@ -196,11 +236,11 @@
         }
         else{
           this.personlimg = this.data.image; //获取当前用户的头像
-          var url = 'http://127.0.0.1/php/weibo.php?act=add&content=' + this.text;
+          var url = 'http://127.0.0.1/diplomaProject/php/weibo.php?act=add&content=' + this.text+"&img="+this.personlimg+"&userID="+this.userID;
         this.$http.get(url).then(function (res) {
           this.load();
           this.getpagecount();
-          console.log(this.comments_list);
+          this.text = ""
 
         })
     }
@@ -208,29 +248,53 @@
 
 //   2.0点击赞
       add(id) {
-        this.$http.get('http://127.0.0.1/php/weibo.php?act=acc&id='+id).then(function () {
+        this.$http.get('http://127.0.0.1/diplomaProject/php/weibo.php?act=acc&id='+id).then(function () {
           this.load()
         })
       },
 //   2.0点击踩
       down(id) {
-        this.$http.get('http://127.0.0.1/php/weibo.php?act=ref&id='+id).then(function () {
+        this.$http.get('http://127.0.0.1/diplomaProject/php/weibo.php?act=ref&id='+id).then(function () {
           this.load()
         })
       },
 //   2.0点击删除
-      del(id) {
-        this.$http.get('http://127.0.0.1/php/weibo.php?act=del&id='+id).then(function (res) {
-          this.load()
-        })
-      }
-    }
-}
+      del(id,userID) {
+        this.data = JSON.parse(localStorage.getItem('user_mes'));
+        this.userID = this.data.userID;
+          this.$http.get('http://127.0.0.1/diplomaProject/php/weibo.php?act=del&id='+id).then(function (res) {
+            this.load()
+          })
+
+
+
+      },
+      //点击
+      zan(){
+
+        this.zan1++;
+        let obj = {};
+        obj.read1 =  this.read1;
+        obj.zan1 =  this.zan1;
+        localStorage.setItem('liulan', JSON.stringify(obj));
+      },
+      read(){
+     this.read1++;
+        this.zan1++;
+        let obj = {};
+        obj.read1 =  this.read1;
+        obj.zan1 =  this.zan1;
+        localStorage.setItem('liulan', JSON.stringify(obj));
+      },
+
+    },
+
+
+  }
 </script>
 
 <style scoped>
   #temp{
-    width: 100%;
     background: #eff3f5;
     padding-bottom: 60px;
     padding-top: 20px;
@@ -317,7 +381,7 @@
     margin: 10px auto;
   }
   #listCon li img{
-    width: 80%;
+    width: 60%;
   }
   /*评论区域*/
   #comment {
@@ -340,6 +404,7 @@
     color: grey;
     border: 1px solid seagreen;
     padding-top: 30px;
+    padding-left:30px;
   }
 
   #btn_send {
@@ -381,8 +446,6 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-
-
   }
   #commentOn .commentOn_show {
     width: 100%;
@@ -415,6 +478,9 @@
     width: 25%;
 
   }
+  .pon{
+    cursor: pointer;
+  }
 
   #commentOn .commentOn_event span > span {
     display: inline-block;
@@ -435,6 +501,15 @@
 
   #commentOn .commentOn_event span:nth-of-type(3) span {
     background-position: 0px -38px;
+  }
+  #share_weibo{
+    width: 26px;
+    height: 26px;
+    background: url("../../../static/img/share.gif") no-repeat;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /*display: none;*/
   }
 
 

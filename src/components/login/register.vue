@@ -7,7 +7,7 @@
        <h2>账号注册</h2>
      </div>
      <!--面板的中间内容-->
-     <form >
+     <!--<form >-->
        <div class="panel-content">
        <!--昵称-->
        <div class="user-pwd">
@@ -35,32 +35,25 @@
          <i class="el-icon-view"></i>
          <input placeholder="宝宝的年龄" type="number" name="age" v-model="age">
        </div>
-       <!--确认性别-->
-       <div class="user-sex">
-         <!--<span>性别</span>
-         男
-         <input type="radio" name="sex" value="man" checked="checked">
-         女
-         <input type="radio" name="sex" value="women" >-->
-         <input type="checkbox" value="sure" style="width: 13px;height: 13px;"><router-link to="/rules" id="tiaoli">
-         <span>《儿童教育网站条例》</span>
-       </router-link>
 
-       </div>
+
+         <div style="margin: 20px auto;width: 40%;">
+         <div class="userImg" id="title_img"  :style="{backgroundImage: 'url(' + HeadImageUrl + ')'}" >
+           <input class="Cover_three"  name="pic[]" multiple id="myinput"
+                  type="file" ref="coverImg"  @click="changeFile($event)"
+                  accept="image/*"  multiple placeholder="请上传头像" style="opacity: 0">
+         </div>
+         <span style="text-align: center;width: 60%;display: inline-block">请上传头像</span>
+         </div>
 
        <!--登录按钮-->
        <button class="login-btn" @click="resgiter">注册</button>
-       <router-link to="/login" class="pull-right">已经注册了?立即登录?</router-link>
+
+       <!--<router-link to="/login" class="pull-right">已经注册了?立即登录?</router-link>-->
 
      </div>
-     </form>
-     <!--面板的尾部-->
-     <div class="panel-footer">
-       <span>社交账号注册: </span>
-       <img src="../../../static/img/login/sina.png">
-       <img src="../../../static/img/login/weixin.png">
-       <img src="../../../static/img/login/qq.png">
-     </div>
+     <!--</form>-->
+
    </div>
 
    <Icon type="checkmark"></Icon>
@@ -81,13 +74,46 @@
       tel:'',
       pwd:'',
       pwd2:'',
-      image:"uerPic/10.jpg"
+      image:"",
+      HeadImageUrl: "../../../static/img/upload.jpg" ,  //标题默认图片
     }
   },
   created:function (){
 
   },
     methods:{
+      changeFile(e) {
+//---------------获取图片的数据流------------------
+        var scope = this
+        let file = e.target.files[0];
+        if (window.FileReader) {
+          var reader = new FileReader();
+          reader.readAsDataURL(file);
+          //监听文件读取结束后事件
+          reader.onloadend = function (e) {
+            scope.HeadImageUrl = e.target.result
+          };
+        };
+//     ---------获取图片的具体的信息,并上传到服务器,并返回--------
+        var fd = new FormData();
+        fd.append("pic", document.getElementById("myinput").files[0]);
+        var url = "http://127.0.0.1/diplomaProject/php/Upload/upload.php";
+        $.ajax({
+          url: url,
+          type: "post",
+          data: fd,
+          processData: false,
+          contentType: false,
+          success: function (res) {
+//            保存图片的地址以及图片的路径
+            scope.HeadUrl = res.data.pic.savepath + res.data.pic.savename;
+            scope.image = scope.HeadUrl;
+
+          },
+          dataType: "json"
+        })
+
+      },
       //输入错误的弹出框
       open(mes,user,name) {
         this.$alert('请输入正确的密码', "111", {
@@ -106,13 +132,11 @@
         let myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
         if(this.name.length == 0)
           {
-//            alert("请输入用户名");
             return false;
 
           }
           else if(this.name.length > 14){
-//          alert("用户名的长度不能超过14位");
-//          this.open();
+
           return false;
 
         }
@@ -146,6 +170,10 @@
           return false;
 
         }
+        else if(!this.image){
+          alert("请上传图片");
+          return false
+        }
         else{
           this.resgiter2()
         }
@@ -163,6 +191,7 @@
             pwd:that.pwd,
             age:that.age,
             image:that.image,
+            roleId:1
           }
         }).then(function (res) {
           Toast({
@@ -179,6 +208,10 @@
   *{
     margin: 0;
   }
+  .pull-right{
+    padding-bottom: 30px;
+    margin-bottom: 50px;
+  }
 
   p{
     width: 100px;
@@ -186,9 +219,9 @@
     background: darkblue;
   }
   #temp{
-    padding-top: 160px;
+    padding-top: 45px;
     padding-bottom: 60px;
-    background: url("../../../static/img/login/bg.png") no-repeat 0 0;
+    background: #e9f3fc ;
     width: 100%;
     height: 100%;
     -webkit-background-size: 100%;
@@ -207,7 +240,7 @@
     border-radius: 5px;
     /*box-shadow: -10px 20px 100px black;*/
     /*定位*/
-    margin: 0 40%;
+    margin: 0 38%;
     box-shadow: -2px 2px 60px #9aabb8;
   }
 
@@ -295,7 +328,13 @@
   .login-btn:focus{
     outline: none;
   }
-
+.userImg{
+  width:100px;
+  height: 100px;
+  -webkit-background-size: 100%;
+  background-size: 100%;
+  /*background: no-repeat;*/
+}
   .reg{
     text-align: center;
     /*margin-bottom: 15px;*/

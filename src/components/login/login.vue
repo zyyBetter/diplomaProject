@@ -38,16 +38,9 @@
          <router-link to="/register">立即注册</router-link>
        </div>
      </div>
-     <!--面板的尾部-->
-     <div class="panel-footer">
-       <span>社交账号登录: </span>
-       <a href=""><img src="../../../static/img/login/sina.png"></a>
-       <a href=""><img src="../../../static/img/login/weixin.png"></a>
-       <a href=""><img src="../../../static/img/login/qq.png"></a>
-     </div>
    </div>
 
-   <!--<Icon type="checkmark"></Icon>-->
+
 
 
 
@@ -67,12 +60,16 @@
         user:"",
         password:"",
         mes:"",
-       img:"",
-      image:""//头像
+        img:"",
+        image:"",//头像
+        url:"",
+      userID:0
     }
   },
   created:function (){
-
+      if(this.$route.query.status == 'story'){
+         this.url = 1;
+      }
   },
     methods:{
 //输入错误的弹出框
@@ -108,11 +105,12 @@
                 for(var i=0;i<res.body.length;i++){
                   if(res.body[i].psw==obj.password){
                     this.image = res.body[i].image;  //获取头像的图片
+                    this.userID = res.body[i].id;  //获取头像的图片
 
 
                     //设置一个对象存放数据,把登录的信息传放在临时存储中
                     let obj = {};
-                    obj.name =  this.user;
+                    obj.userID =  this.userID;
                     obj.image =  this.image;
                     localStorage.setItem('user_mes', JSON.stringify(obj));
                     console.log(JSON.stringify(obj));
@@ -122,12 +120,17 @@
                       iconClass: 'icon el-icon-success',
                     });
 
+
                     //获取去数据库的图片 ,传值给APP组件,作为儿子,传值给父亲
-                    this.img = "../../../static/img/uerPic/"+res.body[i].id+".jpg";
+                    this.img = this.image;
 //                    this.$emit("","")
 //                    把值放在vm上面,图片的放在常量里面
                     vm.$emit(COUNTSTR,this.img);
+                    if(this.url == 1 ){
+                      this.$router.push("/fire")
+                    }
                     return
+
                   }
 
                 }
@@ -268,12 +271,11 @@
     width: 100%;
     height: 100%;
     margin-bottom: -30px;
-    background: url("../../../static/img/login/bg.png") no-repeat 0 0;
-    -webkit-background-size:cover;
-    background-size: cover;
-    padding-top:150px;
+    background: #e9f3fc ;
+    -webkit-background-size:100%;
+    background-size: 100%;
+    padding-top:70px;
     padding-bottom:60px;
-    /*padding-top:90px;*/
 
   }
 
