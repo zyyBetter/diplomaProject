@@ -23,7 +23,6 @@
 
      <div style="padding-top: 20px;">
        <h2>{{childMsg.title}}</h2>
-       <!--<ul id="listCon" @mouseup="getText">-->
        <ul id="listCon" >
          <li v-for="item in childMsg.ctx" >
            <p style="line-height: 8px;" v-show="item.type ==0" class="shareText">{{item.content}}</p>
@@ -69,8 +68,8 @@
                <div class="commentOn_event">
                  <span>{{item.acc}}<span class="add" @click="add(item.id)"></span></span>
                  <span>{{item.ref}}<span class="down" @click="down(item.id)"></span></span>
-                 <span v-if="item.img == personlimg"><span class="del" @click="del(item.id,item.userID)"></span></span>
-                 <span v-if="item.img != personlimg" style="visibility: hidden"><span class="del"></span></span>
+                 <span v-if="item.userID == userID"><span class="del" @click="del(item.id,item.userID)"></span></span>
+                 <span v-if="item.userID != userID" style="visibility: hidden"><span class="del"></span></span>
                </div>
 
              </div>
@@ -238,6 +237,7 @@
           this.personlimg = this.data.image; //获取当前用户的头像
           var url = 'http://127.0.0.1/diplomaProject/php/weibo.php?act=add&content=' + this.text+"&img="+this.personlimg+"&userID="+this.userID;
         this.$http.get(url).then(function (res) {
+          console.log(res)
           this.load();
           this.getpagecount();
           this.text = ""
